@@ -732,12 +732,16 @@ Quite a lot, and this is the risk for Idea 4's "build a prototype" framing:
 - **⚠️ Work on voluntary adoption of assistance — missed by the first sweep:**
   - **Choose Your Agent: Tradeoffs in Adopting AI Advisors, Coaches, and Delegates in
     Multi-Party Negotiation** — arXiv:2602.12089 (Zhu, Thain, Tsai, Wexler, Qian).
-    **243 participants**, three bargaining games, free per-turn choice among three
-    assistance modalities differing in user control and effort. Result: a
+    **243 participants** play three multi-turn bargaining games in groups of three.
+    **Each game grants access to a single assistance modality** (Advisor / Coach /
+    Delegate) in randomised order; on each turn a participant chooses whether to use it or
+    act manually. **Participants never choose among the three** — an earlier draft of this
+    review said they did, which overstated how closely this pre-empts avenue 4A. Result: a
     **preference–performance misalignment** — participants strongly prefer the
     higher-control **Advisor (44%)** over the **Delegate (19%)**, yet groups only
-    significantly increase collective surplus under Delegate access. **This is the closest
-    existing analogue to avenue 4A.**
+    significantly increase collective surplus under Delegate access. **The closest existing
+    analogue to avenue 4A, but the adoption choice is use-vs-not, not friction-level
+    selection.**
   - *When Friction Helps: Transaction Confirmation Improves Decision Quality **in Blockchain
     Interactions*** — arXiv:2602.18834 (N=109; a crypto-wallet confirmation study on a
     blockchain Connect Four game; Wave 2 win rate −11.8%, p=.044). Participants **preferred**
