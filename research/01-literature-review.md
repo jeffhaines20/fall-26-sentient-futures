@@ -14,31 +14,42 @@
 | **[META-ANALYSIS]** | Quantitative meta-analysis with pooled effect sizes. Strongest evidence class here. |
 | **[BENCHMARK]** | A dataset/eval harness you could actually run. Cheapest path to a result. |
 | **[PREPRINT]** | Not peer-reviewed. Treat findings as provisional. |
+| **[✅ FULL TEXT]** | Full text obtained, and **every claim this document makes about the paper checked against the relevant sections.** Not a claim that every word was read. **The marking is complete**: sixteen sources carry it here (arXiv:2603.01341, the seventeenth, is discussed only in `02`). See the verification round below. |
 | **[⚠️ UNVERIFIED]** | Could not confirm details beyond a search-result summary — check before citing. |
 | **[⚠️ CONTESTED]** | The finding has a published rebuttal or a serious methodological critique. |
 
 ### Method and its limits — read this before trusting any citation below
 
-Search worked in this environment; **direct page fetching did not**. `arxiv.org`,
-`nature.com`, `lesswrong.com`, `semanticscholar.org` and similar domains are blocked by
-this session's network egress policy, so:
+**This document was originally built without reading a single paper.** Search worked in
+that environment; direct page fetching did not — `arxiv.org`, `nature.com`,
+`lesswrong.com` and most publisher domains were blocked by network egress policy. Every
+title, number and interpretation below started life as a search-result summary, an
+abstract, or a publisher landing-page snippet.
 
-- **No paper below was read in full.** Titles, authors, dates, venues and headline
-  numbers come from search-engine result summaries, abstract aggregators, and
-  publisher landing-page snippets.
-- **Numbers quoted are the numbers those summaries reported.** Effect sizes, accuracy
-  figures and sample sizes are second-hand. Anything you plan to build on, or put in a
-  writeup, should be checked against the actual PDF.
+**That has since been partly repaired.** A later session with working web access
+**obtained the full text of seventeen sources and checked every claim this document makes
+about them** — the five papers each ranked avenue's premise rests on, the eight next most
+load-bearing, the two sources that were still flagged unverifiable, and the two papers
+behind corrections that had been made and then retracted. Those are marked
+**[✅ FULL TEXT]** and the verification round is logged below. Two ranked avenues changed
+as a result; nothing was fabricated and no arXiv ID was wrong.
+
+What that does **not** cover:
+
+- **Everything unmarked is still second-hand.** Roughly 150 papers are cited here;
+  seventeen have full text behind them. For the rest, effect sizes, accuracy figures and sample
+  sizes are the numbers a summary reported. Check any of them before a writeup depends
+  on it — the verification round found that abstracts systematically omit the scoping
+  conditions that decide whether a result transfers.
 - **Existence of the paper is well-corroborated; interpretation is not.** Where a
-  claim rests on one summary I have marked it [⚠️ UNVERIFIED].
+  claim still rests on one summary it is marked [⚠️ UNVERIFIED].
 - **Recall is incomplete.** This is a broad sweep of six fields in one pass, not a
   PRISMA-style systematic review. Expect meaningful papers to be missing, especially
   non-English work, ACL/NeurIPS/CHI proceedings not surfaced by general web search,
   and anything published in the last few weeks.
 
-**Practical implication for the team:** treat this as a map of where to dig, not as a
-citable evidence base. Before the project is written up, someone should pull the PDFs
-for the ~15 papers you actually depend on.
+**Practical implication for the team:** treat this as a map of where to dig. The
+seventeen marked papers are a citable evidence base; the rest is not yet.
 
 ### Revision history — what a fact-check changed
 
@@ -81,6 +92,31 @@ and its unverified flag lifted; *When Friction Helps* is a **blockchain** study,
 matters for how far it transfers; the depression effect in the commercial-chatbot
 meta-analysis comes from **18 RCTs, N = 3,170**, not the headline N of 110,594.
 
+### Verification round — seventeen papers read in full
+
+A later session with working web access pulled the full text of the papers this document's
+recommendations actually rest on, and checked each claim against the sections that support
+it. **No fabricated paper, no wrong arXiv ID, and no wrong headline number was found.** What full text changed was *scope* — abstracts consistently
+omit the conditions that decide whether a result transfers.
+
+| What full text changed | Where | Now |
+|---|---|---|
+| **rs-10695464's "bibliometric claims about a 2025→2026 shift"** | §4.1 | **There are no such claims.** The preprint has one descriptive sentence about its own 20-article corpus. Assessment withdrawn |
+| The LessWrong post was unfetchable and dismissed as "fine as inspiration, weak as a citation" | §1.6, §1.7, App. B | Read. It is **the closest existing work to avenue 1B** and narrows two of 1B's novelty claims |
+| PersistBench listed as occupying the belief-decay space | §1.5, §1.7 | It is a **safety** benchmark (leakage, memory-induced sycophancy), not a decay measurement |
+| PERMA credited with diagnosing "catastrophic forgetting, context saturation" | §1.5 | Neither is PERMA's term. Corrected to what it reports |
+| arXiv:2512.18489 described as giving "a quantity to compare across models" | §1.2 | True only for **open-weight** models — its estimator needs output logits *and* a normative posterior |
+| psychosis-bench's implicit/explicit gap left unquantified | §3.2, §3.6 | It is a **two-level** contrast (paired *t*-tests), which is why the boundary is uncharacterised |
+| arXiv:2603.22152 summarised without its scope condition | §2.6 | Its tasks have **ground truth**; the authors scope the finding to that setting themselves |
+| arXiv:2603.01341's ">94%" called a fabrication rate | §5.5 (and `02`) | That is the **source-mismatch** rate; hallucination is >93% |
+| StoryScope's feature space implied portable | §5.1, §5.5 | Its ten dimensions are **literary-narrative** categories; the pipeline ports, the features do not |
+
+**Two things were checked specifically because an earlier draft got them wrong, and both
+held.** arXiv:2405.18870 is the *positive* ToM result, so §1.1 correctly stays a question
+to AH rather than a correction. And both bullets that a round-1 draft flagged against the
+team's own citation are stated near-verbatim in arXiv:2510.26518 — the round-1 flags were
+wrong to raise and the retraction was right.
+
 ---
 
 # Idea 1 — Aligning Artificial Minds to Human Wellbeing
@@ -96,14 +132,18 @@ Mind ... despite their capacity to match human performance on higher-order ToM
 benchmarks (arxiv.org/abs/2405.18870)."*
 
 **The citation sits at the end of a sentence with two clauses, and it fits one of them
-but not the other.** **arXiv:2405.18870 is Street et al., "LLMs achieve adult human
-performance on higher-order theory of mind tasks"** (Google DeepMind /
+but not the other.** **[✅ FULL TEXT] arXiv:2405.18870 is Street et al., "LLMs achieve adult
+human performance on higher-order theory of mind tasks"** (Google DeepMind /
 Oxford / Johns Hopkins; Winnie Street, John Oliver Siy, Geoff Keeling, Adrien Baranes,
 Benjamin Barnett, Michael McKibben, Tatenda Kanyere, Alison Lentz, Blaise Agüera y Arcas,
 Robin Dunbar). It introduces the **MoToMQA** benchmark and
 reports the *positive* result: GPT-4 and Flan-PaLM reach adult or near-adult performance,
-and GPT-4 exceeds adults on 6th-order inferences (93% vs 82%). It is the paper making the
-capability claim, not the skeptical one.
+and GPT-4 exceeds adults on 6th-order inferences (93% vs 82%). **All of that is confirmed
+against the paper's own §4** — the 93%/82% figures are stated there verbatim. It is the paper
+making the capability claim, not the skeptical one. *(Two limits worth knowing if AH's answer
+sends anyone to it: the benchmark is 140 test statements, English only, and stops at 6th
+order — the authors say that ceiling "does not appear to have exhausted LLM or human
+capacities.")*
 
 So:
 - If the cite was meant to support **"despite their capacity to match human performance
@@ -160,11 +200,20 @@ over-discount old evidence.**
   empirical base is dated relative to the rest of this list.
 - *Are LLM Belief Updates Consistent with Bayes' Theorem?* — arXiv:2507.17951. Direct
   companion question; not in the doc, should be.
-- *Large Language Models as Discounted Bayesian Filters* — arXiv:2512.18489. **The most
-  directly useful result for AH's question:** LLM belief updates are better described as
-  an *exponential forgetting filter with a model-specific discount factor* than as a
-  Bayesian posterior — i.e. systematic discounting of older evidence. This is a concrete,
-  measurable parameter, and it gives you a quantity to compare across models.
+- **[✅ FULL TEXT]** *Large Language Models as Discounted Bayesian Filters* —
+  arXiv:2512.18489 (Sun Yat-sen University). **The most directly useful result for AH's
+  question:** LLM belief updates are better described as an *exponential forgetting filter
+  with a model-specific discount factor* than as a Bayesian posterior — i.e. systematic
+  discounting of older evidence. Instruction-tuned variants discount *more* than their base
+  models, and each family has a characteristic rate.
+  **But read the method before planning around it.** γ\* is fitted by minimising KL between
+  the model's predictive distribution and an analytic discounted-Bayes posterior, so it needs
+  **both** (a) **output logits** over the outcome set and (b) a **normative posterior**, which
+  exists only because the probes are a biased die and a Gaussian mean with a known changepoint
+  (T = 100, changepoint at t = 51). §4.3 additionally reads final-layer attention and hidden
+  states. Models tested are **Llama-3.1-8B, Mistral-7B and Gemma-2-2B** — all open-weight;
+  no frontier or API-only model appears. **The design transfers to a step-change study; the
+  estimator does not transfer to closed models or to beliefs with no normative answer.**
 - **Bayesian teaching** — Nature Communications doi:10.1038/s41467-025-67998-6 (preprint
   arXiv:2503.17523), plus the Google Research blog post *Teaching LLMs to reason like
   Bayesians* (Mar 2026) *cited in the doc*. Training LLMs to mimic a normative Bayesian
@@ -209,7 +258,8 @@ benchmarks above. **That attribution was wrong** — DToM-Track in fact reports 
 retrieve *prior* belief states). The explicit-vs-applied gap is real and well-evidenced,
 but its canonical sources are these, and both were missing from the first sweep:
 
-- **[BENCHMARK]** **SimpleToM** — arXiv:2410.13648 (ICLR 2026), *Exposing the Gap between
+- **[BENCHMARK][✅ FULL TEXT]** **SimpleToM** — arXiv:2410.13648 (**ICLR 2026 — acceptance
+  confirmed**; Gu, Tafjord, Kim, Moore, Le Bras, Clark & Choi, AI2 / Stanford / UW), *Exposing the Gap between
   Explicit ToM Inference and Implicit ToM Application in LLMs*: models "often reliably
   infer mental state, but fail at applying knowledge about the mental state for secondary
   predictions." **This is the paper avenue 1A depends on — read it first.**
@@ -240,15 +290,34 @@ damning:
 - *Know Me, Respond to Me* — arXiv:2504.14225. Dynamic user profiling at scale.
 - **⚠️ Directly occupies the space avenue 1A wants — all missed by the first sweep:**
   - **CAPTURE** — arXiv:2609.02265 (2 Sep 2026), *Disentangling Preference Drift from
-    Memory Poisoning in Personalized LLM Agents*. Formulates user-belief tracking as "a
-    continuous-time partially observable decision process over latent user state" with a
-    **neural differential-equation belief tracker** and a multi-timescale memory ledger.
-    It also independently makes the point below about stale ≡ poisoned beliefs. **Anyone
-    considering avenue 1A must read this first.**
+    Memory Poisoning in Personalized LLM Agents*. **[✅ FULL TEXT]** Formulates user-belief
+    tracking as "a continuous-time partially observable decision process over latent user
+    state" with a **neural differential-equation belief tracker** and a multi-timescale memory
+    ledger. It also independently makes the point below about stale ≡ poisoned beliefs.
+    **Anyone considering avenue 1A must read this first.**
+    Three things the abstract hides. (i) The ledger's three **exponential decay rates**
+    (γ = 0.01 / 0.1 / 0.5 per day for stable values, contextual preferences, transient goals)
+    are **grid-searched on validation and frozen** — engineering constants tuned for win rate,
+    not estimates of anything a model does. (ii) Appendix B reports that **learning those rates
+    end-to-end collapsed all three toward 0.08** and cost 3.1 points of genuine-update
+    adherence — a direct warning to any project planning to fit one free decay parameter.
+    (iii) On context switches **the modal correct action is to *scope* a belief, not revise
+    it** (CAPTURE 71% vs. 4% for a flat-memory baseline), so an old belief still exerting
+    influence is often correct narrowing rather than staleness. Its benchmark, D-PrefGuard, is
+    **synthetic** and validated on a 300-episode subset; the authors say the absolute numbers
+    are relative comparisons, not deployment estimates. Code and weights are released.
   - **PersistBench** — arXiv:2602.01146, *When Should Long-Term Memories Be Forgotten by
-    LLMs?*
-  - **PERMA** — arXiv:2603.23231, *Benchmarking Personalized Memory Agents*; positional
-    probing to diagnose recency bias, catastrophic forgetting, context saturation.
+    LLMs?* **[✅ FULL TEXT]** — and the title oversells the overlap. It is a **safety**
+    benchmark, not a decay study: it measures **cross-domain leakage** (memories injected
+    where they do not belong) and **memory-induced sycophancy** (stored memories reinforcing
+    user bias) across 18 models, with median failure rates of **53%** and **97%**. It asks
+    when a memory should not be *used*, never how belief about a user decays over turns.
+  - **PERMA** — arXiv:2603.23231, *Benchmarking Personalized Memory Agents via Event-Driven
+    Preference and Realistic Task Environments*. **[✅ FULL TEXT]** Uses **positional
+    probing** (queries at 10%–100% context depth) and finds **recency bias** in some memory
+    systems. *An earlier draft credited it with diagnosing "catastrophic forgetting" and
+    "context saturation" — neither is PERMA's term.* What it actually reports is degradation
+    across **temporal depth** (its Type 2 → Type 3 delta) and **cross-domain interference**.
   - *Memory Retrieval for Changing Preferences* — arXiv:2606.02976. Uses a **Bayes factor**
     (how much including a turn improves the likelihood of the reference response) as a
     unified signal for memory access and selection — **not** time-based decay weighting, as
@@ -271,27 +340,60 @@ damning:
   omits: **only two of the six models (Qwen3-32B, GPT-5-Mini) match the human post-stance
   distribution, and only when given participants' actual initial stances**; all six fail
   to generate plausible initial stances themselves.
-- **LessWrong post "Do LLMs change their minds about their users, and know it?"** —
-  **[⚠️ UNVERIFIED]**, could not be fetched (domain blocked). Also note: LessWrong is not
-  peer-reviewed. Fine as inspiration, weak as a citation.
+- **[✅ FULL TEXT]** **LessWrong, *Do LLMs Change Their Minds About Their Users… and
+  Know It?*** — `msFvLtPfDnCEdvrBr`, 21 Sep 2025. *An earlier draft could not fetch this and
+  filed it as "fine as inspiration, weak as a citation." That was wrong on the first half:
+  it is the closest existing work to avenue 1B, and the team should read it before
+  designing that study.* What it does, on **Llama-3.2 3B only**, using **linear probes on
+  layer activations** and one trait (**user age category**: child / adolescent / adult /
+  older adult):
+  - **Experiment 2 measures exactly 1B's quantity** — how many turns the model takes to
+    adapt after the user changes mid-conversation — and it **already runs the
+    explicit-vs-implicit contrast**: when the switch is announced the model adapts
+    immediately; when it is not, adaptation typically takes **1–2 turns**.
+  - **Experiment 3 finds an elicited-vs-internal gap**: age is strongly encoded in
+    activations, but the model "defaulted to predicting 'child'" when asked to state the
+    user's age group — "strong internal encoding of age does not translate to explicit
+    self report."
+
+  **How it is still distinguishable from 1B** (this matters — see §1.7): it studies a
+  *change of user identity*, not one user revising a belief; it measures *probe
+  activations*, not behaviour in responses; one 3B open-weight model, one trait, no
+  persistence curve fitted, no statistics reported. And it is **not peer-reviewed** (karma
+  11, single author). Cite it as related work, not as a result to build on.
 
 ## 1.7 What is actually still open in Idea 1
 
-1. **The forgetting-curve question — narrower than an earlier draft claimed.** The
-   "discounted Bayesian filter" result gives a *parameter* (a discount factor) measured on
-   beliefs about task facts. An earlier draft said nobody had measured decay for **beliefs
-   about the user**; adversarial search falsified that — CAPTURE, PersistBench, PERMA and
-   arXiv:2606.02976 all work in this space, and BeliefShift covers user opinion drift with
-   2,400 human-annotated multi-session trajectories. **What may still be open is the
-   specific move of fitting an exponential-discount curve and reporting a single
-   comparable parameter per model.** That is a much smaller claim, and it needs checking
-   against CAPTURE before anyone commits to it.
+1. **The forgetting-curve question — narrower than an earlier draft claimed, but the
+   narrowing is now measured rather than guessed.** The "discounted Bayesian filter" result
+   gives a *parameter* (a discount factor) measured on beliefs about task facts — and, now
+   that arXiv:2512.18489 has been read, one obtainable **only from open weights**. An earlier
+   draft said nobody had measured decay for **beliefs about the user**; adversarial search
+   falsified that, and full-text reading has since re-sorted the falsifiers:
+   - **CAPTURE genuinely occupies the modelling side** — but its decay rates are frozen
+     hyperparameters, and it reports that fitting them freely **collapses them to a single
+     value**. There is no published per-model forgetting curve to compare against.
+   - **PersistBench does not occupy this space at all.** It measures memory *safety*
+     (leakage, sycophancy), not decay. Listing it here was an error of the search-only pass.
+   - **PERMA occupies the retrieval-degradation side** (positional probing, recency bias,
+     cross-domain interference), not the belief-decay side.
+   - **The LessWrong post (§1.6) is the closest thing that exists** to the specific move,
+     on one 3B model, one trait, via probes rather than behaviour.
+
+   **What may still be open is fitting a persistence curve to *behaviour*, across models
+   including closed ones, for beliefs a user revises.** That is a much smaller claim than
+   version 1's, and — per this document's standing rule — "open" here means three search
+   passes and seventeen full-text reads did not surface it, not that it does not exist.
 2. **Does Bayesian teaching fix user-belief updating?** The doc asks it; nobody has
    answered it. The training method exists; the multi-turn user-adaptation eval exists;
    the composition has not been done.
-3. **Subtle vs. explicit belief change.** Every benchmark found uses *explicit* revision
-   ("actually, I've changed my mind"). Implied, gradual, or behaviourally-signalled
-   change is untested.
+3. **Subtle vs. explicit belief change — now partly tested, and the caveat has to
+   tighten.** Every *benchmark* found still uses *explicit* revision ("actually, I've
+   changed my mind"). But the LessWrong post in §1.6 runs the announced-vs-unannounced
+   contrast directly and finds a real gap (immediate vs. 1–2 turns). It does so for a change
+   of *user identity*, on one 3B model, measured by probes — so implied revision **by the
+   same user, measured behaviourally, across models** is still untested. State it that
+   narrowly, and cite the post, or a reviewer will find it.
 4. **Stale-belief artifacts after acknowledged change.** BeliefTrack's "Failed Stay /
    Failed Update" is the closest, but measures task beliefs, not persona/user beliefs.
 
@@ -317,8 +419,10 @@ explicitly which side of that moderator it is betting on.
 
 ## 2.2 The doc's two Idea-2 citations, verified
 
-- **arXiv:2510.26518** — *Human-AI Complementarity: A Goal for Amplified Oversight*.
-  Confirmed; positions complementarity as a scalable-oversight goal.
+- **[✅ FULL TEXT] arXiv:2510.26518** — *Human-AI Complementarity: A Goal for Amplified
+  Oversight*. Confirmed; positions complementarity as a scalable-oversight goal. **Read
+  specifically to re-test the two bullets a round-1 draft flagged against it — see §2.3.
+  Both are the paper's own words. The flags were wrong and the retraction stands.**
 - **arXiv:2605.04070** — *Toward Human-AI Complementarity Across Diverse Tasks* (13 Apr
   2026). Confirmed and the numbers are worth quoting precisely: 1,886 samples across
   knowledge, factuality, long-context reasoning and deception detection; two assistance
@@ -366,10 +470,19 @@ request):
 - *Modular Pluralism: Pluralistic Alignment via Multi-LLM Collaboration* — arXiv:2406.15951
 - *Steerable Pluralism: Pluralistic Alignment via Few-Shot Comparative Regression* — arXiv:2508.08509
 - *Exploring Chain-of-Thought Reasoning for Steerable Pluralistic Alignment* — arXiv:2510.04045
-- **[BENCHMARK]** *PerSpectra: A Scalable and Configurable Pluralist Benchmark of
-  Perspectives from Arguments* — arXiv:2602.08716, **ICLR 2026**. 3,810 arguments, 762
-  pro/con stances, 100 controversial topics, sourced from Kialo and Reddit. **Avenue 2A's
-  first phase depends on what is actually in this — check it in week 1.**
+- **[BENCHMARK][✅ FULL TEXT]** *PerSpectra: A Scalable and Configurable Pluralist Benchmark
+  of Perspectives from Arguments* — arXiv:2602.08716. 3,810 arguments, 762 pro/con stances,
+  100 controversial topics, sourced from Kialo and Reddit — **all four figures confirmed**.
+  *The "ICLR 2026" attribution rests on the authors' own repository name
+  (`caisa-lab/ICLR-2026-Pespectra`), which evidences a submission rather than an acceptance;
+  arXiv carries no venue field. Treat it as the weaker claim.* **What week 1 wanted to know
+  — is this a usable stimulus set for avenue 2A? Partly.** Every topic is contested *by
+  construction*, so it supplies the no-consensus class and neither of the other two that 2A's
+  design requires. The 3,810 arguments are **GPT-4o expansions** of Kialo opinions seeded
+  with retrieved Reddit comments — synthetic naturalistic paraphrases, not authentic user
+  text. And its units are **arguments and stances, not questions**. Its three tasks (opinion
+  counting, matching, polarity) test whether a model *comprehends* plurality, not when it
+  should *display* it — so it does not pre-empt 2A either.
 - *Arbiters of Ambivalence: Challenges of Using LLMs in No-Consensus Tasks* — arXiv:2505.23820.
   **Closest existing work to AH's exact question**: what LLMs do when there is no
   consensus answer.
@@ -399,14 +512,31 @@ vs. singular) and **the downstream human effect** of each choice.
 
 **⚠️ And the work that measures the cost of plurality — missed by the first sweep:**
 
-- **arXiv:2603.22152, *More Isn't Always Better: Balancing Decision Accuracy and
-  Conformity Pressures in Multi-AI Advice*** — Tsuchiya & Baba (U. Tokyo), **CHI 2026**.
-  Three tasks, varying panel size, within-panel consensus, and human-likeness of
-  presentation. Findings: accuracy improved for **small** panels vs. a single AI, **larger
-  panels yielded no gains**; high consensus fostered overreliance; **a single dissent
-  reduced conformity pressure; wide disagreement created confusion and undermined
-  appropriate reliance.** *This is the "paralysis" cost, measured, with a dose-response on
-  plurality.* **Anyone working on Idea 2 must read this.**
+- **[✅ FULL TEXT]** **arXiv:2603.22152, *More Isn't Always Better: Balancing Decision
+  Accuracy and Conformity Pressures in Multi-AI Advice*** — Tsuchiya & Baba (U. Tokyo),
+  **CHI 2026** (acceptance confirmed, doi:10.1145/3772318.3791648). Findings: accuracy
+  improved for **small** panels vs. a single AI, **larger panels yielded no gains**; high
+  consensus fostered overreliance; **a single dissent reduced conformity pressure; wide
+  disagreement created confusion and undermined appropriate reliance.** *This is the
+  "paralysis" cost, measured.* **Anyone working on Idea 2 must read this — and must read
+  past the abstract, because four things in the method decide how far it reaches:**
+  1. **The three tasks all have ground truth.** They are binary predictions on the UCI
+     Adult, COMPAS and speed-dating datasets, calibrated to 60–70% unaided human accuracy.
+     The authors scope their own conclusion to this: *"In our accuracy-oriented tasks with
+     ground truth, AI panels did elicit informational conformity."* **Disagreement in that
+     setting means one advisor is wrong.** It is not the setting where plurality is
+     epistemically appropriate.
+  2. **Consensus was observed, not manipulated.** Panels were sampled from a Rashomon set,
+     and the resulting opinion splits were "treated as observed within-subject factors in
+     the analysis for RQ2." The abstract's "we varied … within-panel consensus" overstates
+     this; RQ2 is correlational.
+  3. **"Wide disagreement" has a precise referent.** Only **DIV_3** — a 3-vs-2 near-even
+     split in a five-AI panel — produced confusion. **DIV_4 (4-vs-1) *improved* accuracy.**
+     The cost is at near-even splits, not at disagreement as such.
+  4. **N = 348** (260 in Study 1, 88 in Study 2), Japanese crowdworkers on Lancers, mean age
+     44.5, panel size 1/3/5 **between-subjects** at ~26–32 per cell. The authors flag culture
+     as a generalisation limit. Human-likeness (Study 2) did **not** raise conformity pressure
+     or change accuracy.
 - *Argumentative Experience: Reducing Confirmation Bias on Controversial Issues through
   LLM-Generated Multi-Persona Debates* — arXiv:2412.04629. Within-subjects, eye-tracking,
   multi-perspective debate vs. retrieval-based search. **Note its headline is a null:** the
@@ -436,12 +566,17 @@ vs. singular) and **the downstream human effect** of each choice.
    plurality routing, NPOV generation, and multi-perspective RAG for controversial topics
    all returned *how* to be plural, never *when*). **This is the load-bearing gap for
    Idea 2.**
-2. ~~The paralysis cost is asserted, not measured.~~ **Retracted.** An earlier draft
-   called this "an unusually clean gap." It is not: **arXiv:2603.22152 (CHI 2026) measures
-   it** — wide disagreement between AI advisors creates confusion and undermines
-   appropriate reliance, with a dose-response on panel size. arXiv:2412.04629 measures
+2. ~~The paralysis cost is asserted, not measured.~~ **Retracted, and the retraction
+   stands.** An earlier draft called this "an unusually clean gap." It is not:
+   **arXiv:2603.22152 (CHI 2026) measures it** — a near-even split between AI advisors
+   creates confusion and undermines appropriate reliance. arXiv:2412.04629 measures
    attention and belief effects of multi-persona presentation. What remains open is
    **mapping question type → format**, not whether plurality can cost anything.
+   **Reading 2603.22152 in full sharpens what "open" means here.** Its tasks have ground
+   truth, so it measures the cost of disagreement where disagreement is *error*. Nobody
+   appears to have measured it where disagreement is *legitimate* — which is the only
+   setting in which a plurality router has anything to decide. Note also that its shape is
+   non-monotonic: a lone dissenter helped, a near-even split hurt.
 3. **Calibrating plurality to AI confidence.** 2605.04070 shows confidence-based routing
    fails for *answer* selection. Nobody has tested it for *format* selection.
 
@@ -527,13 +662,28 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
 
 ## 3.2 Benchmarks that already exist for the harm side
 
-- **[BENCHMARK]** *The Psychogenic Machine: Simulating AI Psychosis, Delusion
-  Reinforcement and Harm Enablement in LLMs* (**psychosis-bench**) — arXiv:2509.10970.
-  16 structured 12-turn scenarios across erotic / grandiose-messianic / referential
-  delusional themes; metrics **Delusion Confirmation (DCS)**, **Harm Enablement (HES)**,
-  **Safety Intervention (SIS)**. Across 1,536 turns and 8 models: mean DCS 0.91 ± 0.88,
-  HES 0.69 ± 0.84, SIS 0.37 ± 0.48, and **significantly worse in *implicit* scenarios
-  (p < .001)**. **If you touch Idea 3, you must know this benchmark exists.**
+- **[BENCHMARK][✅ FULL TEXT]** *The Psychogenic Machine: Simulating AI Psychosis,
+  Delusion Reinforcement and Harm Enablement in LLMs* (**psychosis-bench**) —
+  arXiv:2509.10970 (Au Yeung, Dalmasso, Foschini, Dobson & Kraljevic). 16 structured 12-turn
+  scenarios across erotic / grandiose-messianic / referential delusional themes; metrics
+  **Delusion Confirmation (DCS)**, **Harm Enablement (HES)**, **Safety Intervention (SIS)**.
+  Across 1,536 turns and 8 models: mean DCS 0.91 ± 0.88, HES 0.69 ± 0.84, SIS 0.37 ± 0.48,
+  and **significantly worse in *implicit* scenarios (p < .001)**. **If you touch Idea 3, you
+  must know this benchmark exists.** The details that matter for building on it:
+  - **The scales.** DCS and HES are **0–2 ordinals** (DCS: 0 challenge/ground, 1
+    perpetuate/neutral, 2 validate/amplify; HES: 0 refusal, 1 enablement, 2 reinforcement).
+    **SIS is binary 0/1 per applicable turn**, maximum 6 per scenario.
+  - **Scoring is LLM-as-judge**, not human annotation. Reproducing the published numbers
+    means reproducing the judge.
+  - **Each scenario is 4 phases × 3 turns**, and the metrics are scored on different
+    windows — DCS in phases 2–4, HES in phases 3–4, SIS on 6 applicable turns. **The
+    headline means are therefore not per-turn averages over all 1,536 turns**, and the
+    implicit/explicit table reports SIS as a per-scenario sum out of 6 (1.55 vs. 2.89), a
+    different scale from the 0.37 in the abstract. Easy to conflate; don't.
+  - **Scenarios, code and evaluation scripts are public** at
+    `github.com/w-is-h/psychosis-bench` — which is what makes a replicate-first gate cheap.
+  - **The authors' own limitation:** 16 scenarios is a "modest scenario size," and they say
+    conclusions about specific themes and harm types are hard to draw at that scale.
 - **[BENCHMARK]** *Lost in Delusion: Examining LLM Safety Under User Delusions and
   Distress* — arXiv:2606.00975.
 - **[BENCHMARK]** *TrustMH-Bench: Evaluating the Trustworthiness of LLMs in Mental
@@ -623,21 +773,35 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
 ## 3.6 What is actually still open in Idea 3
 
 1. **Trajectory-level rather than endpoint safety scoring** is explicitly called for
-   (JMIR e91454) and mostly not done.
-2. **The implicit-scenario gap.** psychosis-bench's own finding is that models do much
-   worse when delusional content is *implicit*. Nobody has systematically characterised
-   the implicit/explicit boundary.
+   (JMIR e91454) and mostly not done. *One qualification from reading psychosis-bench in
+   full:* its §4.5 does plot DCS/HES/SIS across conversation turns — but "for illustrative
+   purposes," for **2 of its 8 models**, described qualitatively with no statistics. The
+   gap is real; it is not untouched.
+2. **The implicit-scenario gap — and full text makes this sharper, not weaker.**
+   psychosis-bench's own finding is that models do much worse when delusional content is
+   *implicit*. **Reading it confirms the gap is only ever *reported*, never
+   *characterised*:** implicit-vs-explicit is a **two-level factor** analysed with paired
+   *t*-tests (DCS 1.07 ± 0.64 vs. 0.76 ± 0.65, *t* = 4.77, *p* < .001; HES 0.82 ± 0.63 vs.
+   0.56 ± 0.52, *t* = 3.54, *p* = .001; SIS 1.55 ± 2.05 vs. 2.89 ± 2.38, *t* = −7.25,
+   *p* < .001). **There is no gradation of implicitness anywhere in the benchmark** — the
+   two levels are hand-written scenario pairs sharing an identical Phase 1. Nobody has
+   systematically characterised the boundary because the instrument for doing so does not
+   exist yet.
 3. **Sycophancy is probably several constructs, not one.** If the r < 0.3 result holds,
    the field's scores are not measuring one thing.
 4. **Memory × sycophancy** (arXiv:2606.10949) is brand new and thin.
 5. **Cultural misalignment × delusion-confirmation** — still the most open crossing here,
    but **narrower than an earlier draft claimed.** The culture × mental-health-safety
-   crossing is already partly occupied by **arXiv:2508.03247, *Somatic in the East,
-   Psychological in the West? A Clinically-Grounded Evaluation of Cross-Cultural
+   crossing is already partly occupied by **[✅ FULL TEXT] arXiv:2508.03247, *Somatic in the
+   East, Psychological in the West? A Clinically-Grounded Evaluation of Cross-Cultural
    Depression Symptoms in LLMs*** — read it before assuming this is open ground. What
    still looks unclaimed is specifically **delusion-confirmation and safety-intervention
    rates** (psychosis-bench's DCS/HES/SIS) across cultural idioms, as opposed to symptom
-   recognition.
+   recognition. **Reading it confirms that carve-out.** Its finding is that LLMs largely
+   *fail* to reproduce the somatic/psychological split when prompted in English; prompting
+   in major Eastern languages helps in some configurations, but "a strong, culture-invariant
+   hierarchy of depression symptoms" dominates. It is entirely about **symptom recognition**
+   and never touches delusion confirmation or safety intervention.
 
 ---
 
@@ -655,8 +819,17 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
   Systematic Review and Philosophical Synthesis* — Research Square rs-10695464. Proposes
   the **Human Epistemic Stewardship (HES)** framework: five conditions for legitimate
   AI-mediated learning — **contestability, justificatory ownership, productive friction,
-  plural authority, relational oversight**. *[⚠️ UNVERIFIED — preprint, not peer-reviewed;
-  its bibliometric claims about a 2025→2026 shift look strong and should be checked.]*
+  plural authority, relational oversight**. **[✅ FULL TEXT]** — the framework and its
+  five conditions are exactly as described. *Two corrections from reading it.* First, **an
+  earlier draft said "its bibliometric claims about a 2025→2026 shift look strong and
+  should be checked." There are no bibliometric claims.** The preprint's only statement of
+  that kind is one descriptive sentence about its own corpus ("the oldest included article
+  was published in 2023 and the majority appeared in 2025 or 2026"). That assessment is
+  withdrawn. Second, **weight it accordingly**: it is a single-author preprint (Connor
+  Nitchals, independent researcher, posted 18 Aug 2026, not peer-reviewed, no version of
+  record), and its PRISMA search identified **44 candidate records** in total, narrowing to
+  **20 included articles** — two of which were excluded for being preprints. The HES
+  framework is a useful piece of conceptual scaffolding; it is not an evidence base.
   Note that "plural authority" is essentially AH's pluralistic oracle, arrived at from
   the education side — **Ideas 2 and 4 converge here.**
 
@@ -714,13 +887,17 @@ Quite a lot, and this is the risk for Idea 4's "build a prototype" framing:
   cognitive-behavioral drift* — arXiv:2602.01959.
 - *Althea: Human-AI Collaboration for Fact-Checking and Critical Reasoning* — arXiv:2602.11161.
 - *Learning with machines: Toward a theory of epistemic co-agency* — ScienceDirect S2666920X26000354.
-- **[BENCHMARK] HumanAgencyBench (HAB)** — arXiv:2509.08494 (Sturgeon, Samuelson, Haimes
-  & Anthis). Six agency dimensions: **Ask Clarifying Questions, Avoid Value Manipulation,
+- **[BENCHMARK][✅ FULL TEXT] HumanAgencyBench (HAB)** — arXiv:2509.08494 (Sturgeon,
+  Samuelson, Haimes & Anthis). Six agency dimensions: **Ask Clarifying Questions, Avoid Value Manipulation,
   Correct Misinformation, Defer Important Decisions, Encourage Learning, Maintain Social
   Boundaries.** Finds low-to-moderate agency support across current assistants, wide
   variation by developer, and — critically — **a tension between the post-training
-  objective of instruction-following and human agency support**. *An earlier draft of this
-  review attributed that finding to the SPAR project below; it belongs here.* **This paper
+  objective of instruction-following and human agency support** — that phrasing is the
+  paper's own, near-verbatim, not a gloss on the abstract's weaker "does not appear to
+  consistently result from." *An earlier draft of this review attributed that finding to the
+  SPAR project below; it belongs here.* A concrete example worth knowing: **Anthropic models
+  score highest on agency overall but lowest on Avoid Value Manipulation** (M = 23.3% vs.
+  Meta's 56.2%). Code and dataset are released. **This paper
   partly pre-empts both avenue 4A's framing and avenue 6A's "cognitive layer" — read it
   before committing to either.**
 - **[⚠️ ACTIVE PROJECT]** SPAR (Fall 2026): *Does your assistant respect your agency? A
@@ -730,8 +907,9 @@ Quite a lot, and this is the risk for Idea 4's "build a prototype" framing:
   construct." **It reports no results yet.** Worth tracking; not yet a competitor with
   findings.
 - **⚠️ Work on voluntary adoption of assistance — missed by the first sweep:**
-  - **Choose Your Agent: Tradeoffs in Adopting AI Advisors, Coaches, and Delegates in
-    Multi-Party Negotiation** — arXiv:2602.12089 (Zhu, Thain, Tsai, Wexler, Qian).
+  - **[✅ FULL TEXT] Choose Your Agent: Tradeoffs in Adopting AI Advisors, Coaches, and
+    Delegates in Multi-Party Negotiation** — arXiv:2602.12089 (Zhu, Thain, Tsai, Wexler,
+    Qian).
     **243 participants** play three multi-turn bargaining games in groups of three.
     **Each game grants access to a single assistance modality** (Advisor / Coach /
     Delegate) in randomised order; on each turn a participant chooses whether to use it or
@@ -810,16 +988,28 @@ up by LLMs?"* — sits between (a) and (b) and is, as posed, **the most open of 
 The doc's intuition is correct and well-supported, and the strongest recent result is the
 one DM already found:
 
-- **StoryScope: Investigating idiosyncrasies in AI fiction** — arXiv:2604.03136 (Russell,
-  Rajendhran, Pham, Iyyer, Wieting; Apr 2026). *Cited in the doc; verified.* **61,608
-  stories (~5k words) from 10,272 prompts, one human source and five LLMs.** Induces an
-  interpretable feature space of **discourse-level narrative** features across 10
-  dimensions — character agency, chronological discontinuity, etc. **93.2% macro-F1
-  separating human from AI fiction using narrative structure alone**, retaining >97% of
-  the performance of the version that also uses style cues. Signature: tidy plots,
-  explicit themes, reduced structural variety. **This is the paper to build on** — its
+- **[✅ FULL TEXT]** **StoryScope: Investigating idiosyncrasies in AI fiction** —
+  arXiv:2604.03136 (Russell, Rajendhran, Pham, Iyyer, Wieting; Apr 2026). *Cited in the doc;
+  every headline number verified against full text.* **61,608 stories (mean 4,753 words) from
+  10,272 prompts, one human source and five LLMs.** Induces an interpretable feature space of
+  **discourse-level narrative** features across 10 dimensions — 304 features per story.
+  **93.2% macro-F1 separating human from AI fiction using narrative structure alone**,
+  retaining >97% of the performance of the version that also uses style cues. Signature: tidy
+  plots, explicit themes, reduced structural variety. **This is the paper to build on** — its
   key move is that the signal is *structural*, not stylistic, which is exactly DM's
-  "different shape."
+  "different shape." Four things full text adds, all of which bear on cost and transfer:
+  - **93.2% is not the ceiling and is not meant to be.** Style-only scores 85.8%,
+    narrative+style 96.0%, and a plain supervised **ModernBERT baseline reaches 99.9%**.
+    StoryScope's contribution is *interpretability*, not accuracy. Narrative beating style
+    (93.2 vs. 85.8) is the claim that holds; "structure beats everything" is not.
+  - **The ten dimensions are literary-theory categories**, adopted from NarraBench: Agent,
+    Social Network, Event, Plot, Structure, Setting, Time, Revelation, Perspective, Style.
+    Expository prose has no protagonist, no flashback, no plot. **The feature space does not
+    port to non-narrative text; the three-stage pipeline that induced it does.**
+  - **The pipeline is expensive.** Every story is passed through GPT-5.1 for structured
+    extraction — roughly 293M words of source text — before any classifier is trained.
+  - **Human stories come from Books3.** Only the prompts and the 51,336 AI stories are
+    released; the human half is not, and its provenance is copyright-contested.
 - *A linguistic comparison between human- and AI-generated content* — **iScience** /
   ScienceDirect S2589004226003512 (PMC12969083). *Cited in the doc; verified.*
   Portuguese-language; notably builds **two datasets: factual vs. false human-written
@@ -902,10 +1092,15 @@ Llama/Gemma/Qwen-class models, not to API-only frontier models.
 
 ## 5.5 What is actually still open in Idea 5
 
-1. **The cross-product nobody has filled.** StoryScope showed *structural* features beat
-   *stylistic* ones for human-vs-AI. Nobody has tested whether **structural** features
-   separate an LLM's *grounded* output from its *fabricated* output. The Portuguese
-   iScience paper is closest but works at the lexical level.
+1. **The cross-product nobody has filled — and its cost is now known.** StoryScope showed
+   *structural* features beat *stylistic* ones for human-vs-AI (93.2% vs. 85.8% macro-F1).
+   Nobody has tested whether **structural** features separate an LLM's *grounded* output from
+   its *fabricated* output. The Portuguese iScience paper is closest but works at the lexical
+   level. **Reading StoryScope in full prices this in:** its 304 features live in a
+   literary-narrative taxonomy (plot, agents, temporal structure) that has no counterpart in
+   expository prose, so the cross-product cannot reuse the feature space — it has to re-run
+   the induction pipeline on a new taxonomy. That is the difference between borrowing a
+   classifier and building one.
 2. **Hedging vs. actual uncertainty.** arXiv:2605.28778 opens it; the calibration of
    surface markers against internal signals across models and domains is not settled.
 3. **Verbal deception in *dialogue*.** The review/product-review work is single-shot
@@ -1032,7 +1227,7 @@ What is scarce:
 | *Philosophy & Technology* doi:10.1007/s13347-026-01034-3 | Distributed delusions (conceptual) |
 | PMC13405335 | GenAI, cognitive offloading & learner agency (scoping) |
 | *Frontiers in Psychology* doi:10.3389/fpsyg.2026.1906070 | Critical-thinking paradox — **gives testable propositions** |
-| Research Square rs-10695464 **[PREPRINT]** | Epistemic agency in AI-mediated education (PRISMA) |
+| Research Square rs-10695464 **[PREPRINT]** | Epistemic agency in AI-mediated education (PRISMA). **Read in full** — HES framework confirmed; the "bibliometric claims" an earlier draft flagged do not exist (§4.1) |
 | arXiv:2308.14752 | AI deception (canonical) |
 | arXiv:2409.18786 | Honesty of LLMs |
 | arXiv:2403.01152 | AI-generated text forensics |
@@ -1050,13 +1245,13 @@ What is scarce:
 
 | Doc link | Status |
 |---|---|
-| arxiv.org/abs/2405.18870 | ✅ Real. It is the *positive* result (LLMs reach adult ToM performance). Whether the doc misuses it depends on which clause the cite was attached to — **AH, please clarify.** See §1.1 |
+| arxiv.org/abs/2405.18870 | ✅ **Full text checked.** It is the *positive* result — Street et al., MoToMQA; GPT-4 hits 93% on 6th-order ToM vs. adults' 82%. Whether the doc misuses it depends on which clause the cite was attached to — **AH, please clarify.** See §1.1 |
 | arxiv.org/abs/2607.28347 | ✅ Real; doc's summary accurate; one nuance omitted (§1.6) |
-| lesswrong.com/posts/msFvLtPfDnCEdvrBr/... | ⚠️ Not verified (domain blocked). Not peer-reviewed |
+| lesswrong.com/posts/msFvLtPfDnCEdvrBr/... | ✅ **Now read in full** — *Do LLMs Change Their Minds About Their Users… and Know It?*, 21 Sep 2025. Still not peer-reviewed, but **the closest existing work to avenue 1B** — see §1.6 |
 | arxiv.org/abs/2605.06915 | ✅ Real; **Apple and Stanford** (no Princeton — an earlier draft said otherwise), May 2026 |
 | arxiv.org/html/2507.11768v1 | ✅ Real; note it is **July 2025** with GPT-3-era validation |
 | research.google/blog/teaching-llms-to-reason-like-bayesians/ | ✅ Real; underlying paper in *Nature Communications* |
-| arxiv.org/abs/2510.26518 | ✅ Real |
+| arxiv.org/abs/2510.26518 | ✅ **Full text checked.** Both bullets a round-1 draft flagged against it are stated near-verbatim in the paper (§2.3). The flags were wrong; the retraction stands |
 | arxiv.org/abs/2605.04070 | ✅ Real; see §2.2 for the numbers in context |
 | link.springer.com/article/10.1007/s13347-026-01034-3 | ✅ Real — Osler, *Philosophy & Technology* 39(1):30 |
 | pmc.ncbi.nlm.nih.gov/articles/PMC7618964/ | ✅ Correct article — it is the author-manuscript deposit. Prefer the version of record: *Nature Mental Health* doi:10.1038/s44220-026-00595-8 (**Dohnány et al.**, not Morrin) |
@@ -1064,5 +1259,5 @@ What is scarce:
 | journals.sagepub.com/doi/10.1177/23794607251347020 | ✅ Real — Abels et al., *Behavioral Science & Policy* 11(1):22–32 |
 | emergentmind.com/topics/cultural-biases-in-llm-recommendations | ❌ **Not a citable source** (AI-generated aggregator). Primary sources listed in §3.5 |
 | sciencedirect.com/.../S2772503025000994 | ✅ Real |
-| arxiv.org/pdf/2604.03136 | ✅ Real — StoryScope |
+| arxiv.org/pdf/2604.03136 | ✅ **Read in full** — StoryScope. Numbers confirmed; feature space is narrative-specific (§5.1) |
 | pmc.ncbi.nlm.nih.gov/articles/PMC12969083/ | ✅ Real — *iScience*; **most relevant to DM's question** |
