@@ -3,7 +3,8 @@
 Up to three avenues per idea, ranked **most → least promising**, plus an overall ranking.
 Companion to `01-literature-review.md`; section references (§) point there.
 
-> **Version 3.** Two rounds of adversarial critique (`critiques/`). v1's ranking rested on
+> **Version 4.** Three rounds of adversarial critique plus a full-text verification round
+> (`critiques/`). v1's ranking rested on
 > three "nobody has done this" claims that did not survive fact-checking; v2 fixed those but
 > its stated tiebreak was inconsistent with its own scoring table. Changes at the end.
 
@@ -20,7 +21,7 @@ the content is *implicit*, p < .001) and characterise where that boundary sits.
 | **Effort** | ~50–70 person-hours, fits comfortably in ~12 working weeks |
 | **Participants** | **None.** Model-side only — no recruitment, no ethics application, no budget |
 | **Needs** | API access, and a clinical advisor to review stimuli |
-| **Week-1 check that could kill it** | Read psychosis-bench (arXiv:2509.10970): is the implicit/explicit gap already *characterised*, or only *reported*? |
+| **Week-1 check that could kill it** | ✅ **Run and passed.** psychosis-bench's implicit/explicit gap is only *reported* — a two-level contrast with no gradation anywhere in the benchmark. See the gate table |
 
 **The alternative: 2A — build the plurality router** (when *should* an assistant show
 multiple viewpoints?). It has the cleanest unclaimed gap in this document. **Pick it only
@@ -32,7 +33,8 @@ fallback, which drops the "should" from the claim.
 trajectory measurement, they share a harness, and the work distributes well across mixed
 skill levels.
 
-**Before committing to anything, do the ten week-1 gates.** ~2 person-days, and they are
+**Before committing to anything, read the ten week-1 gates.** Eight have been run for you
+(the reading ones); gates 8 and 9 are institutional and still open. They are
 the highest-return work in the project.
 
 *Why 3A over 2A, when 2A has the better gap: 2A's own stated timeline (5–7 weeks for Phase 1
@@ -67,6 +69,12 @@ rest.)*
 
 **3. Every avenue names the one premise whose falsification kills it.** Check that premise
 first, not last.
+
+**4. This file carries no `[✅ FULL TEXT]` marks; `01` does.** Seventeen sources have been
+read in full and every one of them is flagged in `01`. When this document cites a paper
+without saying "read in full" or "not one of the seventeen," check `01` before you rely on
+it. The three places where that distinction is load-bearing — Song et al. (2411.04578) under
+2A, BeliefTrack (2605.30219) under 1B, and StoryScope's venue under 5A — say so inline.
 
 ## Ranking criteria
 
@@ -185,8 +193,8 @@ replaced.** Gates 8 and 9 are institutional and are still yours.
 
 | # | Check | Outcome |
 |---|---|---|
-| 1 | Read **CAPTURE** (2609.02265), **PERMA** (2603.23231), **PersistBench** (2602.01146) | ✅ **1B survives.** CAPTURE's decay rates are frozen hyperparameters, not measurements — but it reports that *fitting them freely collapses them to one value*. **PersistBench does not occupy this space at all** (it is a memory-*safety* benchmark). PERMA covers retrieval degradation, not belief decay |
-| 2 | Read **arXiv:2603.22152** (CHI 2026) — what exactly did it measure? | ⚠️ **2A's scope resets.** Its three tasks have **ground truth**; the authors scope the finding to that themselves. And "wide disagreement" means one thing only: a **3-vs-2 near-even split**. A lone dissenter *helped* |
+| 1 | Read **CAPTURE** (2609.02265), **PERMA** (2603.23231), **PersistBench** (2602.01146) | ⚠️ **1B's competitors thin out, but read this with gate 10.** CAPTURE's decay rates are frozen hyperparameters, not measurements — but it reports that *fitting them freely collapses them to one value*. **PersistBench does not occupy this space at all** (memory-*safety* benchmark); PERMA covers retrieval degradation, not belief decay. **Net for 1B this round: less crowded, harder to execute — see the net-effect note in 1B** |
+| 2 | Read **arXiv:2603.22152** (CHI 2026) — what exactly did it measure? | ⚠️ **2A's scope resets, and a novelty claim died.** Its three tasks have **ground truth**; the authors scope the finding to that themselves. But its own reference list contains **Song et al. (2411.04578, CSCW 2025)**, which studied the *no-ground-truth* half — so "nobody measured the legitimate-disagreement case" is **false**. 2A's real gap is still the router. Also: "wide disagreement" means a **3-vs-2 near-even split** (no gain); a lone dissenter helped; unanimous trials had the highest accuracy |
 | 3 | Read **PerSpectra** (2602.08716) — are its 100 topics usable? | ⚠️ **Half usable.** The 100 Kialo topics give you the *contested* half of a stimulus set. There is no contrast class of settled items, its 3,810 arguments are GPT-4o expansions rather than authentic text, and its items are arguments, not questions |
 | 4 | Read **psychosis-bench** (2509.10970) — gap characterised or just reported? | ✅ **3A survives — this is the strongest result of the round.** The gap is a **two-level factor** analysed with paired *t*-tests. There is no gradation of implicitness anywhere in the benchmark. Scenarios and code are public |
 | 5 | Read **arXiv:2508.03247** (cross-cultural depression symptoms) | ✅ **3C's carve-out holds.** It measures *symptom recognition* and finds LLMs largely fail to reproduce the cultural split. Delusion-confirmation across cultural idioms is untouched by it |
@@ -199,6 +207,16 @@ replaced.** Gates 8 and 9 are institutional and are still yours.
 **One gate was added and run that version 3 did not list:** the LessWrong post
 `msFvLtPfDnCEdvrBr`, previously unfetchable, turns out to be **the closest existing work to
 1B** — see 1B below. It narrows two of 1B's claims without killing the avenue.
+
+**⚠️ No scoring cell was changed, and you should know that was a judgement call.** Round 3
+produced evidence bearing on at least two cells: 2A's Phase 1 got *harder* (PerSpectra
+supplies one of three item classes, not "most of it"), and 3A's premise got *firmer* (its
+founding claim is now first-hand rather than inferred from an abstract). I judged neither
+large enough to move a cell, partly because moving them would widen a gap the document
+already says is one point wide. **Disagree with that judgement if you like — it is exactly
+the kind of cell the ranking table invites you to argue with.** What you should not do is
+read "the ranking did not change" as verification having *confirmed* the ordering. It
+tested premises, not the ordering.
 
 **Gates 8 and 9 are the ones left**, and they are institutional questions with
 days-to-weeks of latency, so **start them on day one.**
@@ -230,8 +248,9 @@ often do users revise a stated belief, preference or goal, and how often does th
 assistant keep acting on the superseded version?
 
 **Why it's now ranked first in Idea 1.** Two reasons. First, the constructed-stimulus
-version (1B) turned out to be far more crowded than the first sweep suggested — CAPTURE,
-PERMA, PersistBench and BeliefShift all occupy it. Observational work on *naturally
+version (1B) turned out to be more crowded than the first sweep suggested — though **gate 1
+thinned that list**: CAPTURE genuinely occupies it and BeliefShift is adjacent, but PERMA and
+PersistBench turned out not to (see 1B). The LessWrong post is the closest thing to it. Observational work on *naturally
 occurring* revision does not appear to be occupied. Second, and more practically for this
 team: **it needs no recruitment, no payment, and no IRB** (public secondary data is
 typically exempt — confirm, don't assume), and the bulk of the work is annotation, which
@@ -279,6 +298,13 @@ beliefs about the user" and claimed nobody had done it. **Both parts were overst
   tracker. BeliefShift covers user opinion drift with 2,400 annotated multi-session
   trajectories. **What may remain novel is the narrow move of fitting a persistence curve
   and reporting one comparable parameter per model.**
+
+**Net effect of round 3 on 1B: less crowded, harder to execute.** Three of the four supposed
+occupiers cleared (below), which is good. Against that: the nearest neighbour turns out to be
+a post that ran 1B's own experiment including the implicit/explicit contrast; both surviving
+novelty claims narrowed; the positive control died and its replacement is unanchored; and
+gate 9 now gates this avenue too. **No scoring cell moved, and 1B stays 7th.** Read the gate
+table's green tick on gate 1 with that in mind.
 
 **What gate 1 found when those papers were actually read.** The space is crowded
 differently than version 2 assumed:
@@ -352,11 +378,18 @@ Gemma-2-2B). **You cannot run it on a closed API, and it does not transfer to us
 where there is no normative posterior — that is the same objection this document already
 raises against the name "discount factor."**
 
-**Use one of these instead.** In rough order of cost:
+**Be honest about where that leaves you: 1B currently has no anchored positive control, and
+finding one is a week-1 task.** A positive control has to recover an *independently
+established* effect; "run my own harness on an easier stimulus and hope for a big number" is
+a manipulation check wearing the wrong name. The candidates, in rough order of cost:
 1. **A planted-fact control on your own behavioural harness.** State a task fact, revise it
-   explicitly, and measure turns-to-adopt on model *behaviour*. The effect is large and
-   documented (BeliefTrack's Failed Stay / Failed Update), it needs no logprobs, and it is
-   the same instrument you will use for user beliefs — which is what a control should be.
+   explicitly, measure turns-to-adopt on model *behaviour*. No logprobs needed, and it uses
+   the same instrument as the main study. **⚠️ Its warrant is BeliefTrack (arXiv:2605.30219),
+   which is *not* one of the seventeen papers read in full — it is search-only, and `01`
+   describes it as using a finite belief space with symbolic verifiers, which may not port to
+   a generic behavioural harness at all. Read it first and find a specific published
+   turn-level number to hit. If there is no such number, this is a manipulation check, and
+   you should say so rather than calling it a control.**
 2. **Borrow 2512.18489's *design*, not its estimator.** Its step-change-at-a-known-point
    structure (T = 100, changepoint at t = 51) is a clean template for a persistence study;
    only the KL-to-normative-posterior fit is unusable.
@@ -428,13 +461,28 @@ introduction.** Reading 2603.22152 in full turns up four things its abstract doe
    and speed-dating datasets, calibrated to 60–70% unaided human accuracy. The authors
    scope their own conclusion to exactly that: *"In our accuracy-oriented tasks with ground
    truth, AI panels did elicit informational conformity."* **So the confusion cost was
-   measured where disagreement means one advisor is simply wrong — not where plurality is
-   epistemically appropriate, which is the only setting where a router has a decision to
-   make.** This is a *gift*: it is the cleanest possible statement of what your study adds,
-   and it comes from the authors themselves. Quote it.
+   measured where disagreement means one advisor is simply wrong.**
+   **🔴 A draft of this section then claimed nobody had measured the other case, and credited
+   that gap to Tsuchiya & Baba themselves. Both halves were wrong, and the correction is more
+   useful than the claim was.** The quoted sentence is the *second* of a pair; the first
+   reads *"Prior work on discussing societal issues with AI has suggested that informational
+   conformity is unlikely to arise with AI panels (Song et al., 2024); our results provide an
+   important counterexample."* **Song et al. — arXiv:2411.04578, CSCW 2025, peer-reviewed —
+   is a human study of multi-agent influence on societal issues *without ground truth*,**
+   cited six times here and summarised in §2.3 as examining *"opinion change on societal
+   issues without ground truth."* The authors are not saying that space is empty. They are
+   saying they are a counterexample to what is already in it.
+   **What you actually get is better than a false novelty claim: two papers that disagree,
+   split along exactly the line your router cares about.** Position against both. Neither
+   builds a routing rule — and that, item 1 of §2.6, is 2A's real gap and is untouched by
+   round 3. **Read 2411.04578 in week 1. It is not one of the seventeen; nobody here has read
+   it in full.**
 2. **"Wide disagreement" has one precise referent: a 3-vs-2 near-even split in a five-AI
-   panel (their DIV_3).** A 4-vs-1 split (DIV_4) **improved** accuracy, and a lone dissenter
-   reduced conformity pressure. The relationship is non-monotonic, not "more disagreement is
+   panel (their DIV_3), and it produced *no gain* rather than a loss.** A 4-vs-1 split
+   (DIV_4) **improved** accuracy over participants' own unaided baseline, and a lone dissenter
+   reduced conformity pressure. **Absolute accuracy was still highest on unanimous trials** —
+   which were also the easier items, since the panel only split 3-vs-2 on ambiguous cases.
+   The relationship is non-monotonic, not "more disagreement is
    worse." A router built on the abstract's summary would get this backwards.
 3. **Consensus was observed, not manipulated.** Panels were drawn from a Rashomon set and
    the splits that came out were "treated as observed within-subject factors." The
@@ -466,8 +514,11 @@ introduction.** Reading 2603.22152 in full turns up four things its abstract doe
   - Its three tasks (opinion counting, matching, polarity) test whether a model
     *comprehends* plurality, not when it should *display* it — so it does not pre-empt you.
 
-  **Net: budget the topic list as ~1 week saved, not the whole stimulus set.** The 5–7 week
-  Phase 1 estimate stands.
+  **Net: budget PerSpectra as roughly 20–30 person-hours saved on topic sourcing, not as
+  the stimulus set.** The 5–7 week Phase 1 estimate is unchanged — but note it was set when
+  PerSpectra was assumed to supply "most of it," so treat it as the floor now, not the
+  midpoint, and re-derive it once you have scoped the two item classes you must build
+  yourself.
   **Annotation is the cost here, not the API calls:** "hedged" vs. "plural" is not a crisp
   distinction, so you need a codebook, double-coding, and a reported κ. Version 1 budgeted
   3 weeks and treated annotation as free; 5–7 weeks is realistic, or cut the model count.
@@ -609,12 +660,27 @@ before you write a single stimulus:
 participants. **~50–70 person-hours**, most of it careful stimulus-writing — good work for
 non-programmers, and it needs a clinical reviewer.
 
-**Falsifiable how.** Positive control: your ladder's *explicit* rung must reproduce
-psychosis-bench's published DCS/HES/SIS values. If it doesn't, your harness is wrong, not
-the models. **This control is confirmed runnable** — the scenarios, the judge prompts and
-the evaluation scripts are all in the public repo, so "reproduce the explicit rung" means
-running their code on their stimuli before substituting yours. Do that in week 1; it is
-the cheapest de-risking step in this document.
+**Falsifiable how — and this is two steps, not one.** *A previous version collapsed them and
+called the result "confirmed runnable." That swapped the real control for a plumbing test:
+running their code on their stimuli checks your API wiring, while the control that matters
+checks the thing this project actually risks getting wrong — your stimulus writing, which
+this avenue itself calls "most of it."*
+
+1. **Smoke test (week 1, hours).** Run psychosis-bench's own code on its own scenarios from
+   the public repo and reproduce its published values. Confirmed runnable; confirms your
+   pipeline, nothing more.
+2. **The actual positive control (before you trust any rung).** Your *own* explicit-rung
+   stimuli, written to their rubric, must land on their published DCS/HES/SIS. This is the
+   one that can fail informatively, because it tests your scenario-writing.
+
+**If step 2 fails, do not assume your harness is broken — diagnose three causes in order:**
+*(a)* **judge drift** — pin the judge to `openai/gpt-4o-mini`, which is what they used, and
+remember it was never validated against human raters, so some disagreement is baseline noise
+rather than your error; *(b)* **model-version drift** — their eight endpoints are
+September-2025 OpenRouter snapshots and it is now a year on, so record which still resolve
+and expect moved values on those that do; *(c)* **your stimuli**, which is the interesting
+case and the reason to run the control at all. Only after (a) and (b) are ruled out is a
+failure yours to fix.
 
 **The premise that kills it.** That the implicit/explicit gap is *reported* but not
 *characterised*.
@@ -880,14 +946,22 @@ gap is arguably the whole opportunity.
    than inventing one" while also saying the narrative→expository adaptation "is the
    intellectual work." Both cannot be true. StoryScope's features are narrative-specific
    (character agency, chronological discontinuity); porting them is **deriving a new feature
-   space.** Say so. **Reading StoryScope in full confirms this and prices it.** Its ten
-   dimensions are adopted wholesale from NarraBench's literary taxonomy — Agent, Social
-   Network, Event, Plot, Structure, Setting, Time, Revelation, Perspective, Style — and
-   expository prose instantiates almost none of them. What ports is the *three-stage
-   induction pipeline* (structured intermediate representation → cross-source comparison →
-   feature discovery), and that pipeline runs an LLM extraction pass over **every document
-   in the corpus** (they pushed 61,608 stories averaging 4,753 words through GPT-5.1).
-   **Fold that into gate 9's API budget — it is the single largest cost in this avenue.**
+   space.** Say so. **Reading StoryScope in full prices it — though note the paper says
+   nothing about non-fiction either way, so the non-portability call is inference from the
+   taxonomy, not a finding.** Its ten dimensions come wholesale from NarraBench's literary
+   taxonomy — Agent, Social Network, Event, Plot, Structure, Setting, Time, Revelation,
+   Perspective, Style — and the 304 features under them are written for fiction. What ports
+   is the *three-stage induction pipeline* (structured intermediate representation →
+   cross-source comparison → feature discovery), and that pipeline runs **two** full-corpus
+   LLM passes: GPT-5.1 for template extraction, then Gemini 3 Flash to apply the features to
+   all 61,608 stories.
+   **The paper states its own bill: ~$2,800 to generate the corpus, ~$1,600 for feature
+   extraction, $4.4k all in**, at 61,608 stories averaging 4,753 words. Scale to your corpus
+   before quoting a figure, but **$1,600 for one extraction pass is the anchor gate 9
+   needs** — against a document whose other line items are $700–900 (2A participants) and
+   $1–2k (independent IRB), and standing assumptions that include no training budget. **If
+   that is unaffordable, cut the corpus by an order of magnitude in the design, not after the
+   pilot.**
 
 **Feasibility. Medium — and only if at least one team member has trained a transformer
 classifier before.** This is the most technical avenue in the document; version 1 graded it
@@ -898,9 +972,11 @@ Semantic entropy (§5.3) already detects confabulation and will likely beat you 
 accuracy. Structural features say *how* fabricated text differs; entropy only says *that*
 it does. **This is exactly the trade StoryScope made:** its 93.2% narrative-only score sits
 against 85.8% for style-only, 96.0% combined, and **99.9% for a plain supervised ModernBERT
-baseline** on the same task. It is published, at CHI-tier length, having lost to a
-black-box classifier by six points — because the features are readable. Cite that framing
-rather than inventing one. Decide it in week 1 and the redundancy stops being a threat.
+baseline** on the same task — it accepts being 6.7 points worse than a black box because the
+features are readable. **That framing is worth borrowing; its authority is not — StoryScope
+lists no venue on arXiv, so it is an unrefereed preprint and cannot be cited as evidence
+that reviewers accept the trade.** Make the argument on its merits. Decide it in week 1 and
+the redundancy stops being a threat.
 
 **Build a cross-domain held-out test before reporting any number.**
 
@@ -912,11 +988,21 @@ your task is uninformative.
 **⚠️ Check the data release before you promise this control.** StoryScope releases its code,
 the 10,272 prompts and the **51,336 AI-generated stories** — but **not the human stories**,
 which come from **Books3** and are copyright-contested. So the exact human-vs-AI replication
-is not runnable off the shelf. Two workable substitutes, decided in week 1, not week 6:
-**(a)** replicate the **six-way authorship attribution** result instead (68.4% macro-F1
-narrative-only, 77.3% with style) — it uses only the released AI half and exercises the same
-extractor; or **(b)** source your own human narrative corpus with a clean licence and accept
-that your replication is approximate. Either is fine; silently dropping the control is not.
+is not runnable off the shelf.
+
+*A previous version of this paragraph offered the six-way authorship attribution result as a
+substitute "because it uses only the released AI half." **That was wrong** — `human` is one
+of the six classes, and Table 11 makes it the most separable one (88.5% F1 narrative-only),
+so dropping it does not leave you the published 68.4% to hit.* What is actually available,
+decided in week 1 and not week 6:
+
+- **(a) Source your own human narrative corpus** under a clean licence and accept an
+  approximate replication. This is the only route to a published number.
+- **(b) Run five-way AI-only attribution** on the released half. Runnable today and it
+  exercises the extractor end to end — but **there is no published figure to match**, so it
+  is a pipeline check, not a positive control. Say which of the two you are claiming.
+
+Silently dropping the control is not an option.
 
 **The premise that kills it.** That structural features carry signal about grounding at all.
 Pilot on 200 examples with 5 hand-picked features (~15 person-hours) before building the
@@ -1120,3 +1206,23 @@ than the most exposed one.
 | **5A: StoryScope's baselines added; the interpretability framing given a precedent** | 93.2% narrative-only sits against 99.9% for a plain ModernBERT. That is the trade this avenue is making, and it is a published one |
 | **Gate 9 (logprobs) now gates Idea 1 as well as Idea 5** | Consequence of gate 10. `TEAM-BRIEF` said it mattered only for Idea 5; that was wrong |
 | Corrected arXiv:2603.01341's ">94%" from "fabrication rate" to **source-mismatch rate** | Wrong label on a real number, in 5A and in the brief |
+
+# What changed from version 4's own review — round 4
+
+Round 3's verification was put through the same two-critic pass as every other round. It
+upheld the citation base and **found nine errors round 3 had introduced.** Record in
+`critiques/round-3-full-text-verification.md`.
+
+| Change | Why |
+|---|---|
+| **2A: the "nobody measured legitimate disagreement" claim is retracted** and Song et al. (2411.04578, CSCW 2025) added | Round 3 minted an unhedged novelty claim off one full-text read; the paper it read cites the falsifier six times. 2A's real gap is still the router |
+| **3A's positive control split back into two steps**, with a three-way failure diagnosis | Round 3 replaced "your explicit rung reproduces their values" with "run their code," which tests plumbing rather than the project's actual risk — and simultaneously asserted the failure would and would not be the team's fault |
+| **3A: judge model, judge non-validation and model-version drift added** | All three were in the paper round 3 read and none was reported. "You inherit the validity argument" was half true |
+| **5A's substitute positive control replaced** | `human` is one of StoryScope's six attribution classes, so "it uses only the released AI half" was impossible |
+| **5A: StoryScope's actual cost added ($1,600 extraction, $4.4k all in, two passes)** | The document prices everything else to the dollar; this was the number most likely to kill the avenue |
+| **5A: the "it is published" precedent withdrawn** | StoryScope lists no venue. It is an unrefereed preprint |
+| **1B: stated plainly that it has no anchored positive control** | Its replacement rests on BeliefTrack, which is search-only, and "same instrument" is not what makes something a control |
+| **1B: gate 1's outcome relabelled and a net-effect note added** | Round 3's green tick read as "one problem, fixed." The round was net negative for 1B |
+| **1A: PersistBench and PERMA removed from the crowding claim** | The same commit retracted both as occupants elsewhere and missed the one place the claim does work |
+| **Stated openly that no scoring cell was changed, and why** | Round 3 wrote "the ranking did not change" as though verification had confirmed the ordering. It tested premises |
+| **PerSpectra rebudgeted in person-hours; front matter and version header refreshed** | "~1 week saved" mixed units with a person-hour estimate; the first two screens were still pre-round-3 |

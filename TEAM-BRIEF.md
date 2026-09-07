@@ -31,7 +31,7 @@ Everything below explains why, plus what I found for each idea.
 | `research/02-ranked-avenues.md` | 18 concrete project ideas, ranked, with effort, sample sizes, costs, and the checks that could kill each | Whoever's leading the project choice |
 | `research/01-literature-review.md` | The full literature review, ~150 papers, organised by idea | Whoever owns a particular idea |
 | `research/00-source-ideas.md` | Our brainstorm text, with a note on how I grouped it | **AH and DM — please check this** |
-| `research/critiques/` | Five critique documents from three review rounds, which found my errors | Only if you want to see the working |
+| `research/critiques/` | Six critique documents from four review rounds, which found my errors | Only if you want to see the working |
 
 ---
 
@@ -60,9 +60,19 @@ was running in blocked access to arxiv.org, nature.com and most journal websites
 everything came from search results, abstracts and publisher summaries.
 
 **That has since been partly fixed. I've now got the full text of seventeen papers and
-checked what this brief says against them** — every paper named in the week-1 list below,
-plus the two sources I'd previously had to mark "unverified," plus the two behind
-corrections I'd made and then retracted. **Nothing was
+checked what this brief says against them** — the eleven in the week-1 list below, plus
+*StoryScope* and the structural-hallucination paper behind Idea 5, plus the two sources I'd
+previously had to mark "unverified," plus the two behind corrections I'd made and then
+retracted.
+
+**How I read them matters, so here it is plainly.** For the five papers our top
+recommendations rest on, I read method, results and limitations end to end. For the other
+twelve I read the abstract and introduction and then the specific sections bearing on what
+this review says about them. That catches a wrong number reliably. It is much weaker at
+catching *what a paper contains that I never thought to mention* — and that is exactly how
+I missed something big (see the correction two paragraphs down). **If you own an idea, still
+read its two nearest papers yourself.** I checked my claims against the papers, not the
+papers against my claims. **Nothing was
 fabricated, no reference was fake, and every headline number I'd quoted turned out to be
 exactly right.** What was wrong was *scope*: abstracts leave out the conditions that decide
 whether a result actually transfers to what we'd be doing, and in three places those
@@ -87,6 +97,13 @@ real errors in my drafts:
 - **Reading the papers found two more.** I said one preprint made "bibliometric claims" it
   does not make, and I dismissed a blog post I couldn't fetch as "weak as a citation" when it
   is in fact the closest existing work to one of our candidate projects.
+- **And then a review of that reading found a third, which was mine and was worse.** Having
+  read the CHI multi-AI paper, I wrote that nobody had studied the case Idea 2 cares about —
+  where several views are legitimately in play. **That was false.** The paper I had just read
+  cites such a study six times ([Song et al., CSCW 2025](https://arxiv.org/abs/2411.04578)),
+  and I had also credited the CHI authors with a novelty claim they never made. Two adversarial
+  reviewers caught it. It is logged in `01` and `02`; the corrected version is in the Idea 2
+  section below, and it is *more* useful than what I originally wrote.
 
 All are fixed and logged in the detailed files. But the pattern matters:
 
@@ -199,15 +216,27 @@ about designing better AI interfaces has to say where it sits relative to that.
 a CHI 2026 study found that when AI advisors disagree widely, users get confused and rely on
 them worse. So AH's worry about paralysis is real and already measured.
 
-**Reading that CHI paper in full made our question sharper, not smaller.** All three of its
-tasks have a correct answer — predicting income, reoffending and dating outcomes — and the
-authors are explicit that their finding holds "in our accuracy-oriented tasks with ground
-truth." **So they measured what happens when AI advisors disagree because one of them is
-wrong.** The situation AH is actually interested in — where several views are *legitimately*
-in play — is the one nobody has measured. That distinction is the best opening paragraph
-this project could have, and it comes from the paper's own authors. One more detail worth
-having: the confusion only showed up at a near-even 3-against-2 split. A single dissenting
-AI *helped* people.
+**Reading that CHI paper in full made our question sharper.** All three of its tasks have a
+correct answer — predicting income, reoffending and dating outcomes — and the authors are
+explicit that their finding holds "in our accuracy-oriented tasks with ground truth." **So
+they measured what happens when AI advisors disagree because one of them is wrong.**
+
+**I first wrote that nobody had studied the other case — where several views are legitimately
+in play — and that was wrong.** The same paper cites such a study six times:
+[Song et al., CSCW 2025](https://arxiv.org/abs/2411.04578), which had people discuss *social
+issues with no right answer* with one AI or several, and found that several agents increased
+the social pressure people felt and shifted their opinions more. The CHI authors position
+their own result as "an important counterexample" to it. **So both halves of the space are
+occupied — and the two papers disagree, along exactly the line we care about.** That is
+better material than a clean gap: we can position against both. What neither of them does is
+build a *rule for when to be plural*, which is still our actual question.
+
+Three details worth having before anyone quotes this paper: accuracy was **highest when all
+five AIs agreed**; a lone dissenter helped people relative to their own unaided baseline; and
+the near-even 3-against-2 split produced **no gain**, not a loss. Also, the experimenters
+did not *set* how much the AIs disagreed — they took whatever split came out and analysed it
+afterwards, so this is a correlation. Manipulating the split directly would be a contribution
+in itself.
 
 **What's still open — the most open thing in this review:** **nobody has built the router.**
 Everything either shows multiple views always, or studies the properties of doing so. A
@@ -286,8 +315,12 @@ and it got published having lost to the black box. That's the trade we'd be maki
 it's good news that there's a precedent. Second, **its features are literary ones** — plot,
 character, flashbacks — so almost none of them transfer to factual writing. We'd be borrowing
 the *method* and building a new feature set, which is the real work and we should say so.
-Third, **it's expensive**: they ran an AI extraction pass over all 61,608 stories before
-training anything. That belongs in the API budget question.
+Third, **it's expensive, and they say how expensive**: two AI passes over all 61,608
+stories, at a stated **~$1,600 for the feature-extraction pass and $4.4k all in**. For
+comparison, this review budgets $700–900 for the plurality study's participants. That number
+belongs in the API budget question, and if it's out of reach we cut the corpus by 10× in the
+design rather than after the pilot. (One correction to my earlier framing: StoryScope has no
+venue listed — it's an unrefereed preprint, so cite the finding, not its pedigree.)
 
 **But three different problems get mixed up here, and we'd need to pick one:**
 
@@ -364,22 +397,34 @@ split — eight pairs of hand-written scenarios, one "explicit" and one "implied
 with a *t*-test. **There is no gradation of implicitness anywhere in the benchmark.** The
 ladder is exactly the instrument that doesn't exist yet.
 
-Three practical things I learned from reading it, all of which make the project easier:
-**their scenarios, scoring code and judge prompts are all public on GitHub**, so our
-week-1 sanity check is running their code before we change anything; **their scores are
-0–2 scales, not percentages** (and safety-intervention is a yes/no per turn), so our
-analysis is simpler than I'd assumed; and **their scoring is done by another LLM**, not by
-people, which we should replicate rather than improve on if we want our numbers to be
-comparable to theirs.
+Four practical things I learned from reading it — two helpful, two not:
+
+- **Helpful:** their scenarios, scoring code and judge prompts are all public on GitHub, so
+  we can run their benchmark as-is in week 1 to check our pipeline works. That is a cheap
+  smoke test. It is *not* the real check — see below.
+- **Helpful:** their explicit/implicit split actually moves *two* things at once (how veiled
+  the delusion is, and how veiled the harmful request is). Crossing those two rather than
+  building one ladder is a stronger project, and it is a ready-made argument for ours.
+- **Not helpful:** their scores are **0–2 rating scales**, not percentages, and
+  safety-intervention is yes/no per turn. That makes our statistics *harder*, not easier —
+  ordinal outcomes across several rungs need ordinal models, not averages. Budget an
+  afternoon of someone's time to get that right.
+- **Not helpful:** the scoring is done by **another LLM (`gpt-4o-mini`), and they never
+  checked it against human raters** — a clinician validated their *scenarios*, not their
+  scoring. We have to copy that judge for our numbers to be comparable to theirs, we should
+  say so in our own limitations, and it is the most likely reason our first replication
+  attempt disagrees with them for reasons that aren't our fault.
 
 **Two safety rules, non-negotiable:** we do not run studies with people in mental-health
 crisis — this project is entirely model-side — and we do not publish raw generated delusional
 dialogue without review.
 
-One design rule makes the result mean anything: before trusting any finding, our *explicit*
-rung must reproduce psychosis-bench's published scores. If it doesn't, our setup is broken,
-not the models. **This is now confirmed cheap** — everything needed to run it is in their
-public repo.
+One design rule makes the result mean anything, and it is **two steps, not one**. First, run
+their code on their scenarios — that confirms our pipeline works, and everything needed is in
+their public repo. Then, separately, **our own explicit rung, written by us, has to land on
+their published scores.** That second one is the real check, because the thing this project
+most risks getting wrong is our scenario writing. If it fails, suspect the judge and the
+model versions (theirs are a year old) before concluding our stimuli are bad.
 
 Why this one: highest safety relevance in the review, it reuses an existing benchmark instead
 of building one, it distributes well across mixed skill levels, and — the deciding factor —
@@ -431,12 +476,13 @@ things changed.
 | *CAPTURE* — 2609.02265 | ✅ **Doesn't block Idea 1.** It *sets* memory decay rates by hand rather than measuring them — and reports that when they tried to learn them, all three collapsed into one number. That's a warning worth having before we design anything |
 | *PERMA* — 2603.23231 | ✅ Occupies a neighbouring space (how retrieval degrades with context length), not ours |
 | *PersistBench* — 2602.01146 | ⚠️ **I had this wrong.** Despite the title, it's a *safety* benchmark — memories leaking across topics, memories reinforcing bias. It doesn't measure belief decay at all |
-| Multi-AI advice — 2603.22152 | ⚠️ **Sets the router's scope, and narrows it usefully.** All three of their tasks have a right answer, and they say so themselves. So they measured the cost of AI disagreement where disagreement means *someone's wrong* — not where multiple views are legitimate, which is our whole question. Also: only a near-even 3-vs-2 split caused confusion; a lone dissenter *helped* |
+| Multi-AI advice — 2603.22152 | ⚠️ **Sets the router's scope — and caught me out.** All three of their tasks have a right answer, and they say so themselves, so they measured AI disagreement where disagreement means *someone's wrong*. I then claimed nobody had studied the legitimate-disagreement case; **that was false** — this paper cites [Song et al. (CSCW 2025)](https://arxiv.org/abs/2411.04578) six times, which did exactly that and found the opposite. Both halves are occupied and they disagree. Details in the Idea 2 section |
 | *PerSpectra* — 2602.08716 | ⚠️ **Less of a shortcut than I said.** It gives us 100 contested topics, but every topic is contested by design — so it supplies one of the three question types we need and none of the other two. Its arguments are also AI-generated, and they're arguments rather than questions |
 | *SimpleToM* — 2410.13648 | ✅ Exactly as described; ICLR 2026 acceptance confirmed |
 | *HumanAgencyBench* — 2509.08494 | ✅ As described — including the instruction-following-vs-agency tension, which is the paper's own wording, not my gloss |
 | *Choose Your Agent* — 2602.12089 | ✅ As described: one AI mode per game, 44% vs 19% preference, only the Delegate mode raised group outcomes |
 | Cross-cultural depression — 2508.03247 | ✅ As described. It's about symptom *recognition*, so the delusion-safety angle stays open |
+| *StoryScope* — 2604.03136 | ✅ Numbers all confirmed. Its features are literary ones that won't transfer to factual writing, it cost its authors $4.4k to build, and it has no venue — a preprint, not a published result |
 | Discounted Bayesian filters — 2512.18489 | 🔴 **This one broke something.** Idea 1's sanity check assumed we could rerun this paper's method. We can't: it needs the model's raw token probabilities *and* a mathematically correct answer to compare against, and it only tested small open-source models. `02` now specifies a replacement |
 
 **The two questions that are still ours to answer — start both on day one:**
@@ -450,8 +496,8 @@ things changed.
    above), and the API budget question got bigger for Idea 5 too, because the method we'd
    borrow there runs an AI extraction pass over every document in the corpus.
 
-**What this frees up.** Roughly two days of team reading that no longer needs doing. Spend it
-on the two questions above, and:
+**What this frees up.** Roughly two days of team reading — with the caveat above about how I
+read them. Spend it on the two questions above, and:
 - **Anyone who wants to write can start drafting the delusion ladder immediately**, against a
   clinician's review — that's real work and it needs no technical background
 - **Whoever's technical can run psychosis-bench's public repo as-is** — that's our positive

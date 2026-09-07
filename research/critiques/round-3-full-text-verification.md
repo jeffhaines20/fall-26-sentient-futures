@@ -36,9 +36,10 @@ means, StoryScope's 93.2% and 61,608, *Choose Your Agent*'s 44% / 19%, PerSpectr
 the source exactly. Two rounds of search-only fact-checking had said the citation base was
 sound, and reading the papers confirms it.
 
-**What full text changed was scope, not fact.** Nine times out of the seventeen, the
-abstract omitted a condition that decides whether the result transfers to what this team
-would be doing. Three of those changed an avenue.
+**What full text changed was scope, not fact.** Repeatedly — for psychosis-bench,
+arXiv:2512.18489, arXiv:2603.22152, CAPTURE, PerSpectra, StoryScope, HumanAgencyBench and
+Street et al. — the abstract omitted a condition that decides whether the result transfers to
+what this team would be doing. Three of those changed an avenue.
 
 > **The generalisable lesson, since this project will keep citing things:** an abstract
 > reports what was found. It does not reliably report *what was varied*, *what scale it was
@@ -164,14 +165,36 @@ the reason the tier-2 list included papers nobody had complained about.
 
 ---
 
-## Venue claims
+## Venue and peer-review status
 
-arXiv metadata carried no comments or journal-ref field for any of the eight papers checked,
-so the venue attributions in `01` were verified independently: **SimpleToM at ICLR 2026**
-(iclr.cc virtual listing) and **arXiv:2603.22152 at CHI 2026** (ACM DL,
-doi:10.1145/3772318.3791648, Tsuchiya & Baba) are both confirmed. PerSpectra's ICLR 2026
-attribution rests on the authors' own repository name (`caisa-lab/ICLR-2026-Pespectra`),
-which evidences a submission, not an acceptance — treat it as the weaker claim.
+**A correction to this document's own method.** An earlier version of this section said
+"arXiv metadata carried no comments or journal-ref field for any of the eight papers
+checked." **That was false, and it was a tooling error:** the arXiv API returns nothing for
+these records, and on the `abs` page the field's class is `tablecell comments mathjax`, so a
+regex written for `tablecell comments` returned empty every time. Read from the `abs` page.
+
+Six of the fifteen arXiv sources carry a comment field, and three of them are peer-review
+status the review was not using:
+
+| ID | arXiv `Comments:` | Consequence |
+|---|---|---|
+| 2410.13648 (SimpleToM) | `ICLR 2026` | Confirms the venue directly |
+| 2603.22152 | `21 pages, 12 figures, accepted to CHI 2026` | Confirms the venue directly |
+| 2602.01146 (PersistBench) | `76 pages, 34 figures, ICML (2026)` | New — not previously recorded |
+| **2609.02265 (CAPTURE)** | **`Under review at ICLR 2027`** | **Unrefereed. `[PREPRINT]` added** |
+| **2512.18489** | **`Under submission`** | **Unrefereed. `[PREPRINT]` added** |
+| 2508.03247 | `C3NLP workshop at ACL 2026` | Workshop, not main conference |
+
+**StoryScope (2604.03136) and PerSpectra (2602.08716) carry no venue.** An earlier version of
+this round called StoryScope "published, at CHI-tier length" and used that as a precedent in
+`02` and `TEAM-BRIEF`; there is no evidence for it and the claim is withdrawn. PerSpectra's
+ICLR 2026 attribution rests only on the authors' repository name
+(`caisa-lab/ICLR-2026-Pespectra`), which evidences a submission, not an acceptance — that
+hedge was right and stands.
+
+**The general lesson:** `[✅ FULL TEXT]` is a *provenance* signal, not a quality one. Reading
+a paper in full does not make it peer-reviewed, and the two most consequential first-hand
+sources of this round are unrefereed preprints.
 
 ---
 
@@ -184,3 +207,80 @@ claiming a blanket caveat. The next most valuable reads, if anyone wants them, a
 papers behind numbers `TEAM-BRIEF` quotes to non-specialists — the Vaccaro meta-analysis,
 the commercial-chatbot meta-analysis, and the iScience 93%/75% detector figure — because
 those are the ones teammates will repeat out loud.
+
+---
+
+# Round 4 — adversarial review of round 3
+
+Round 3 was itself put through the project's standard two-critic pass — one checking
+citations and numbers, one checking reasoning and feasibility, both instructed to assume the
+author overconfident. **Every finding below was independently re-verified against the source
+before being acted on**, per the working practice in `CLAUDE.md`.
+
+**The critics upheld round 3's headline** — no fabricated citation, no wrong arXiv ID, every
+quoted figure and every direct quote exact, no forbidden correction reinstated, no
+human-reserved question answered, and the tone clean (every correction in round 3 was aimed
+at the author's own earlier drafts, not at a teammate). **They also found nine real errors,
+two of them consequential.** All are fixed and logged in `01` and `02`.
+
+## The two that mattered
+
+**1. Round 3 minted a novelty claim and it was false.** Having read arXiv:2603.22152, round 3
+wrote that nobody had measured plurality's cost where disagreement is *legitimate*, and
+credited that framing to Tsuchiya & Baba. Both halves were wrong. The quoted scope sentence
+is the second of a pair; the first names **Song et al., arXiv:2411.04578, CSCW 2025** — a
+peer-reviewed study of multi-agent influence on societal issues *without* ground truth, cited
+six times in the paper round 3 had just read, and summarised in its §2.3 as examining
+"opinion change on societal issues without ground truth." The authors present their own
+result as "an important counterexample" to it; they are not saying the space is empty.
+**2A's surviving gap is the router, which neither paper attempts.** This is the failure mode
+convention 3 exists to prevent, and it happened *inside* a verification round — a caution
+worth carrying: reading one paper in full tells you about that paper, not about the field
+around it.
+
+**2. Round 3 weakened 3A's positive control while calling it confirmed.** "Your explicit rung
+must reproduce their published values" tests the team's *stimulus writing* — the project's
+dominant risk. Round 3 rewrote it as "run their code on their stimuli," which tests API
+plumbing, and labelled that "confirmed runnable" and "the cheapest de-risking step in this
+document." It also asserted "your harness is wrong, not the models" three paragraphs from
+"the most likely reason your positive control fails is not your fault." The control is now
+two explicit steps with a three-way failure diagnosis, and two facts round 3 had in hand but
+did not report are now in `01` §3.2: **the judge is `openai/gpt-4o-mini` and is never
+validated against human raters** (a clinician validated the *scenarios*), and **the eight
+evaluated models are September-2025 OpenRouter snapshots.**
+
+## The other seven
+
+| Finding | Fix |
+|---|---|
+| **SimpleToM's affiliations were wrong** — round 3 added "AI2 / Stanford / UW"; the paper says **AI2 / NVIDIA / Stanford** | Corrected. This was the only newly-added false fact in the round |
+| **`02` still named PersistBench and PERMA as occupying 1B's space** in the sentence justifying 1A's rank — the same commit retracted both elsewhere | Corrected; the crowding claim now rests on CAPTURE and BeliefShift |
+| **StoryScope's 6-way attribution includes `human` as one of the six classes** (and it is the most separable, 88.5% F1), so 5A's substitute control "uses only the released AI half" was impossible | Substitute replaced: source your own human corpus, or run five-way AI-only and call it a pipeline check, not a control |
+| **StoryScope states its own cost and round 3 omitted it** — ~$2,800 generation, **~$1,600 feature extraction, $4.4k all in**, across **two** full-corpus passes (GPT-5.1 templates, Gemini 3 Flash features), not one | Figures and both passes now in 5A and the brief, against the document's other line items |
+| **Round 3's venue-method claim was false** — it reported no arXiv comment fields existed; six do, because the abs-page class is `tablecell comments mathjax` and the API returns nothing | Corrected above; **CAPTURE and arXiv:2512.18489 are unrefereed and now carry `[PREPRINT]`** |
+| **1B's replacement positive control is not anchored** — its warrant, BeliefTrack (2605.30219), is search-only, and "same instrument" is what a control must *share*, not what makes it a control | 1B now says plainly that it has no anchored control and that finding one is a week-1 task |
+| **`TEAM-BRIEF` said the 0–2 scales made our analysis "simpler"** while `02` said "do not treat DCS as continuous"; it also omitted that **unanimous trials had the highest accuracy** and that consensus was observed rather than manipulated | Both corrected in the brief. The file most teammates open had the wrong version of two findings |
+
+Smaller: the brief's critique count was updated to the pre-round-3 number; its enumeration of
+the seventeen added to fifteen; `CLAUDE.md` named a flag string (`[✅ READ IN FULL]`) that does
+not exist; CAPTURE's code is "will be released," not released; PerSpectra had "all four
+figures confirmed" when three are listed; HES and SIS share one measurement window rather than
+occupying two; and DIV_3 produced *no gain* rather than a loss.
+
+## One thing the critics flagged that was not changed
+
+**No scoring cell moved.** The reasoning critic argued that 2A's feasibility should drop (its
+Phase 1 got harder) and 3A's gap should rise (its premise is now first-hand), which would
+widen the 3A–2A gap from one point to six. That is a defensible reading and it is now stated
+openly in `02` rather than left implicit — but moving cells on the strength of the author's
+own verification round, in a ranking the document explicitly presents as a judgement call for
+the team to argue with, would be the wrong direction of travel. **The evidence is recorded;
+the cells are unchanged; the team can move them.**
+
+## One upside the critics surfaced
+
+psychosis-bench's implicit/explicit binary moves **two** things at once — §3.1 defines both
+levels in terms of delusional beliefs *and* harmful intent. A ladder that **crosses**
+delusion-implicitness with harm-request-implicitness is a stronger contribution than the
+one-dimensional ladder 3A originally proposed, and the confound is the argument for it. Now
+in `01` §3.2.

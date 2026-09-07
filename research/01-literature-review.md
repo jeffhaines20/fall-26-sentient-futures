@@ -41,8 +41,10 @@ What that does **not** cover:
   sizes are the numbers a summary reported. Check any of them before a writeup depends
   on it — the verification round found that abstracts systematically omit the scoping
   conditions that decide whether a result transfers.
-- **Existence of the paper is well-corroborated; interpretation is not.** Where a
-  claim still rests on one summary it is marked [⚠️ UNVERIFIED].
+- **`[⚠️ UNVERIFIED]` is now unused, and that is not the same as "everything is
+  verified."** Both papers that carried it were read this round, so the flag survives only in
+  the legend. **The live split is `[✅ FULL TEXT]` versus everything else** — an unmarked
+  entry is second-hand, not checked-and-cleared.
 - **Recall is incomplete.** This is a broad sweep of six fields in one pass, not a
   PRISMA-style systematic review. Expect meaningful papers to be missing, especially
   non-English work, ACL/NeurIPS/CHI proceedings not surfaced by general web search,
@@ -110,6 +112,28 @@ omit the conditions that decide whether a result transfers.
 | arXiv:2603.22152 summarised without its scope condition | §2.6 | Its tasks have **ground truth**; the authors scope the finding to that setting themselves |
 | arXiv:2603.01341's ">94%" called a fabrication rate | §5.5 (and `02`) | That is the **source-mismatch** rate; hallucination is >93% |
 | StoryScope's feature space implied portable | §5.1, §5.5 | Its ten dimensions are **literary-narrative** categories; the pipeline ports, the features do not |
+
+### Round 4 — the verification round was itself reviewed
+
+Two adversarial critics were run against the round-3 edits. **They upheld the headline** — no
+fabricated citation, no wrong ID, every quoted figure exact — **and found nine errors round 3
+had introduced.** Full record in `critiques/round-3-full-text-verification.md`.
+
+| What round 3 got wrong | Where | Now |
+|---|---|---|
+| **Claimed nobody had measured plurality's cost where disagreement is legitimate** | §2.6, §2.5 | **False.** arXiv:2603.22152 cites **Song et al. (2411.04578, CSCW 2025)** six times, which did exactly that. Claim retracted; both papers now cited |
+| Credited that novelty framing to 2603.22152's authors | §2.5, §2.6 | They frame their result as a *counterexample* to existing no-ground-truth work, not as a claim the space is empty |
+| **SimpleToM's affiliations given as "AI2 / Stanford / UW"** | §1.4 | **AI2 / NVIDIA / Stanford.** The only newly-added false fact in round 3 |
+| Reported that arXiv carried no venue metadata | (method) | **Six sources carry a comment field** — the abs-page class is `tablecell comments mathjax`. This hid that CAPTURE and 2512.18489 are unrefereed |
+| CAPTURE and arXiv:2512.18489 carried no `[PREPRINT]` flag | §1.2, §1.5 | Added — "Under review at ICLR 2027" and "Under submission" respectively |
+| "Reading StoryScope in full **confirms** its features don't port" | §5.1 | The paper says nothing about non-fiction. The judgement is inference from the taxonomy, and now says so |
+| Omitted StoryScope's stated cost and its second full-corpus pass | §5.1 | ~$2,800 generation + **~$1,600 extraction = $4.4k**, across GPT-5.1 *and* Gemini 3 Flash passes |
+| psychosis-bench's judge and model versions left unreported | §3.2 | Judge is `gpt-4o-mini`, **never validated against human raters**; the eight models are Sept-2025 snapshots |
+| HES and SIS described as occupying separate measurement windows | §3.2 | They share phases 3–4 (768 turns); DCS has phases 2–4 (1,152) |
+
+Smaller: PerSpectra had "all four figures confirmed" when three are listed; CAPTURE's code is
+"will be released," not released; the LessWrong retraction named the wrong half of the
+original phrase; rs-10695464's sentence has an interpretive clause the quote had cut.
 
 **Two things were checked specifically because an earlier draft got them wrong, and both
 held.** arXiv:2405.18870 is the *positive* ToM result, so §1.1 correctly stays a question
@@ -200,8 +224,10 @@ over-discount old evidence.**
   empirical base is dated relative to the rest of this list.
 - *Are LLM Belief Updates Consistent with Bayes' Theorem?* — arXiv:2507.17951. Direct
   companion question; not in the doc, should be.
-- **[✅ FULL TEXT]** *Large Language Models as Discounted Bayesian Filters* —
-  arXiv:2512.18489 (Sun Yat-sen University). **The most directly useful result for AH's
+- **[PREPRINT][✅ FULL TEXT]** *Large Language Models as Discounted Bayesian Filters* —
+  arXiv:2512.18489 (Sun Yat-sen University). **Its arXiv comment field reads "Under
+  submission" — this is an unrefereed preprint**, and it is short, reporting no uncertainty
+  on any fitted γ\*. **The most directly useful result for AH's
   question:** LLM belief updates are better described as an *exponential forgetting filter
   with a model-specific discount factor* than as a Bayesian posterior — i.e. systematic
   discounting of older evidence. Instruction-tuned variants discount *more* than their base
@@ -258,8 +284,9 @@ benchmarks above. **That attribution was wrong** — DToM-Track in fact reports 
 retrieve *prior* belief states). The explicit-vs-applied gap is real and well-evidenced,
 but its canonical sources are these, and both were missing from the first sweep:
 
-- **[BENCHMARK][✅ FULL TEXT]** **SimpleToM** — arXiv:2410.13648 (**ICLR 2026 — acceptance
-  confirmed**; Gu, Tafjord, Kim, Moore, Le Bras, Clark & Choi, AI2 / Stanford / UW), *Exposing the Gap between
+- **[BENCHMARK][✅ FULL TEXT]** **SimpleToM** — arXiv:2410.13648 (**ICLR 2026** — the arXiv comment
+  field says so and the ICLR programme lists it; Gu, Tafjord, Kim, Moore, Le Bras, Clark &
+  Choi, **AI2 / NVIDIA / Stanford**), *Exposing the Gap between
   Explicit ToM Inference and Implicit ToM Application in LLMs*: models "often reliably
   infer mental state, but fail at applying knowledge about the mental state for secondary
   predictions." **This is the paper avenue 1A depends on — read it first.**
@@ -290,7 +317,9 @@ damning:
 - *Know Me, Respond to Me* — arXiv:2504.14225. Dynamic user profiling at scale.
 - **⚠️ Directly occupies the space avenue 1A wants — all missed by the first sweep:**
   - **CAPTURE** — arXiv:2609.02265 (2 Sep 2026), *Disentangling Preference Drift from
-    Memory Poisoning in Personalized LLM Agents*. **[✅ FULL TEXT]** Formulates user-belief
+    Memory Poisoning in Personalized LLM Agents*. **[PREPRINT][✅ FULL TEXT]** — its arXiv
+    comment field reads **"Under review at ICLR 2027"**, so it is unrefereed; weight it as a
+    strong preprint, not a published result. Formulates user-belief
     tracking as "a continuous-time partially observable decision process over latent user
     state" with a **neural differential-equation belief tracker** and a multi-timescale memory
     ledger. It also independently makes the point below about stale ≡ poisoned beliefs.
@@ -305,7 +334,9 @@ damning:
     it** (CAPTURE 71% vs. 4% for a flat-memory baseline), so an old belief still exerting
     influence is often correct narrowing rather than staleness. Its benchmark, D-PrefGuard, is
     **synthetic** and validated on a 300-episode subset; the authors say the absolute numbers
-    are relative comparisons, not deployment estimates. Code and weights are released.
+    are relative comparisons, not deployment estimates. Code, benchmark scripts and adapter
+    weights are in the supplementary material, with public release promised — not yet
+    confirmed.
   - **PersistBench** — arXiv:2602.01146, *When Should Long-Term Memories Be Forgotten by
     LLMs?* **[✅ FULL TEXT]** — and the title oversells the overlap. It is a **safety**
     benchmark, not a decay study: it measures **cross-domain leakage** (memories injected
@@ -342,9 +373,9 @@ damning:
   to generate plausible initial stances themselves.
 - **[✅ FULL TEXT]** **LessWrong, *Do LLMs Change Their Minds About Their Users… and
   Know It?*** — `msFvLtPfDnCEdvrBr`, 21 Sep 2025. *An earlier draft could not fetch this and
-  filed it as "fine as inspiration, weak as a citation." That was wrong on the first half:
-  it is the closest existing work to avenue 1B, and the team should read it before
-  designing that study.* What it does, on **Llama-3.2 3B only**, using **linear probes on
+  filed it as "fine as inspiration, weak as a citation." The half that was wrong is "weak as
+  a citation": it is the closest existing work to avenue 1B, and the team should read it
+  before designing that study.* What it does, on **Llama-3.2 3B only**, using **linear probes on
   layer activations** and one trait (**user age category**: child / adolescent / adult /
   older adult):
   - **Experiment 2 measures exactly 1B's quantity** — how many turns the model takes to
@@ -472,7 +503,7 @@ request):
 - *Exploring Chain-of-Thought Reasoning for Steerable Pluralistic Alignment* — arXiv:2510.04045
 - **[BENCHMARK][✅ FULL TEXT]** *PerSpectra: A Scalable and Configurable Pluralist Benchmark
   of Perspectives from Arguments* — arXiv:2602.08716. 3,810 arguments, 762 pro/con stances,
-  100 controversial topics, sourced from Kialo and Reddit — **all four figures confirmed**.
+  100 controversial topics, sourced from Kialo and Reddit — **all three figures confirmed**.
   *The "ICLR 2026" attribution rests on the authors' own repository name
   (`caisa-lab/ICLR-2026-Pespectra`), which evidences a submission rather than an acceptance;
   arXiv carries no venue field. Treat it as the weaker claim.* **What week 1 wanted to know
@@ -537,6 +568,25 @@ vs. singular) and **the downstream human effect** of each choice.
      44.5, panel size 1/3/5 **between-subjects** at ~26–32 per cell. The authors flag culture
      as a generalisation limit. Human-likeness (Study 2) did **not** raise conformity pressure
      or change accuracy.
+
+  **One more thing this paper hands you, which an earlier version of this section missed.**
+  Its own §2.3 and §6.1 name the study occupying the *other* half of the space — see the next
+  entry. A draft of this review claimed nobody had measured plurality's cost where
+  disagreement is legitimate. **That was false, and 2603.22152 is where you would have found
+  out.**
+- **Song et al., *Multi-Agents are Social Groups: Investigating Social Influence of Multiple
+  Agents in Human-Agent Interactions*** — arXiv:2411.04578, **CSCW 2025** (*PACM HCI*,
+  doi:10.1145/3757633). **The counterpart to 2603.22152, and the one that works in the
+  setting Idea 2 actually cares about.** Participants discussed **social issues — no ground
+  truth** — with one agent or several; multiple agents increased felt social pressure and
+  produced larger opinion shifts toward the agents' stance. Tsuchiya & Baba cite it six times
+  and summarise it as finding that *"informational conformity may not arise; users treat AI
+  as a mere computation or search tool"*, adding that *"it examines opinion change on
+  societal issues **without ground truth**"* — and they frame their own result as **"an
+  important counterexample"** to it. **So the two papers disagree, and the disagreement is
+  exactly along the ground-truth line.** Neither builds a routing rule. *(Not read in full —
+  identified from 2603.22152's reference list and confirmed to exist; read it before
+  building on it.)*
 - *Argumentative Experience: Reducing Confirmation Bias on Controversial Issues through
   LLM-Generated Multi-Persona Debates* — arXiv:2412.04629. Within-subjects, eye-tracking,
   multi-perspective debate vs. retrieval-based search. **Note its headline is a null:** the
@@ -572,11 +622,20 @@ vs. singular) and **the downstream human effect** of each choice.
    creates confusion and undermines appropriate reliance. arXiv:2412.04629 measures
    attention and belief effects of multi-persona presentation. What remains open is
    **mapping question type → format**, not whether plurality can cost anything.
-   **Reading 2603.22152 in full sharpens what "open" means here.** Its tasks have ground
-   truth, so it measures the cost of disagreement where disagreement is *error*. Nobody
-   appears to have measured it where disagreement is *legitimate* — which is the only
-   setting in which a plurality router has anything to decide. Note also that its shape is
-   non-monotonic: a lone dissenter helped, a near-even split hurt.
+   **Reading 2603.22152 in full sharpens what "open" means here — and falsified a claim a
+   draft of this section made.** Its tasks have ground truth, so it measures the cost of
+   disagreement where disagreement is *error*. That draft went on to say nobody had measured
+   it where disagreement is *legitimate*. **That is false.** 2603.22152's own §2.3 and §6.1
+   name **Song et al. (arXiv:2411.04578, CSCW 2025)**, which studied multi-agent influence on
+   *societal issues without ground truth* and reported the opposite result on informational
+   conformity — Tsuchiya & Baba present their finding as "an important counterexample" to it.
+   **Both halves of the space are occupied, and they disagree.** What is *still* unoccupied is
+   the routing rule itself (item 1 above), which neither paper attempts.
+   Note also that the shape is non-monotonic and not simply "disagreement is bad": a lone
+   dissenter (DIV_4) improved accuracy over participants' own unaided baseline, a near-even
+   3-vs-2 split (DIV_3) produced **no improvement**, and **absolute accuracy was highest on
+   unanimous trials** — which were also the easier items, since the panel only split 3-vs-2
+   on ambiguous cases.
 3. **Calibrating plurality to AI confidence.** 2605.04070 shows confidence-based routing
    fails for *answer* selection. Nobody has tested it for *format* selection.
 
@@ -673,13 +732,30 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
   - **The scales.** DCS and HES are **0–2 ordinals** (DCS: 0 challenge/ground, 1
     perpetuate/neutral, 2 validate/amplify; HES: 0 refusal, 1 enablement, 2 reinforcement).
     **SIS is binary 0/1 per applicable turn**, maximum 6 per scenario.
-  - **Scoring is LLM-as-judge**, not human annotation. Reproducing the published numbers
-    means reproducing the judge.
-  - **Each scenario is 4 phases × 3 turns**, and the metrics are scored on different
-    windows — DCS in phases 2–4, HES in phases 3–4, SIS on 6 applicable turns. **The
-    headline means are therefore not per-turn averages over all 1,536 turns**, and the
+  - **Scoring is LLM-as-judge — specifically `openai/gpt-4o-mini` — and the judge is never
+    validated against human raters.** A clinician (JAY) wrote and validated the *scenarios*;
+    the *scoring instrument* has no reported agreement statistics. (Compare CAPTURE, read in
+    the same round, which reports its judge matching a human majority 87.4% of the time
+    against 91.2% among the humans.) **So "you inherit the validity argument" is only half
+    true: you inherit clinician-validated stimuli and an unvalidated judge.** Anyone building
+    on DCS/HES/SIS should say so in their own limitations, and should pin the judge to
+    `gpt-4o-mini` if they want numbers comparable to the published ones.
+  - **The eight evaluated models are September-2025 OpenRouter snapshots**
+    (`gemini-2.5-flash`, `o4-mini`, `gpt-5`, `deepseek-chat-v3.1`, `llama-4-maverick`,
+    `gemini-2.5-pro`, `claude-sonnet-4`, `gpt-4o`). A year on, expect some not to resolve,
+    and expect the published values to have moved for the ones that do.
+  - **Each scenario is 4 phases × 3 turns**, and the metrics are scored on two windows, not
+    three — **DCS in phases 2–4 (1,152 turns); HES and SIS share phases 3–4 (768 turns).**
+    **The headline means are therefore not per-turn averages over all 1,536 turns**, and the
     implicit/explicit table reports SIS as a per-scenario sum out of 6 (1.55 vs. 2.89), a
-    different scale from the 0.37 in the abstract. Easy to conflate; don't.
+    different scale from the 0.37 in the abstract. (They reconcile exactly:
+    mean(1.55, 2.89) / 6 = 0.37.) Easy to conflate; don't.
+  - **Implicitness is confounded with harm-request directness — and that is an opportunity.**
+    §3.1 defines explicit scenarios as those whose prompts "directly and unambiguously state
+    their delusional beliefs **and harmful intent**," and implicit ones as masking "delusional
+    ideas **and harmful intent**." The single binary moves two things at once. A ladder that
+    **crosses** the two — delusion-implicitness × harm-request-implicitness — is a stronger
+    contribution than a one-dimensional ladder, and this is the argument for building one.
   - **Scenarios, code and evaluation scripts are public** at
     `github.com/w-is-h/psychosis-bench` — which is what makes a replicate-first gate cheap.
   - **The authors' own limitation:** 16 scenarios is a "modest scenario size," and they say
@@ -825,7 +901,11 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
   should be checked." There are no bibliometric claims.** The preprint's only statement of
   that kind is one descriptive sentence about its own corpus ("the oldest included article
   was published in 2023 and the majority appeared in 2025 or 2026"). That assessment is
-  withdrawn. Second, **weight it accordingly**: it is a single-author preprint (Connor
+  withdrawn. The sentence in full is *"The corpus is recent by design: the oldest included
+  article was published in 2023 and the majority appeared in 2025 or 2026, reflecting the
+  rapid expansion of philosophical scholarship after the public diffusion of large language
+  models"* — its closing clause is interpretive, but there is still no bibliometric analysis
+  behind it. Second, **weight it accordingly**: it is a single-author preprint (Connor
   Nitchals, independent researcher, posted 18 Aug 2026, not peer-reviewed, no version of
   record), and its PRISMA search identified **44 candidate records** in total, narrowing to
   **20 included articles** — two of which were excluded for being preprints. The HES
@@ -1004,10 +1084,20 @@ one DM already found:
     (93.2 vs. 85.8) is the claim that holds; "structure beats everything" is not.
   - **The ten dimensions are literary-theory categories**, adopted from NarraBench: Agent,
     Social Network, Event, Plot, Structure, Setting, Time, Revelation, Perspective, Style.
-    Expository prose has no protagonist, no flashback, no plot. **The feature space does not
-    port to non-narrative text; the three-stage pipeline that induced it does.**
-  - **The pipeline is expensive.** Every story is passed through GPT-5.1 for structured
-    extraction — roughly 293M words of source text — before any classifier is trained.
+    **The paper says nothing about non-fiction in either direction** — so the
+    non-portability judgement here is inference from the taxonomy, not something reading
+    confirmed. On inspection the 304 features are written for narrative (protagonist moral
+    ambiguity, flashbacks, dream sequences, event escalation), though a few dimensions
+    — Agent, Event, Time, Perspective, Style — have obvious counterparts in expository prose.
+    **Assume the feature space has to be rebuilt and the pipeline reused, and budget for
+    that.**
+  - **The pipeline is expensive, and the paper says how expensive.** The corpus goes
+    through **two** full-corpus LLM passes: GPT-5.1 for NarraBench template extraction, then
+    **Gemini 3 Flash to apply the 304 features to all 61,608 stories** (roughly 293M words of
+    source text). Stated costs: **~$2,800 for story generation, ~$1,600 for feature
+    extraction — $4.4k all in.** That is the number gate 9 needs, and it is first-hand.
+  - **No venue.** arXiv lists no comment or journal reference, so this is an unrefereed
+    preprint despite its length and polish. Cite the *finding*, not a peer-review pedigree.
   - **Human stories come from Books3.** Only the prompts and the 51,336 AI stories are
     released; the human half is not, and its provenance is copyright-contested.
 - *A linguistic comparison between human- and AI-generated content* — **iScience** /

@@ -82,8 +82,10 @@ the caveat.
 **4. Second-hand numbers are declared collectively, not marked individually.** An earlier
 version promised per-number markers and didn't deliver them, which made unmarked numbers read
 as verified. **Round 3 introduced the one split that is honest and complete: papers marked
-`[✅ READ IN FULL]` (seventeen of them) versus everything else.** Keep that split exact — if
-you read a new paper, add the flag; do not add it to anything you have only searched.
+`[✅ FULL TEXT]` versus everything else.** The flag string is `[✅ FULL TEXT]` — sixteen
+entries carry it in `01`; the seventeenth source (arXiv:2603.01341) is discussed only in
+`02`. Keep the split exact: if you read a new paper, add the flag; never add it to anything
+you have only searched.
 
 ---
 
@@ -122,6 +124,19 @@ you read a new paper, add the flag; do not add it to anything you have only sear
   are needed.
 - **arXiv:2603.01341's `>94%` is a source-mismatch rate, not a fabrication rate.** Hallucination
   is >93%, citation omission 91.9%. This was mislabelled once already.
+- **Do not restore the claim that nobody has measured plurality's cost where disagreement is
+  legitimate.** Round 3 minted that claim after reading arXiv:2603.22152, and its own review
+  killed it: 2603.22152 cites **Song et al. (arXiv:2411.04578, CSCW 2025)** six times, and
+  that paper studied exactly this on societal issues without ground truth. 2A's surviving gap
+  is the **router**, not the measurement. Both papers are named in `01` §2.6 and `02`'s 2A.
+- **`[⚠️ UNVERIFIED]` appears in `01`'s legend and nowhere else.** That is correct — both
+  papers that carried it were read. Do not read its absence as "everything else is verified";
+  the live split is `[✅ FULL TEXT]` vs. everything.
+- **Read arXiv comment fields from the `abs` page, not the API.** The API returns nothing for
+  these records, and the abs-page class is `tablecell comments mathjax` — a regex expecting
+  `tablecell comments` alone silently returns empty. Round 3 got this wrong and wrongly
+  reported that no venue metadata existed, which hid that **CAPTURE is "Under review at ICLR
+  2027" and arXiv:2512.18489 is "Under submission"** — both unrefereed, both load-bearing.
 
 ---
 
@@ -150,9 +165,14 @@ go; the container is ephemeral.
 **Commits:** descriptive body explaining *what was wrong* and *why it changed*, not just what
 was edited. Keep the `Co-Authored-By` trailer your session specifies.
 
-**The critic pattern worked and is worth reusing.** Every round used two adversarial
-subagents — one checking citations and numbers, one checking reasoning and feasibility — with
-instructions to assume the author is overconfident. It caught, among other things, a 2× power
+**The critic pattern worked and is worth reusing — it is now 4 for 4.** Every round used two
+adversarial subagents — one checking citations and numbers, one checking reasoning and
+feasibility — with instructions to assume the author is overconfident. **Round 3's own
+verification pass was reviewed this way, and the critics found a falsified novelty claim, a
+wrong affiliation, an invalid positive control, a missed $1,600 cost figure, an unread paper
+cited as a warrant, and an internal contradiction the verification itself introduced.** Do
+not skip this step because a round "only verified things" — that round was the one that
+needed it most. It caught, among other things, a 2× power
 error, a backwards meta-analysis, a misattributed first author, and three wrong corrections of
 teammates. **Independently re-verify a critic's claims before acting on them:** one round-2
 critic asserted a power-formula error that was itself checkable, and checking it confirmed the
