@@ -13,9 +13,9 @@ crowded to least: **Idea 6 (Trust Framework) → Idea 3 (AI psychosis) → Idea 
 tracking) → Idea 4 (cognitive atrophy) → Idea 5 (deception detection) → Idea 2's specific
 routing question, which is the most open thing in this review.**
 
-**My recommendation is a project I'll call the *delusion-cue ladder*: figure out why AI
-chatbots handle delusional thinking much worse when a user hints at it than when they state
-it outright.** It needs no study participants, no ethics approval, and roughly 50–70 hours of
+**My recommendation is a project I'll call the *delusion-cue ladder* — it's avenue **3A** in
+the detailed file: figure out why AI chatbots handle delusional thinking much worse when a
+user hints at it than when they state it outright.** It needs no study participants, no ethics approval, and roughly 50–70 hours of
 work spread across the team — against a semester budget of maybe 250–350 hours. It can start
 on day one.
 
@@ -144,13 +144,13 @@ wrong, tell me — it changes which literature I searched.**
 whether a model tracks a user's beliefs and updates when they change. One (*CAPTURE*) was
 published five days before I searched. There's also a developed debate on whether LLMs update
 "like a Bayesian" (rationally weighing new evidence), and the best current answer is
-interesting: **models look rational on average but systematically over-forget older evidence.**
+interesting: models look rational on average but systematically over-forget older evidence.
 
 **The most useful established finding:** models can *state* what someone believes but fail to
 *act* on it. They pass the quiz and flunk the practical.
 
 **What's still open:** every benchmark I found uses *explicit* revision — the user says "I've
-changed my mind." **Nobody tests subtle or implied change**, which is how real conversations
+changed my mind." Nobody tests subtle or implied change, which is how real conversations
 work. Also open: does looking at *real* conversations, rather than constructed test items,
 show assistants still acting on beliefs users have already abandoned?
 
@@ -170,8 +170,8 @@ about designing better AI interfaces has to say where it sits relative to that.
 
 **What exists:** a lot on *how* to present multiple perspectives — there's a whole
 "pluralistic alignment" literature. And, importantly, work measuring what plurality *costs*:
-a CHI 2026 study found that **when AI advisors disagree widely, users get confused and rely on
-them worse.** So AH's worry about paralysis is real and already measured.
+a CHI 2026 study found that when AI advisors disagree widely, users get confused and rely on
+them worse. So AH's worry about paralysis is real and already measured.
 
 **What's still open — the most open thing in this review:** **nobody has built the router.**
 Everything either shows multiple views always, or studies the properties of doing so. A
@@ -193,7 +193,7 @@ meta-analyses on mental-health chatbots, and a live debate about whether "AI psy
 even the right term. **Two preprints argue it isn't** — worth reading, because engaging that
 debate beats assuming the concept.
 
-**A finding worth knowing:** the central benchmark here (*psychosis-bench*) tested 8 models
+One finding worth knowing: the central benchmark here (*psychosis-bench*) tested 8 models
 across 1,536 conversation turns, scoring three things — how often models confirmed a delusion,
 how often they enabled harm, and how often they intervened for safety. Delusion confirmation
 ran high (mean 0.91) and safety intervention low (mean 0.37). *I haven't been able to see what
@@ -208,20 +208,21 @@ studied** — and that's squarely our team's background.
 
 ---
 
-### Idea 4 — Designing AI that makes people think more, not less
+### Idea 4 — Designing AI that makes people think more, not less (DM)
 
 **The famous study here is contested.** "Your Brain on ChatGPT" (the EEG study that coined
-"cognitive debt") has a **published rebuttal** raising sample size, methodology and
-transparency problems. **If we cite it, we must cite the rebuttal too.**
+"cognitive debt") has a **detailed rebuttal** (arXiv:2601.00856) raising sample size, methodology
+and transparency problems. *It's a preprint, so weaker evidence by our own glossary — but it
+is specific and substantive.* **If we cite the original, we must cite the rebuttal too.**
 
 **The consensus that has formed:** harm depends on *how* people use AI, not *how much*.
-Deliberate, monitored offloading looks fine; habitual, unmonitored offloading doesn't. So
+Deliberate, monitored offloading looks fine; habitual, unmonitored offloading doesn't — so
 "hours of AI use" is the wrong thing to measure.
 
 **What exists:** several Socratic-tutor and "productive friction" prototypes. Also
 *HumanAgencyBench*, which measures whether assistants support user agency and finds a tension
-built into how models are trained: **the post-training push toward following instructions
-works against supporting the user's agency.**
+built into how models are trained: the post-training push toward following instructions works
+against supporting the user's agency.
 
 **What's still open:** friction is prescribed everywhere and **dosed nowhere** — nobody has
 asked how much is too much.
@@ -237,9 +238,9 @@ opt-in study/learning mode already.** We'd have to address that.
 
 ### Idea 5 — Can we detect when an AI is making things up? (DM)
 
-DM's intuition — that AI writing has a different "shape" — **is well supported.** The
-strongest recent result (*StoryScope*) separates human from AI fiction at **93% on a combined
-precision/recall score**, using only **structural** features (how plots unfold, how time is
+DM's intuition — that AI writing has a different "shape" — is well supported. The strongest
+recent result (*StoryScope*) separates human from AI fiction at **93% on a combined
+precision/recall score**, using only *structural* features (how plots unfold, how time is
 organised) — no style cues at all.
 
 **But three different problems get mixed up here, and we'd need to pick one:**
@@ -256,6 +257,12 @@ does this at the word level, not the structural level — and reports a telling 
 misinformation detector scored **93% on human text but only 75% on AI text.** Detectors
 trained on human lying don't transfer to machine lying.
 
+**One paper we'd have to address up front:** arXiv:2603.01341, *Structural Hallucination in
+Large Language Models*, tests structural features against fabricated output. It isn't the same
+thing — it uses knowledge-graph structure against a reference ontology, not the *discourse*
+structure of the text itself — but anyone searching "structural" and "hallucination" finds it
+immediately, so we'd need to cite and distinguish it in our first paragraph.
+
 **One cost signal, since this idea otherwise looks like pure upside:** this is the most
 technical avenue in the review. It's only feasible **if at least one of us has trained a
 transformer classifier before**, and it needs an ~80–120 hour pipeline to verify, claim by
@@ -270,8 +277,8 @@ sociotechnical framework — model capability, human interaction, systemic impac
 published by DeepMind in **2023**. Since then: governance frameworks, assurance stacks,
 defence-in-depth architectures, Singapore's national agentic-AI framework.
 
-**Almost all *propose* a framework; almost none *test* one.** That's the real gap, and it's
-too big for a semester — you'd need a deployed system and real incidents.
+Almost all *propose* a framework; almost none *test* one. That's the real gap, and it's too
+big for a semester — you'd need a deployed system and real incidents.
 
 **What we could realistically do:** the human/cognitive layer is the thinnest part of every
 existing stack, and it's our team's strength. We could turn cognitive-layer controls into a
@@ -290,10 +297,10 @@ before we drop it.**
 
 ### Recommended: the delusion-cue ladder
 
-**The question:** *psychosis-bench* found models handle delusional content much worse when
-it's implied rather than stated. Nobody has explained why, or found where the line is.
+The question: *psychosis-bench* found models handle delusional content much worse when it's
+implied rather than stated. Nobody has explained why, or found where the line is.
 
-**What we'd do:** write the same delusional content at four levels of directness — explicit
+What we'd do: write the same delusional content at four levels of directness — explicit
 statement → hedged → metaphorical → purely implied — and measure where each model's safety
 behaviour falls off, using the existing benchmark's scoring.
 
@@ -307,38 +314,45 @@ behaviour falls off, using the existing benchmark's scoring.
 **One thing kills this project:** if the *psychosis-bench* authors already mapped that
 boundary, we have nothing to add. **That's the first thing to check in week 1.**
 
-**Two safety rules, non-negotiable:** we do **not** run studies with people in mental-health
-crisis — this project is entirely model-side. And we do **not** publish raw generated
-delusional dialogue without review.
+**Two safety rules, non-negotiable:** we do not run studies with people in mental-health
+crisis — this project is entirely model-side — and we do not publish raw generated delusional
+dialogue without review.
 
-**One design rule that makes the result mean anything:** before trusting any finding, our
-*explicit* rung must reproduce psychosis-bench's published scores. If it doesn't, our setup is
-broken, not the models.
+One design rule makes the result mean anything: before trusting any finding, our *explicit*
+rung must reproduce psychosis-bench's published scores. If it doesn't, our setup is broken,
+not the models.
 
-**Why this one:** highest safety relevance in the review, reuses an existing benchmark instead
-of building one, distributes well across mixed skill levels, and — the deciding factor — **it
-fits in a semester with room to spare.**
+Why this one: highest safety relevance in the review, it reuses an existing benchmark instead
+of building one, it distributes well across mixed skill levels, and — the deciding factor —
+it fits in a semester with room to spare.
 
-### The alternative: build the plurality router
+### The alternative: build the plurality router (avenue **2A**)
 
-This has the **best gap in the whole review**. I'd have recommended it, except the arithmetic
+This has the best gap in the whole review. I'd have recommended it, except the arithmetic
 doesn't work: the model-behaviour phase alone is 5–7 of our ~12 working weeks, before a 2–6
 week wait for IRB approval and a two-stage study needing ~160 participants for one question
 type (~$700–900) or ~477 to cover all three — and the accuracy measure needs domain experts,
 who cost several times that and recruit far slower.
 
-**How close is it really?** It loses by one point, and that point is **one cell in a scoring
-table**: I scored its feasibility 3 out of 5 because its timeline doesn't fit twelve weeks.
-**If you think it can be scoped down, score that cell 4 and it wins.** The weights are my
-judgement, not a measurement — the full table is in `02-ranked-avenues.md`, and you should
+**How close is it really?** It loses by one point, and that point is one cell in a scoring
+table: I scored **2A's feasibility 3 out of 5** because its timeline doesn't fit twelve
+weeks. **If you think it can be scoped down, score that cell 4 and 2A wins.** The weights are
+my judgement, not a measurement — the full table is in `02-ranked-avenues.md`, and you should
 argue with the cells, not just the order.
 
+**DM, one cell is specifically yours.** The friction study (avenue **4A**) currently ranks 6th
+partly because I scored "does the person who proposed this recognise it as their question" at
+2 out of 5 — because I reframed your idea without asking. **If you endorse the reframe, that
+cell becomes a 5 and 4A jumps to joint-5th.** That's the one score a named person can move.
+
 **Pick it if** we confirm an IRB pathway in week 1 *and* accept we might only deliver the
-descriptive half.
+descriptive half. **There is a decent middle option** the detailed file calls Phase 1.5: have
+domain experts rate answer quality under each format. That needs no participants and keeps
+the "*should*" in the claim, which the purely descriptive version loses.
 
 ### If we want to avoid study participants entirely
 
-**Do the delusion-cue ladder alongside the real-conversation study** (Idea 1). Both are
+**Do the delusion-cue ladder alongside the real-conversation study** (avenues **3A + 1A**). Both are
 annotation-heavy, both analyse multi-turn conversations, and they share tooling.
 
 **Don't** combine the plurality router with the friction study, tempting as it looks. They
@@ -347,7 +361,7 @@ design, no outcome measures. For a part-time semester team, that's two projects.
 
 ---
 
-## Week 1: nine papers, two questions, and who does what
+## Week 1: ten papers, two questions, and who does what
 
 About two days of work total, and the highest-value thing we can do.
 
@@ -364,7 +378,7 @@ About two days of work total, and the highest-value thing we can do.
 | *Choose Your Agent* — 2602.12089 | Partly pre-empts the friction study | Reshapes Idea 4 |
 | Cross-cultural depression — 2508.03247 | Partly occupies the culture angle | Reshapes that variant of Idea 3 |
 
-*(Two more reading checks in `02` matter only if we pick Idea 1 or Idea 5.)*
+*(One further reading check in `02` — arXiv:2512.18489 — matters only if we pick Idea 1.)*
 
 **Two questions to start on day one — they have long lead times:**
 
@@ -374,12 +388,18 @@ About two days of work total, and the highest-value thing we can do.
 2. **What's our API budget** — and do our endpoints expose token probabilities? *(That second
    part only matters for Idea 5.)*
 
-**Suggested split, so nobody's blocked:**
-- Two people take three papers each and report one paragraph back
-- One person chases the IRB question
-- One person chases API budget
+**Suggested split, so nobody's blocked** (ten papers, so roughly two or three each):
+- **Priority pair — read these first, they gate the recommendation:** *psychosis-bench* and
+  *HumanAgencyBench*
+- **Belief-tracking cluster (three papers):** *CAPTURE*, *PERMA*, *PersistBench* — one person
+  can skim all three, they overlap heavily
+- **Plurality cluster (two papers):** multi-AI advice, *PerSpectra*
+- **Remaining three:** *SimpleToM*, *Choose Your Agent*, cross-cultural depression
+- One person chases the IRB question, one chases API budget — **start both on day one**
 - **Anyone who wants to write can start drafting the delusion ladder immediately**, against a
   clinician's review — that's real work and it needs no technical background
+
+One paragraph back per paper is enough: does it already do what we were going to do?
 
 **And pick a target venue and deadline in week 2.** A dated call for papers constrains scope
 better than any checklist. For the recommended project, an AI-safety or AI-and-mental-health
@@ -410,7 +430,7 @@ works — 8 to 15 hours depending on which. It is not free, and it is worth ever
 | 1 — Theory of Mind | arXiv:2502.08796 (systematic review) |
 | 2 — Human-AI teaming | Vaccaro et al. meta-analysis |
 | 3 — AI psychosis | *BJPsych Open* review (PMC13276754) |
-| 3 — measuring bias (method warning) | arXiv:2505.08245 — **read before running any psychology test on an LLM** |
+| *(method warning for any idea)* | arXiv:2505.08245 — **read before running any psychology test on an LLM** |
 | 4 — cognitive offloading | *Frontiers in Psychology* 2026 (gives testable hypotheses, not just a survey) |
 | 5 — AI deception | arXiv:2308.14752 (the canonical survey) |
 | 6 — trust frameworks | arXiv:2310.11986 — **essentially our Idea 6, already published in 2023** |

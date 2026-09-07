@@ -761,8 +761,9 @@ Quite a lot, and this is the risk for Idea 4's "build a prototype" framing:
 2. **DM's harder sub-question — "users must *choose* the higher-friction path" — is
    partly open, but narrower than an earlier draft claimed.** Every *epistemic-friction
    prototype* above imposes friction. But voluntary adoption of assistance modes **has**
-   been studied: arXiv:2602.12089 gives participants a free choice among three modalities
-   and finds a preference–performance misalignment, and arXiv:2602.18834 finds users
+   been studied: arXiv:2602.12089 gives participants one assistance modality per game plus a
+   per-turn choice to use it or work unaided (they never choose among three — see §4.3),
+   and finds a preference–performance misalignment; arXiv:2602.18834 finds users
    prefer frictionless modes despite worse objective outcomes. What appears still open is
    **voluntary opt-in to *epistemic* friction in a knowledge-work assistant specifically**
    — and even that has to contend with Study Mode, Learning Mode and Guided Learning as
