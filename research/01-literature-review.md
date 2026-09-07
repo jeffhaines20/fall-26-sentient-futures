@@ -40,29 +40,64 @@ this session's network egress policy, so:
 citable evidence base. Before the project is written up, someone should pull the PDFs
 for the ~15 papers you actually depend on.
 
+### Revision history — what a fact-check changed
+
+This document was reviewed by an adversarial fact-checking pass that spot-checked 50+
+citations. **It found no fabricated papers and no invented arXiv IDs**, and the quoted
+numbers were overwhelmingly exact. It did find the following, all now corrected in place
+and flagged where they appear:
+
+| What was wrong | Where | Now |
+|---|---|---|
+| Told AH the doc misread arXiv:2405.18870 | §1.1 | Downgraded to a question — the sentence is ambiguous, not wrong |
+| Told the team a bullet was unsourced when it is stated verbatim in their own citation | §2.3 row 2 | Marked **Supported** |
+| Said a second bullet was "more contested than the doc implies" | §2.3 row 3 | Marked **Supported**; the contested part is the wider literature, not their cite |
+| Attributed the folie à deux paper to "Morrin et al." | §3.1 | **Dohnány et al.** |
+| Reported the BMC Geriatrics meta-analysis backwards | §3.1, App. A | Depression **improved**; loneliness was the null |
+| Called the plurality/"paralysis" cost unmeasured | §2.6 | **Retracted** — arXiv:2603.22152 (CHI 2026) measures it |
+| Attributed the explicit-vs-behavioural ToM gap to the wrong papers | §1.4 | Re-attributed to SimpleToM and T4D |
+| Attributed HumanAgencyBench's finding to an unpublished SPAR project | §4.3 | Corrected, HAB added |
+| Over-generalised a 91.3% figure | §3.5 | Scoped to one model, one domain |
+| Described a supply-side search audit as a user-behaviour study | §2.5 | Corrected |
+| Filed an empirical study as a review | §1.2, App. A | Reclassified |
+
+**Three of those were wrong corrections of teammates.** If you read an earlier version of
+this file, those are the parts to re-read.
+
 ---
 
 # Idea 1 — Aligning Artificial Minds to Human Wellbeing
 ### (AH's framing: do LLMs track and update user beliefs/desires/goals?)
 
-## 1.1 First, a correction to the framing in the brainstorm doc
+## 1.1 A question for AH about one citation (not a correction)
+
+> *An earlier draft of this review called this a misreading. That was over-confident —
+> a fact-check found the sentence is ambiguous, not wrong. Rewritten.*
 
 The doc says: *"Previous work has argued that LLMs are **not** capable of true Theory of
 Mind ... despite their capacity to match human performance on higher-order ToM
 benchmarks (arxiv.org/abs/2405.18870)."*
 
-That citation does not say that. **arXiv:2405.18870 is Street et al., "LLMs achieve
-adult human performance on higher-order theory of mind tasks"** (Google DeepMind /
+**The citation sits at the end of a sentence with two clauses, and it fits one of them
+but not the other.** **arXiv:2405.18870 is Street et al., "LLMs achieve adult human
+performance on higher-order theory of mind tasks"** (Google DeepMind /
 Oxford; Winnie Street, John Oliver Siy, Geoff Keeling, Adrien Baranes, Benjamin Barnett,
 Michael McKibben, Tatenda Kanyere, Alison Lentz, Blaise Agüera y Arcas, Robin Dunbar).
-It introduces the **MoToMQA** benchmark and reports the *positive* result: GPT-4 and
-Flan-PaLM reach adult or near-adult performance, and GPT-4 exceeds adult performance on
-6th-order inferences. It is the paper making the capability claim, not the skeptical one.
+(Google DeepMind / Oxford / Johns Hopkins). It introduces the **MoToMQA** benchmark and
+reports the *positive* result: GPT-4 and Flan-PaLM reach adult or near-adult performance,
+and GPT-4 exceeds adults on 6th-order inferences (93% vs 82%). It is the paper making the
+capability claim, not the skeptical one.
 
-The skeptical position the doc is reaching for exists, but lives elsewhere — see §1.2.
-**This matters for the project:** if you open a writeup by citing 2405.18870 as evidence
-of ToM failure, a reviewer will catch it immediately. Cite it as the benchmark-passing
-result, and cite the reviews below for the "benchmark performance ≠ ToM" critique.
+So:
+- If the cite was meant to support **"despite their capacity to match human performance
+  on higher-order ToM benchmarks"** — the clause immediately before it — **it is exactly
+  right**, and nothing needs changing.
+- If it was meant to support **"previous work has argued that LLMs are *not* capable of
+  true ToM"**, it is the wrong paper, and §1.2's reviews are the ones that make that
+  argument.
+
+**AH — which did you mean?** Either way, cite the peer-reviewed version rather than the
+preprint: *Frontiers in Human Neuroscience* (2025), doi:10.3389/fnhum.2025.1633272.
 
 ## 1.2 Reviews and surveys — start here
 
@@ -78,9 +113,10 @@ result, and cite the reviews below for the "benchmark performance ≠ ToM" criti
   belief but degrade on second-order and recursive inference; flags that benchmark
   adaptation to LLMs undermines comparability with human ToM data. **This is the
   "illusion of understanding" argument the doc was reaching for.**
-- **[REVIEW]** *[⚠️ UNVERIFIED]* *Do Large Language Models Possess a Theory of Mind? A …*
-  — arXiv:2603.18007 (2026). Title truncated in search results; appears to be a 2026
-  review. Worth a look, verify before citing.
+**Not a review, despite an earlier draft filing it as one:** *Do Large Language Models
+Possess a Theory of Mind? A Comparative Evaluation Using the Strange Stories Paradigm* —
+arXiv:2603.18007 (Babarczy, Lukacs, Vedres, Bujka). It is an **empirical study** testing
+five LLMs against human controls. Useful, but not an entry point.
 
 ## 1.3 Does an LLM update like a Bayesian? — the doc's core sub-question
 
@@ -91,12 +127,13 @@ over-discount old evidence.**
 
 - *LLMs are not (consistently) Bayesian: Quantifying internal (in)consistencies of LLMs'
   probabilistic beliefs* — arXiv:2605.06915 (May 2026; Chen, Jörke, Goliński,
-  Fedzechkina, Sapiro, Williamson, Foti — Apple / Stanford / Princeton). *Cited in the
+  Fedzechkina, Sapiro, Williamson, Foti — Apple, plus academic co-authors). *Cited in the
   doc.* Introduces the "information processing gap" (deviation from a Bayes update).
-  Some elicitation methods yield near-Bayesian updates, others a learned heuristic —
-  **and the non-Bayesian heuristic often beats exact Bayesian computation on downstream
-  task performance**, implying the model's world-model is misspecified. That last point
-  is the interesting one and is under-exploited.
+  Some elicitation methods yield near-Bayesian updates, others a learned heuristic.
+  **[⚠️ UNVERIFIED]** One further claim — that the non-Bayesian heuristic often *beats*
+  exact Bayesian computation on downstream tasks, implying a misspecified world-model —
+  is the most interesting thing here and **could not be corroborated from any abstract or
+  summary. Verify from the PDF before building on it.**
 - *LLMs are Bayesian, in Expectation, not in Realization* — arXiv:2507.11768 (Jul 2025;
   Chlon, Rashidi, Khamis, Awada). *Cited in the doc.* Transformers violate the
   martingale property (a hard requirement of Bayesian updating on exchangeable data),
@@ -147,20 +184,32 @@ This is where AH's idea is most at risk of duplicating existing work. A cluster 
   arXiv:2604.02315. Clever methodology: probe the model's user-model by making it
   generate the *user's* next turn.
 
-**Cross-cutting finding worth internalising:** several of these independently report
-that models **pass explicit belief-attribution probes but fail when the same belief must
-be expressed behaviourally**, and that "contextual inertia" — failure to revise an
-earlier inference despite later contradictory evidence — is the dominant failure mode.
+**The finding this idea actually rests on — with its real sources.** An earlier draft
+attributed "models pass explicit belief probes but fail behaviourally" to the 2026
+benchmarks above. **That attribution was wrong** — DToM-Track in fact reports the
+*opposite* asymmetry (models infer an agent's *current* belief reliably but struggle to
+retrieve *prior* belief states). The explicit-vs-applied gap is real and well-evidenced,
+but its canonical sources are these, and both were missing from the first sweep:
+
+- **[BENCHMARK]** **SimpleToM** — arXiv:2410.13648 (ICLR 2026), *Exposing the Gap between
+  Explicit ToM Inference and Implicit ToM Application in LLMs*: models "often reliably
+  infer mental state, but fail at applying knowledge about the mental state for secondary
+  predictions." **This is the paper avenue 1A depends on — read it first.**
+- **T4D** — arXiv:2310.03051, *How FaR Are Large Language Models From Agents with
+  Theory-of-Mind?* Models track beliefs but fail to convert that into action.
+
+"Contextual inertia" — failure to revise an earlier inference despite later contradictory
+evidence — is separately reported and is the dominant failure mode in the 2026 benchmarks.
 
 ## 1.5 The applied/personalisation version of the same question
 
 Framed as personalisation rather than ToM, this literature is more mature and more
 damning:
 
-- **[BENCHMARK]** **PrefEval** — evaluates inferring, retaining and applying stated user
-  preferences in distractor-heavy multi-turn dialogue. Headline: **accuracy drops below
-  10% after ~10 turns (~3k tokens) in nearly all models evaluated.** *[⚠️ UNVERIFIED —
-  check the exact condition this applies to; it is a strong claim.]*
+- **[BENCHMARK]** **PrefEval** — arXiv:2502.09597 (**ICLR 2025 Oral**); 3,000
+  preference-query pairs, 20 topics, 10 models, contexts up to 100k tokens. Headline:
+  **accuracy drops below 10% after ~10 turns (~3k tokens) in nearly all models** — this
+  is **confirmed**, with the qualifier that it holds **in the zero-shot condition.**
 - **[BENCHMARK]** *Do LLMs Recognize Your Latent Preferences?* — arXiv:2510.17132.
   Tri-agent (User–Assistant–Judge) framework, turn-level evaluation of elicitation and
   adaptation, three settings including 20-Questions.
@@ -171,6 +220,19 @@ damning:
   Argues most benchmarks are blind to temporal misalignment because they score end-task
   success or per-turn quality, never the trajectory.
 - *Know Me, Respond to Me* — arXiv:2504.14225. Dynamic user profiling at scale.
+- **⚠️ Directly occupies the space avenue 1A wants — all missed by the first sweep:**
+  - **CAPTURE** — arXiv:2609.02265 (2 Sep 2026), *Disentangling Preference Drift from
+    Memory Poisoning in Personalized LLM Agents*. Formulates user-belief tracking as "a
+    continuous-time partially observable decision process over latent user state" with a
+    **neural differential-equation belief tracker** and a multi-timescale memory ledger.
+    It also independently makes the point below about stale ≡ poisoned beliefs. **Anyone
+    considering avenue 1A must read this first.**
+  - **PersistBench** — arXiv:2602.01146, *When Should Long-Term Memories Be Forgotten by
+    LLMs?*
+  - **PERMA** — arXiv:2603.23231, *Benchmarking Personalized Memory Agents*; positional
+    probing to diagnose recency bias, catastrophic forgetting, context saturation.
+  - *Memory Retrieval for Changing Preferences* — arXiv:2606.02976; time-based decay
+    weighting on user facts.
 - **Memory poisoning (adversarial cousin of "stale belief artifacts")**: *MemoryGraft*
   arXiv:2512.16962; *From Untrusted Input to Trusted Memory* arXiv:2606.04329; *Memory
   Poisoning Attack and Defense on Memory Based LLM-Agents* arXiv:2601.05504. Key framing
@@ -181,21 +243,29 @@ damning:
 
 - **arXiv:2607.28347** — *LLMs struggle to simulate human belief updates in controlled
   environments* (Pohl, Mehta, Mambayil, Ghafoor, Lesigang, Hou, Hilbe; IT:U Austria;
-  30 Jul 2026). Confirmed, and the doc's summary is accurate: overrepresentation of
-  neutral positions, more frequent but smaller belief shifts than humans, failure to rank
-  comments by convincingness. Ground truth = 391 UK participants updating stances on
-  three topics after reading Reddit comments. Note the important nuance the doc omits:
-  **models match the human post-stance distribution only when given participants' actual
-  initial stances**; all six fail to generate plausible initial stances themselves.
+  30 Jul 2026). Confirmed, and the doc's summary is nearly accurate: overrepresentation
+  of neutral positions, more frequent but smaller belief shifts than humans, and a failure
+  to rank comments — though the paper's wording is failure to rank **by relevance to
+  belief updates**, not "by convincingness." Ground truth = 391 UK Prolific participants
+  updating stances on three topics after reading Reddit comments. Two nuances the doc
+  omits: **only two of the six models (Qwen3-32B, GPT-5-Mini) match the human post-stance
+  distribution, and only when given participants' actual initial stances**; all six fail
+  to generate plausible initial stances themselves.
 - **LessWrong post "Do LLMs change their minds about their users, and know it?"** —
   **[⚠️ UNVERIFIED]**, could not be fetched (domain blocked). Also note: LessWrong is not
   peer-reviewed. Fine as inspiration, weak as a citation.
 
 ## 1.7 What is actually still open in Idea 1
 
-1. **The forgetting-curve question.** "Discounted Bayesian filter" gives a *parameter*
-   (discount factor). Nobody appears to have measured that discount factor **for beliefs
-   about the user specifically**, as opposed to beliefs about task facts.
+1. **The forgetting-curve question — narrower than an earlier draft claimed.** The
+   "discounted Bayesian filter" result gives a *parameter* (a discount factor) measured on
+   beliefs about task facts. An earlier draft said nobody had measured decay for **beliefs
+   about the user**; adversarial search falsified that — CAPTURE, PersistBench, PERMA and
+   arXiv:2606.02976 all work in this space, and BeliefShift covers user opinion drift with
+   2,400 human-annotated multi-session trajectories. **What may still be open is the
+   specific move of fitting an exponential-discount curve and reporting a single
+   comparable parameter per model.** That is a much smaller claim, and it needs checking
+   against CAPTURE before anyone commits to it.
 2. **Does Bayesian teaching fix user-belief updating?** The doc asks it; nobody has
    answered it. The training method exists; the multi-turn user-adaptation eval exists;
    the composition has not been done.
@@ -244,10 +314,11 @@ explicitly which side of that moderator it is betting on.
 | Doc claim | Status |
 |---|---|
 | "when AI confidence is low, its reasoning and judgments are worse and may ill-advise humans" | **Supported**, consistent with 2605.04070's low-confidence condition and with the confidence-routing failure. |
-| "static AI assistance, delivered in the same manner, degrades over time and may even eventually become harmful" | **[⚠️ UNVERIFIED]** — I could not locate the source for this in either cited paper. Nearest support: *AI Assistance Reduces Persistence and Hurts Independent Performance* (arXiv:2604.04721) and *Human-AI Productivity Paradoxes* (arXiv:2605.11350). **Someone should find the real source or drop the claim.** |
-| "Humans overrely on AI when shown its reasoning & explanation vs. only search results and evidence" | **Partially supported, and more contested than the doc implies.** See below. |
+| "static AI assistance, delivered in the same manner, degrades over time and may even eventually become harmful" | **Supported — this is arXiv:2510.26518's own longitudinal finding.** The paper reports that *as human raters improve through practice, even evidence-only assistance ceases to provide a significant benefit, and leading forms of assistance become actively harmful.* An earlier draft of this review wrongly flagged this as unsourced. Related: arXiv:2604.04721, arXiv:2605.11350. |
+| "Humans overrely on AI when shown its reasoning & explanation vs. only search results and evidence" | **Supported — also a direct experimental result in arXiv:2510.26518**: *"Displaying AI explanation, confidence, and labels leads to over-reliance, but just showing search results and evidence fosters more appropriate trust."* An earlier draft called this "more contested than the doc implies," which unfairly suggested the team had overstated their own source. The *wider* CSCW literature genuinely does disagree with itself — see below — but the doc's bullet is an accurate report of its citation. |
 
-On that third claim, the literature genuinely disagrees with itself:
+**Where the disagreement actually lives:** not in the team's bullet, but in the broader
+explanation/overreliance literature, which does not converge:
 
 - Vasconcelos et al., *Explanations Can Reduce Overreliance on AI Systems During
   Decision-Making* — CSCW 2023, arXiv:2212.06823. Argues overreliance is a **strategic
@@ -275,8 +346,10 @@ request):
 - *Modular Pluralism: Pluralistic Alignment via Multi-LLM Collaboration* — arXiv:2406.15951
 - *Steerable Pluralism: Pluralistic Alignment via Few-Shot Comparative Regression* — arXiv:2508.08509
 - *Exploring Chain-of-Thought Reasoning for Steerable Pluralistic Alignment* — arXiv:2510.04045
-- **[BENCHMARK]** *PERSPECTRA: A Scalable and Configurable Pluralist Benchmark of
-  Perspectives from Arguments* — arXiv:2602.08716
+- **[BENCHMARK]** *PerSpectra: A Scalable and Configurable Pluralist Benchmark of
+  Perspectives from Arguments* — arXiv:2602.08716, **ICLR 2026**. 3,810 arguments, 762
+  pro/con stances, 100 controversial topics, sourced from Kialo and Reddit. **Avenue 2A's
+  first phase depends on what is actually in this — check it in week 1.**
 - *Arbiters of Ambivalence: Challenges of Using LLMs in No-Consensus Tasks* — arXiv:2505.23820.
   **Closest existing work to AH's exact question**: what LLMs do when there is no
   consensus answer.
@@ -294,22 +367,55 @@ vs. singular) and **the downstream human effect** of each choice.
   Engagement on Social Media* — doi:10.1145/3772318.3790945. Peer-reviewed, and the
   closest thing to a direct test of presentation format → opinion effects.
 - *The Rise of AI Search: Implications for Information Markets and Human Judgement at
-  Scale* — arXiv:2602.13415. **People ask for and consume a narrower set of views with an
-  LLM than with a conventional search-results page.** Recommends surfacing disagreement
-  between reputable sources rather than synthesising it away — which is essentially the
-  pluralistic-oracle hypothesis, stated but not experimentally optimised.
+  Scale* — arXiv:2602.13415 (Aral, Li & Zuo). **A supply-side audit, not a user study:**
+  24,000 queries across 243 countries generating 2.8M AI and traditional search results,
+  finding that AI search *surfaces* significantly fewer long-tail sources, lower response
+  variety, and more low-credibility sources than traditional search. An earlier draft of
+  this review described it as measuring what people "ask for and consume" — **that was
+  wrong; there are no human participants in it.**
 - *From Searchable to Non-Searchable: Generative AI and Information Diversity in Online
   Information Seeking* — arXiv:2604.10258.
 - *The Style and Semantic Effects of Generative Search Engine* — arXiv:2509.14436.
+
+**⚠️ And the work that measures the cost of plurality — missed by the first sweep:**
+
+- **arXiv:2603.22152, *More Isn't Always Better: Balancing Decision Accuracy and
+  Conformity Pressures in Multi-AI Advice*** — Tsuchiya & Baba (U. Tokyo), **CHI 2026**.
+  Three tasks, varying panel size, within-panel consensus, and human-likeness of
+  presentation. Findings: accuracy improved for **small** panels vs. a single AI, **larger
+  panels yielded no gains**; high consensus fostered overreliance; **a single dissent
+  reduced conformity pressure; wide disagreement created confusion and undermined
+  appropriate reliance.** *This is the "paralysis" cost, measured, with a dose-response on
+  plurality.* **Anyone working on Idea 2 must read this.**
+- *Argumentative Experience: Reducing Confirmation Bias on Controversial Issues through
+  LLM-Generated Multi-Persona Debates* — arXiv:2412.04629. Within-subjects, eye-tracking,
+  multi-perspective debate vs. retrieval-based search.
+- **DeliberationBench** — arXiv:2603.10018; a normative benchmark for LLM influence on
+  users' views.
+- *Beyond One-Way Influence: Bidirectional Opinion Dynamics in Multi-Turn Human-LLM
+  Interactions* — arXiv:2510.20039 (N=266).
+- *Not Too Short, Not Too Long: How LLM Response Length Shapes People's Critical Thinking
+  in Error Detection* — arXiv:2603.06878. Bridges Ideas 2 and 4.
+- Lopez-Lopez et al., *Generative artificial intelligence–mediated confirmation bias in
+  health information seeking* — **Annals of the New York Academy of Sciences**,
+  doi:10.1111/nyas.15413. Same group as the Abels hypercustomization paper in §3.5; this
+  is its empirical companion.
 
 ## 2.6 What is actually still open in Idea 2
 
 1. **No one has built the router.** Everything above either presents plurality
    unconditionally or studies alignment properties. A *decision rule* for when plurality
    helps vs. paralyses, validated against human outcomes, does not appear to exist.
-2. **The paralysis cost is asserted, not measured.** The doc's worry that multiple views
-   "can cause unnecessary confusion/paralysis" is plausible and, as far as this search
-   goes, **untested**. That is an unusually clean gap.
+   **This claim survived a deliberate attempt to falsify it** (searches for adaptive
+   plurality routing, NPOV generation, and multi-perspective RAG for controversial topics
+   all returned *how* to be plural, never *when*). **This is the load-bearing gap for
+   Idea 2.**
+2. ~~The paralysis cost is asserted, not measured.~~ **Retracted.** An earlier draft
+   called this "an unusually clean gap." It is not: **arXiv:2603.22152 (CHI 2026) measures
+   it** — wide disagreement between AI advisors creates confusion and undermines
+   appropriate reliance, with a dose-response on panel size. arXiv:2412.04629 measures
+   attention and belief effects of multi-persona presentation. What remains open is
+   **mapping question type → format**, not whether plurality can cost anything.
 3. **Calibrating plurality to AI confidence.** 2605.04070 shows confidence-based routing
    fails for *answer* selection. Nobody has tested it for *format* selection.
 
@@ -323,31 +429,52 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
 ## 3.1 Reviews, meta-analyses and conceptual syntheses — start here
 
 - **[META-ANALYSIS]** *Commercial AI-Based Mental Health Chatbots as Low-Intensity
-  Adjuncts to Psychotherapy: Effectiveness, Adherence, and Safety* — PMID 42113705
-  (2026). **52 studies, 22 RCTs, N = 110,594, 13 commercial chatbots.** Depression
-  improved vs. control (**g = −0.35**, 95% CI −0.56 to −0.13); loneliness only partially
-  (4 RCTs, N = 662, **g = −0.21**, 95% CI −0.39 to −0.03). Modest effects.
+  Adjuncts to Psychotherapy: Effectiveness, Adherence, and Safety* — **Psychotherapy and
+  Psychosomatics**, doi:10.1159/000552072 (PMID 42113705, 2026). **52 studies, 22 RCTs,
+  N = 110,594, 13 commercial chatbots.** Depression improved vs. control (**g = −0.35**,
+  95% CI −0.56 to −0.13); loneliness only partially (4 RCTs, N = 662, **g = −0.21**,
+  95% CI −0.39 to −0.03). **Two nuances that change how you should read this:** the
+  depression effect is roughly **1.6 PHQ-9 points, below the 5-point minimal clinically
+  important difference**, and **anxiety was null** (15 RCTs, N = 2,936, g = −0.37, 95% CI
+  −0.87 to 0.12). "Statistically significant" is not "clinically meaningful" here.
 - **[META-ANALYSIS]** *Systematic review and meta-analysis of AI-based conversational
   agents for promoting mental health and well-being* — **npj Digital Medicine** (2023),
   doi:10.1038/s41746-023-00979-5. Depression Hedges' g = 0.64 (95% CI 0.17–1.12); distress
-  g = 0.70 (0.18–1.22). Note the **much larger effect than the 2026 commercial-chatbot
-  meta-analysis** — that shrinkage across three years is itself worth a paragraph.
-- **[META-ANALYSIS]** *Effectiveness of AI-based conversational and socially assistive
-  agents in older adults* — **BMC Geriatrics** (2026), doi:10.1186/s12877-026-07418-6
-  (PMID 42098628). **Companionship-focused AI showed no statistically significant effect
-  on depressive symptoms** — a useful counterweight to companion-bot optimism.
+  g = 0.70 (0.18–1.22). **Do not read this as "effects shrank over three years"** (an
+  earlier draft suggested that): this pools 15 RCTs of *all* AI conversational agents,
+  whereas the 2026 analysis pools 22 RCTs of *commercial* chatbots used as psychotherapy
+  adjuncts. Different populations, comparators and inclusion criteria — not comparable.
+- **[META-ANALYSIS]** Gou, Lefebvre, Yang et al., *Effectiveness of AI-based
+  conversational and socially assistive agents in older adults* — **BMC Geriatrics**
+  26:887 (2026), doi:10.1186/s12877-026-07418-6 (PMID 42098628). 8 RCTs, N=611.
+  **Depressive symptoms improved significantly (Hedges' g = −0.25, 95% CI −0.48 to −0.02;
+  I² = 10.7%); loneliness showed no significant effect.** Subgroup analysis found
+  cognitive-focused interventions produced greater reductions than companionship-focused
+  ones. *An earlier draft of this review reported this backwards (as a null result for
+  depression) — corrected.*
+- **[META-ANALYSIS]** *Autonomous conversational agents for loneliness, social isolation,
+  depression and anxiety in older people without cognitive impairment* — **Psychological
+  Medicine**, PMID 41556104. A second, independent older-adults meta-analysis to set
+  against the BMC one.
 - **[META-ANALYSIS]** *Generative AI Mental Health Chatbots as Therapeutic Tools* — JMIR
   2025;27:e78238. GenAI chatbots outperform rule-based/retrieval-based on depressive
   symptoms.
 - **[REVIEW]** *Artificial intelligence (AI) psychosis: mechanisms, clinical risks and
-  safety considerations in generative AI chatbots* — PMC13276754. **The best single
-  clinical entry point.**
-- **[REVIEW]** Morrin et al. (2026), *Technological folie à deux: feedback loops between
-  AI chatbots and mental health* — **Nature Mental Health**,
+  safety considerations in generative AI chatbots* — **BJPsych Open**, PMC13276754.
+  **The best single clinical entry point.**
+- **[REVIEW]** *Mass Media Narratives of Psychiatric Adverse Events Associated With
+  Generative AI Chatbots: Rapid Scoping Review* — JMIR Ment Health 2026;27:e93040.
+- **[REVIEW]** *Exploring the application boundaries of LLMs in mental health: a
+  systematic scoping review* — PMC12983331.
+- **[REVIEW]** **Dohnány, Kurth-Nelson, Spens, Luettgau, Reid, Gabriel, Summerfield,
+  Shanahan & Nour (2026)**, *Technological folie à deux: feedback loops between AI
+  chatbots and mental health* — **Nature Mental Health** 4:336–345,
   doi:10.1038/s44220-026-00595-8 (PMID 41939177; preprint arXiv:2507.19218). *Cited in
-  the doc, but with a link (`pmc.ncbi.nlm.nih.gov/articles/PMC7618964/`) that points to a
-  manuscript deposit rather than the version of record — **use the Nature Mental Health
-  DOI**.* Names the mechanism set: sycophancy, role play, anthropomimesis, and elevated
+  the doc; the PMC link is the article's author-manuscript deposit rather than the version
+  of record, so prefer the Nature Mental Health DOI — a citation-style point, not a broken
+  link.* **An earlier draft of this review attributed this paper to "Morrin et al." That
+  was wrong** — Hamilton Morrin leads the JMIR paper in §3.2 and the KCL "Delusions by
+  design?" piece, not this one.* Names the mechanism set: sycophancy, role play, anthropomimesis, and elevated
   risk where a condition already involves altered belief-updating and reality-testing.
 - **[REVIEW]** Osler, L. (2026), *Hallucinating with AI: Distributed Delusions and "AI
   Psychosis"* — **Philosophy & Technology** 39(1):30, doi:10.1007/s13347-026-01034-3
@@ -385,8 +512,12 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
 - *AI Psychosis: Does Conversational AI Amplify Delusion-Related Language?* — arXiv:2603.19574.
 - *The Dynamics of Delusion: Modeling Bidirectional False Belief Amplification in
   Human–Chatbot Dialogue* — arXiv:2604.25096.
-- **JMIR Mental Health 2026, e91454** — *It Is the Journey, Not the Destination: Moving
-  From End Points to Trajectories When Assessing Chatbot Mental Health Safety.*
+- **[BENCHMARK]** *Between Help and Harm: An Evaluation of Mental Health Crisis Handling
+  by LLMs* — arXiv:2509.24857, **JMIR Mental Health** doi:10.2196/88435. A major safety
+  benchmark the first sweep missed entirely.
+- **Morrin, Au Yeung, Agnew, Østergaard & Pollak — JMIR Mental Health 2026;27:e91454** —
+  *It Is the Journey, Not the Destination: Moving From End Points to Trajectories When
+  Assessing Chatbot Mental Health Safety.*
   Methodologically the most useful of these: argues safety evaluation should score
   **trajectories, not endpoint outcomes.**
 
@@ -396,12 +527,14 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
   *regressive* (right→wrong) shifts; finds preemptive rebuttals cause more drift than
   in-context ones, and that sycophancy persists across turns.
 - **[BENCHMARK]** **SYCON-Bench** — multi-turn sycophancy.
-- **[BENCHMARK]** **Syco-bench** — splits sycophancy into picking sides, mirroring,
-  attribution bias, and **delusion acceptance**; reports **low inter-test correlation
-  (r < 0.3)**, implying sycophancy is *not one construct*. **[⚠️ UNVERIFIED — this r<0.3
-  figure is load-bearing and second-hand; verify it.]** If it holds, it is a strong
-  argument that existing single-number sycophancy scores are misleading, which is itself
-  a publishable angle.
+- **Syco-bench** — splits sycophancy into picking sides, mirroring, attribution bias, and
+  **delusion acceptance**; reports **low inter-test correlation (r < 0.3)**, implying
+  sycophancy is *not one construct*. The r < 0.3 figure is **confirmed**. But note the
+  provenance, which an earlier draft obscured by listing it alongside the peer-reviewed
+  benchmarks: **syco-bench is an independent project (syco-bench.com;
+  github.com/timfduffy/syco-bench) with no arXiv paper and no peer review.** That does not
+  make it wrong, but it is a different evidentiary class from SycEval / SYCON-Bench /
+  PARROT — and **avenue 3C's viability depends on this distinction.**
 - **[BENCHMARK]** **PARROT** — *Persuasion and Agreement Robustness Rating of Output
   Truth* — arXiv:2511.17220.
 - *Recalling Too Well: Sycophancy Evaluation and Mitigation [in memory systems]* —
@@ -447,8 +580,13 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
   cite it.** The underlying primary work does exist: *Invisible Filters: Cultural Bias in
   Hiring Evaluations Using LLMs* (arXiv:2508.16673 — Western communication styles score
   higher on "hireability" than Indian linguistic patterns); *Revealing Potential Biases in
-  LLM-Based Recommender Systems in the Cold Start Setting* (arXiv:2508.20401 — **neutral
-  users with no specified attributes received 91.3% Western recommendations**);
+  LLM-Based Recommender Systems in the Cold Start Setting* (arXiv:2508.20401 — **Gemma 3
+  12B recommended 91.3% Western content to an attribute-free user in the movies domain**.
+  An earlier draft generalised this to "LLM recommendations default heavily Western";
+  that overstates it. Only two small open families were tested, across music/movies/
+  colleges; the size–bias relationship is **non-monotone** (Gemma 3 4B showed *less* bias
+  than both 1B and 12B); persona-conditioned figures differ sharply (48.0% Western for
+  "a Chinese," 22.0% for "a Japanese"); **no frontier model was tested**);
   *Mitigating Cultural Bias in LLMs via Multi-Agent Cultural Debate* (arXiv:2601.12091);
   *A framework for evaluating cultural bias and historical misconceptions in LLM outputs*
   (ScienceDirect S2772485925000481).
@@ -463,9 +601,14 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
 3. **Sycophancy is probably several constructs, not one.** If the r < 0.3 result holds,
    the field's scores are not measuring one thing.
 4. **Memory × sycophancy** (arXiv:2606.10949) is brand new and thin.
-5. **Cultural misalignment × delusion-confirmation** — no one appears to have crossed
-   these two. Do vulnerable users outside Western contexts get worse safety
-   interventions? That is a real, unclaimed question.
+5. **Cultural misalignment × delusion-confirmation** — still the most open crossing here,
+   but **narrower than an earlier draft claimed.** The culture × mental-health-safety
+   crossing is already partly occupied by **arXiv:2508.03247, *Somatic in the East,
+   Psychological in the West? A Clinically-Grounded Evaluation of Cross-Cultural
+   Depression Symptoms in LLMs*** — read it before assuming this is open ground. What
+   still looks unclaimed is specifically **delusion-confirmation and safety-intervention
+   rates** (psychosis-bench's DCS/HES/SIS) across cultural idioms, as opposed to symptom
+   recognition.
 
 ---
 
@@ -526,9 +669,12 @@ Quite a lot, and this is the risk for Idea 4's "build a prototype" framing:
   Friction* — arXiv:2603.21735. Proposes **"Scaffolded Cognitive Friction"**, repurposing
   multi-agent systems as explicit cognitive forcing functions.
 - *Socrates went Nuclear: Comparing Interaction Strategies for AI systems in a Learning
-  Context using Brain Sensing* — arXiv:2609.00584 (Sept 2026). **Comparative study of
-  interaction strategies with neural measurement — the most direct competitor to a
-  naive Idea-4 prototype study.**
+  Context using Brain Sensing* — arXiv:2609.00584 (Clin Deffarges, Kosmyna & Maes; HAI'26,
+  n=50, nuclear-safety learning task). **Comparative study of interaction strategies with
+  neural measurement — the most direct competitor to a naive Idea-4 prototype study.**
+  **Note the same-group connection:** this is the Kosmyna lab, i.e. the authors of *Your
+  Brain on ChatGPT* in §4.2. If you cite the rebuttal to that study, be consistent about
+  how much weight you put on this one.
 - *Enhancing Critical Thinking in Education by means of a Socratic Chatbot* — arXiv:2409.05511.
 - **SocraticLLM / SocraticMATH** (CIKM 2024); **SPL (Socratic Playground for Learning)**.
 - *Sycophancy is an Educational Safety Risk: Why LLM Tutors Need Sycophancy Benchmarks* —
@@ -539,21 +685,53 @@ Quite a lot, and this is the risk for Idea 4's "build a prototype" framing:
   cognitive-behavioral drift* — arXiv:2602.01959.
 - *Althea: Human-AI Collaboration for Fact-Checking and Critical Reasoning* — arXiv:2602.11161.
 - *Learning with machines: Toward a theory of epistemic co-agency* — ScienceDirect S2666920X26000354.
-- **[⚠️ ACTIVE COMPETITOR]** SPAR (Fall 2026) project: *Does your assistant respect your
-  agency? A behavioral benchmark for autonomy-preserving AI*. **This is a live project
-  building close to what Idea 4 describes.** Reported framing: a structural tension
-  between accuracy-optimising post-training and agency-preserving behaviour — models
-  scoring highest on instruction-following score lowest on sourcehood-preserving
-  dimensions. **Check its status before committing to Idea 4.**
+- **[BENCHMARK] HumanAgencyBench (HAB)** — arXiv:2509.08494 (Sturgeon, Samuelson, Haimes
+  & Anthis). Six agency dimensions: **Ask Clarifying Questions, Avoid Value Manipulation,
+  Correct Misinformation, Defer Important Decisions, Encourage Learning, Maintain Social
+  Boundaries.** Finds low-to-moderate agency support across current assistants, wide
+  variation by developer, and — critically — **a tension between the post-training
+  objective of instruction-following and human agency support**. *An earlier draft of this
+  review attributed that finding to the SPAR project below; it belongs here.* **This paper
+  partly pre-empts both avenue 4A's framing and avenue 6A's "cognitive layer" — read it
+  before committing to either.**
+- **[⚠️ ACTIVE PROJECT]** SPAR (Fall 2026): *Does your assistant respect your agency? A
+  behavioral benchmark for autonomy-preserving AI* (Juan Cadile, U. Rochester). A
+  benchmark **to be built** — paternalism, manipulation, dependency-fostering,
+  value-substitution — with the stated gap "nothing that measures agency-respect as a
+  construct." **It reports no results yet.** Worth tracking; not yet a competitor with
+  findings.
+- **⚠️ Work on voluntary adoption of assistance — missed by the first sweep:**
+  - **Choose Your Agent: Tradeoffs in Adopting AI Advisors, Coaches, and Delegates in
+    Multi-Party Negotiation** — arXiv:2602.12089 (Zhu, Thain, Tsai, Wexler, Qian).
+    **243 participants**, three bargaining games, free per-turn choice among three
+    assistance modalities differing in user control and effort. Result: a
+    **preference–performance misalignment** — participants strongly prefer the
+    higher-control **Advisor (44%)** over the **Delegate (19%)**, yet groups only
+    significantly increase collective surplus under Delegate access. **This is the closest
+    existing analogue to avenue 4A.**
+  - *When Friction Helps: Transaction Confirmation Improves Decision Quality* —
+    arXiv:2602.18834. Participants reported better perceived performance and lower
+    frustration in **frictionless** mode, and preferred it, **despite later evidence of
+    degraded objective performance.**
+  - *Cognitive offloading and the speedup illusion in human-AI interaction* — arXiv:2605.23177.
+  - **Not academic, but load-bearing:** **OpenAI's Study Mode** and **Claude's Learning
+    Mode** are *shipped, opt-in friction toggles*. Any project claiming voluntary opt-in
+    is unstudied has to address the fact that two major products already ship the switch.
 
 ## 4.4 What is actually still open in Idea 4
 
 1. **DM's specific combination — Socratic + CBT/DBT — appears genuinely unbuilt.** Socratic
    tutors exist; CBT/DBT chatbots exist; the *hybrid* framing for general knowledge work
    (not therapy, not tutoring) is not in this search's results.
-2. **DM's harder sub-question — "users must *choose* the higher-friction path" — is the
-   real gap.** Every prototype above imposes friction. **Nobody has studied when users
-   voluntarily opt into it**, which is the actual deployment blocker.
+2. **DM's harder sub-question — "users must *choose* the higher-friction path" — is
+   partly open, but narrower than an earlier draft claimed.** Every *epistemic-friction
+   prototype* above imposes friction. But voluntary adoption of assistance modes **has**
+   been studied: arXiv:2602.12089 gives participants a free choice among three modalities
+   and finds a preference–performance misalignment, and arXiv:2602.18834 finds users
+   prefer frictionless modes despite worse objective outcomes. What appears still open is
+   **voluntary opt-in to *epistemic* friction in a knowledge-work assistant specifically**
+   — and even that has to contend with Study Mode and Learning Mode as deployed
+   existence-proofs.
 3. **Friction is universally prescribed and rarely dosed.** "Productive friction" appears
    in HES, in Scaffolded Cognitive Friction, in the offloading reviews. No one has a
    dose-response curve.
@@ -611,7 +789,10 @@ one DM already found:
   Portuguese-language; notably builds **two datasets: factual vs. false human-written
   texts, and LLM-generated texts (GPT-4o, Mistral Large, Llama 3.3 70B)** — i.e. it
   already crosses the human-vs-AI axis with the true-vs-false axis. **The closest
-  existing work to DM's exact question; read it first.**
+  existing work to DM's exact question; read it first.** Its most usable number for
+  avenue 5A: the misinformation detector scored **93% on human texts but only 75% on LLM
+  outputs** — i.e. detectors tuned on human deception transfer poorly to machine
+  deception. That gap is arguably the whole opportunity.
 - *Stylometric detection of AI-generated texts: evidence from human and machine-written
   essays* — **Digital Scholarship in the Humanities** (Oxford), doi:10.1093/llc/fqag064.
 - *Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark
@@ -667,9 +848,13 @@ Any detection project needs a robustness story, not just an accuracy number.
 - *Faithfulness as Information Flow: Evaluating and Training Faithful CoT Reasoning* —
   arXiv:2605.24286.
 - *Can We Predict Alignment Before Models Finish Thinking?* — arXiv:2507.12428.
-- *Is Chain-of-Thought Really Not Explainability?* — ACL 2026 (2026.acl-long.2217).
+- *Is Chain-of-Thought Really Not Explainability?* — ACL 2026 (2026.acl-long.2217),
+  arXiv:2512.23032 (Zaman & Srivastava). **Read this as a counterweight to the rest of
+  this subsection:** it argues hint-verbalization metrics "misinterpret explanation
+  incompleteness as unfaithfulness," and that CoT can be faithful without verbalizing
+  every influential factor. The skeptical framing above is not settled consensus.
 - **Internal probes:** Azaria & Mitchell, *The Internal State of an LLM Knows When It's
-  Lying* (**probing accuracy ~71–83%**); *Truth is Universal: Robust Detection of Lies in
+  Lying* — arXiv:2304.13734, **Findings of EMNLP 2023** (**probing accuracy ~71–83%**); *Truth is Universal: Robust Detection of Lies in
   LLMs* arXiv:2407.12831; *When Truthful Representations Flip Under Deceptive
   Instructions* arXiv:2507.22149 (representational shift concentrated in early-to-mid
   layers); *Beyond Liars' Bench* arXiv:2607.20479; *Deep Minds and Shallow Probes*
@@ -713,6 +898,10 @@ where a small team adds the least marginal value by proposing another framework.
 - **[REVIEW]** *Risks & Benefits of LLMs & GenAI for Platform Integrity, Healthcare
   Diagnostics, Financial Trust and Compliance, Cybersecurity, Privacy & AI Safety: A
   Comprehensive Survey, Roadmap & Implementation Blueprint* — arXiv:2506.12088.
+- **[BENCHMARK]** **HumanAgencyBench** — arXiv:2509.08494 (see §4.3). Listed here too
+  because it is the closest thing that exists to an *operationalised cognitive layer*:
+  six measurable agency dimensions with a running eval. **Avenue 6A should start from it
+  rather than from a fresh taxonomy.**
 
 ## 6.2 Layered architectures already published
 
@@ -769,8 +958,11 @@ What is scarce:
    human-AI combinations usually underperform the better party alone, and the moderator
    is *which party is better at the task*. Any interface-design project should say where
    it sits relative to that.
-5. **Crowding, ranked.** Idea 6 (most crowded, mostly framework proposals) > Idea 3 >
-   Idea 1 > Idea 5 > Idea 4 > Idea 2's routing question (least crowded).
+5. **Crowding, ranked** (revised after adversarial fact-checking, which found the first
+   sweep had under-counted competition in Ideas 1 and 4). Idea 6 (most crowded, mostly
+   framework proposals) > Idea 3 > **Idea 1** > Idea 4 > Idea 5 > Idea 2's routing
+   question (least crowded — and the only "nobody has done this" claim in this document
+   that survived a deliberate attempt to falsify it).
 
 ---
 
@@ -783,9 +975,10 @@ What is scarce:
 | Work | Field | Headline |
 |---|---|---|
 | Vaccaro, Almaatouq & Malone (2024), *Nature Human Behaviour*, doi:10.1038/s41562-024-02024-1 | Human-AI teaming | 106 studies / 370 effects; combos **worse** than best alone on average; losses in decision tasks, gains in content creation |
-| *Commercial AI-Based Mental Health Chatbots...* PMID 42113705 (2026) | Mental-health chatbots | 52 studies, 22 RCTs, N=110,594; depression g=−0.35; loneliness g=−0.21 |
+| *Commercial AI-Based Mental Health Chatbots...* — *Psychotherapy and Psychosomatics*, doi:10.1159/000552072 (2026) | Mental-health chatbots | 52 studies, 22 RCTs, N=110,594; depression g=−0.35 (**≈1.6 PHQ-9 points, below the 5-point MCID**); loneliness g=−0.21; **anxiety null** |
 | npj Digital Medicine (2023), doi:10.1038/s41746-023-00979-5 | Conversational agents & wellbeing | Depression g=0.64; distress g=0.70 |
-| BMC Geriatrics (2026), doi:10.1186/s12877-026-07418-6 | Older adults | Companionship-focused AI: **no significant** effect on depression |
+| BMC Geriatrics 26:887 (2026), doi:10.1186/s12877-026-07418-6 | Older adults | 8 RCTs, N=611; **depression improved, g=−0.25** (CI −0.48 to −0.02); **loneliness null**; cognitive-focus > companionship-focus |
+| *Psychological Medicine*, PMID 41556104 | Older adults | Second, independent older-adults meta-analysis — read alongside the BMC one |
 | JMIR 2025;27:e78238 | GenAI mental-health chatbots | GenAI > rule-based/retrieval-based on depressive symptoms |
 
 ## Systematic reviews / scoping reviews / surveys
@@ -794,10 +987,11 @@ What is scarce:
 |---|---|
 | arXiv:2502.08796 | LLM Theory of Mind evaluation — **best Idea-1 entry point** |
 | *Cyberpsychology* doi:10.1089/cyber.2024.0536 | ToM & the "illusion of understanding" |
-| arXiv:2603.18007 **[⚠️ UNVERIFIED]** | LLM ToM (2026) |
 | arXiv:2505.08245 | **LLM psychometrics** — read before running human instruments on models |
 | npj Digital Medicine doi:10.1038/s41746-025-01790-0 | Cognitive bias in clinical LLMs |
-| PMC13276754 | AI psychosis: mechanisms & clinical risk — **best Idea-3 clinical entry point** |
+| PMC13276754 (*BJPsych Open*) | AI psychosis: mechanisms & clinical risk — **best Idea-3 clinical entry point** |
+| JMIR Ment Health 2026;27:e93040 | Psychiatric adverse events in media narratives (rapid scoping review) |
+| PMC12983331 | Application boundaries of LLMs in mental health (scoping review) |
 | *Nature Mental Health* doi:10.1038/s44220-026-00595-8 | Technological folie à deux |
 | *Philosophy & Technology* doi:10.1007/s13347-026-01034-3 | Distributed delusions (conceptual) |
 | PMC13405335 | GenAI, cognitive offloading & learner agency (scoping) |
@@ -820,7 +1014,7 @@ What is scarce:
 
 | Doc link | Status |
 |---|---|
-| arxiv.org/abs/2405.18870 | ✅ Real — **but the doc misdescribes it.** It is the *positive* result (LLMs reach adult ToM performance), not the skeptical one. See §1.1 |
+| arxiv.org/abs/2405.18870 | ✅ Real. It is the *positive* result (LLMs reach adult ToM performance). Whether the doc misuses it depends on which clause the cite was attached to — **AH, please clarify.** See §1.1 |
 | arxiv.org/abs/2607.28347 | ✅ Real; doc's summary accurate; one nuance omitted (§1.6) |
 | lesswrong.com/posts/msFvLtPfDnCEdvrBr/... | ⚠️ Not verified (domain blocked). Not peer-reviewed |
 | arxiv.org/abs/2605.06915 | ✅ Real; Apple/Stanford/Princeton, May 2026 |
@@ -829,7 +1023,7 @@ What is scarce:
 | arxiv.org/abs/2510.26518 | ✅ Real |
 | arxiv.org/abs/2605.04070 | ✅ Real; see §2.2 for the numbers in context |
 | link.springer.com/article/10.1007/s13347-026-01034-3 | ✅ Real — Osler, *Philosophy & Technology* 39(1):30 |
-| pmc.ncbi.nlm.nih.gov/articles/PMC7618964/ | ⚠️ **Wrong/stale target.** Use *Nature Mental Health* doi:10.1038/s44220-026-00595-8 |
+| pmc.ncbi.nlm.nih.gov/articles/PMC7618964/ | ✅ Correct article — it is the author-manuscript deposit. Prefer the version of record: *Nature Mental Health* doi:10.1038/s44220-026-00595-8 (**Dohnány et al.**, not Morrin) |
 | nature.com/articles/s44277-026-00065-0 | ✅ Real |
 | journals.sagepub.com/doi/10.1177/23794607251347020 | ✅ Real — Abels et al., *Behavioral Science & Policy* 11(1):22–32 |
 | emergentmind.com/topics/cultural-biases-in-llm-recommendations | ❌ **Not a citable source** (AI-generated aggregator). Primary sources listed in §3.5 |
