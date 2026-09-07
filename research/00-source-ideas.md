@@ -1,10 +1,39 @@
 # Source: Project Ideas Brainstorm (extracted)
 
-Extracted verbatim from `SF_ Initial Meeting Sept 1st, 2026 (1).docx`, section
-"Project Ideas Brainstorm". Kept here so the literature review and the ranked
+Body text extracted verbatim from `SF_ Initial Meeting Sept 1st, 2026 (1).docx`,
+section "Project Ideas Brainstorm". Kept here so the literature review and the ranked
 avenues can be checked against exactly what the team wrote.
 
 Initials appearing in the doc: **AH**, **DM**.
+
+## ⚠️ Editorial note — "six ideas" is my grouping, not the doc's
+
+**The bullet text below is verbatim. The numbered headings ("Idea 1"…"Idea 6") are mine.**
+That distinction matters, because the source list does not actually contain six ideas.
+
+The brainstorm has **seven top-level bullets**, all at the same list level:
+
+1. Aligning Artificial Minds to Human Wellbeing *(titled)*
+2. Cooperative Human-AI Frameworks *(titled)*
+3. **AH: Can build on research highlighting differences in AI-assisted human performance…** *(untitled, initialed)*
+4. **DM: How do LLMs inherit and/or exploit cognitive biases…** *(untitled, initialed)*
+5. Countering Cognitive Atrophy through Epistemic Design *(titled)*
+6. Combatting Deceptive Alignment and Misinformation *(titled)*
+7. Multi-Layered Trust Framework *(titled)*
+
+So there are **five titled project ideas plus two untitled initialed bullets**. I made two
+judgement calls to get to six:
+
+- **AH's untitled bullet (#3) I folded into Idea 2** (Cooperative Human-AI Frameworks),
+  because it elaborates on the "pluralistic oracle" bullet immediately above it and is
+  about AI-assisted human performance. But it sits at top level in the doc, so **AH may
+  have intended it as a separate idea.**
+- **DM's untitled bullet (#4) I promoted to a standalone idea** ("Idea 3") and gave it a
+  title I wrote. DM did not title it.
+
+**AH and DM: please correct this if I grouped your bullets wrong** — it changes which
+literature got searched and which avenues got generated. Everything downstream depends on
+this grouping.
 
 ---
 
@@ -28,12 +57,15 @@ Initials appearing in the doc: **AH**, **DM**.
 **AH:** Testing varying methods of a sort of "pluralistic oracle": framework for how/when LLMs should vs. should not present multiple viewpoints
 - How do LLMs decide in which cases to show users multiple perspectives vs. a single definitive answer? (single answer can induce sycophancy, but multiple can cause unnecessary confusion/paralysis) How do they present this information, and what are the effects of different approaches on human users and AI-assisted performance? How do LLMs respond to human feedback in this case?
 
-**AH:** Can build on research highlighting differences in AI-assisted human performance based on how AI presents information & how hybridization frameworks are designed (https://arxiv.org/abs/2510.26518, https://arxiv.org/abs/2605.04070)
+**AH:** *(top-level bullet in the source — folded into this idea by me; see editorial note above)* Can build on research highlighting differences in AI-assisted human performance based on how AI presents information & how hybridization frameworks are designed (https://arxiv.org/abs/2510.26518, https://arxiv.org/abs/2605.04070)
 - when AI confidence is low, its reasoning and judgments are worse and may ill-advise humans
 - static AI assistance, delivered in the same manner, degrades over time and may even eventually become harmful
 - Humans tend to overrely on AI when presented with its reasoning & explanation vs. only being shown search results and evidence, which fosters more legitimate trust
 
 ## Idea 3 — (DM) Inherited/exploited cognitive biases; hallucination & "AI psychosis"
+
+*(Heading authored by me — DM's bullet is untitled in the source. Bullet text below is verbatim.)*
+
 > **DM:** How do LLMs inherit and/or exploit cognitive biases; countering characteristics that lead to hallucinations/psychosis during interactions
 
 - Hallucinating with AI: Distributed Delusions and "AI Psychosis" (https://link.springer.com/article/10.1007/s13347-026-01034-3)
