@@ -3,10 +3,42 @@
 Up to three avenues per idea, ranked **most → least promising**, plus an overall ranking.
 Companion to `01-literature-review.md`; section references (§) point there.
 
-> **Version 2**, rewritten after two adversarial critiques (`critiques/`). The first
-> version's ranking rested on three "nobody has done this" claims that did not survive
-> fact-checking, and its two top recommendations were underpowered. Both are fixed below.
-> Changes are summarised at the end.
+> **Version 3.** Two rounds of adversarial critique (`critiques/`). v1's ranking rested on
+> three "nobody has done this" claims that did not survive fact-checking; v2 fixed those but
+> its stated tiebreak was inconsistent with its own scoring table. Changes at the end.
+
+---
+
+# The short version
+
+**Recommended project: 3A — map the implicit/explicit boundary in delusion confirmation.**
+Take psychosis-bench's unexplained headline finding (models confirm delusions far more when
+the content is *implicit*, p < .001) and characterise where that boundary sits.
+
+| | |
+|---|---|
+| **Effort** | ~50–70 person-hours, fits comfortably in ~12 working weeks |
+| **Participants** | **None.** Model-side only — no recruitment, no ethics application, no budget |
+| **Needs** | API access, and a clinical advisor to review stimuli |
+| **Week-1 check that could kill it** | Read psychosis-bench (arXiv:2509.10970): is the implicit/explicit gap already *characterised*, or only *reported*? |
+
+**The alternative: 2A — build the plurality router** (when *should* an assistant show
+multiple viewpoints?). It has the cleanest unclaimed gap in this document. **Pick it only
+if** you confirm an ethics pathway in week 1 *and* accept that the full version does not fit
+one semester — the realistic scope is the model-behaviour audit plus an expert-rated
+fallback, which drops the "should" from the claim.
+
+**If you want to avoid human subjects entirely: 1A + 3A.** Both are annotation-heavy
+trajectory measurement, they share a harness, and the work distributes well across mixed
+skill levels.
+
+**Before committing to anything, do the nine week-1 gates.** ~2 person-days, and they are
+the highest-return work in the project.
+
+*Why 3A over 2A, when 2A has the better gap: 2A's own stated timeline (5–7 weeks for Phase 1
+of 12 available, plus a 2–6 week ethics wait, plus a two-stage human study) does not fit the
+semester. 3A does. See the scoring table for the full reasoning, including where I think
+this call could be wrong.*
 
 ---
 
@@ -20,9 +52,14 @@ fact-check then **falsified three of the original novelty claims outright**. Ass
 will fall. **Before committing to any avenue, run a targeted search of the relevant
 proceedings plus forward-citations on the two nearest papers.**
 
-**2. Second-hand numbers are marked.** Where an avenue's premise rests on a figure taken
-from a search summary rather than a PDF, it says so. An avenue whose founding premise
-evaporates costs a semester — the week-1 gates below exist to catch that.
+**2. Every number in this document is second-hand.** `01`'s method section is blunt about
+it: *no paper was read in full* (publisher domains are blocked here). So psychosis-bench's
+"p < .001", StoryScope's "93.2% macro-F1", *Choose Your Agent*'s "44% / 19%" and every other
+figure below come from abstracts and search summaries. A fact-check corroborated most of
+them, **but corroborating a number is not reading the method that produced it.** *(v2
+claimed such numbers were individually marked. They weren't — that promise is withdrawn
+rather than faked.)* An avenue whose founding premise evaporates costs a semester, which is
+what the week-1 gates are for.
 
 **3. Every avenue names the one premise whose falsification kills it.** Check that premise
 first, not last.
@@ -44,13 +81,24 @@ also influenced the original ordering without being declared.
 | 7 | **Demoability** | An incubator rewards a thing you can show |
 | 8 | **Legibility** | Can a non-technical teammate explain the result? |
 
-**Honest statement about the ranking.** These criteria do not mechanically produce the
-ordering below, and it would be dishonest to pretend otherwise. On criteria 2 and 4 alone,
-**3A would rank first** — it is high-feasibility and the highest safety relevance in the
-document. I rank 2A first because I weight criterion 1 (gap size) most heavily, and 2A's
-gap is the only one in this document that survived a deliberate attempt to falsify it.
-**If the team weights safety relevance above novelty, 3A is your project and the ranking
-below is wrong for you.** That is a legitimate disagreement, not an error.
+**Weights.** Gap ×3, feasibility ×2, everything else ×1. *(v2 said "gap weighted most
+heavily" in prose while the table weighted gap and feasibility equally at ×2 — the two
+disagreed, and the ×2 version manufactured a spurious tie. Gap ×3 is the weighting I
+actually mean.)*
+
+**Honest statement about the ranking.** The criteria now do produce the ordering, but only
+because I chose the weights, and two cells do most of the work:
+
+- **2A's gap score (5) is the highest in the document** and survived a deliberate attempt to
+  falsify it. So did **5A's** — v2 called 2A's "the only one that survived," which was wrong;
+  the fact-check found four surviving claims, of which 2A's and 5A's are the strongest.
+- **2A's feasibility is 3, not 4** (v2 had 4). Its own stated timeline does not fit the
+  semester — see the arithmetic in 2A below. That single cell is the difference between 2A
+  and 3A ranking first. **If you think 2A can be scoped to fit, change that cell to 4 and 2A
+  wins by one point.** It is that close, and it is a judgement call, not a measurement.
+
+**Where this ranking could be wrong for you:** if your team weights novelty over
+deliverability, or is confident of fast ethics approval, 2A is your project.
 
 ## Standing assumptions — flag these if wrong
 
@@ -58,6 +106,10 @@ Inferred from the meeting doc, not confirmed. **If any is wrong, the ranking cha
 
 - ~14 weeks from the Sept 1 meeting, part-time, ~4–6 people, weekly mentor meeting.
 - **Weeks 1–2 are consumed by choosing the project**, leaving ~12 working weeks.
+- **Capacity anchor: assume ~5 h/person/week ⇒ roughly 250–350 person-hours for the whole
+  semester.** Every person-hour estimate below should be read against that total. It is the
+  number that makes the estimates auditable — if your team's real capacity differs, rescale
+  everything.
 - API access to frontier models; open-weight models runnable at ≤10B on modest hardware.
 - **No model fine-tuning at scale.** Any avenue requiring RLHF-style training is out.
 - **Human-subjects work is the binding constraint, not compute.** See the ethics and
@@ -73,10 +125,11 @@ Inferred from the meeting doc, not confirmed. **If any is wrong, the ranking cha
 |---|---|
 | A member's university IRB will cover it | Expedited/exempt review typically returns **2–6 weeks after submission**, and every listed researcher may need CITI training first |
 | No university affiliation → independent IRB | Typically **$1–2k** and similar timelines |
-| No pathway at all | **Restrict to model-side work or public secondary data.** Avenues 1A, 3A, 3B, 3C, 5A and 6A remain fully available |
+| No pathway at all | **Restrict to model-side work or public secondary data.** Avenues **1A, 1B, 3A, 3B, 5A, 6A and 2A's Phase 1 + 1.5** remain fully available — that is most of the document, including the top three. Only 2A's Phase 2, 3C's informant work, 4A's study and 4B need a pathway |
 
-**Any avenue with participants must submit by week 4 or drop its human phase.** Put this
-question to the mentor at the first meeting.
+**Any avenue with participants must submit by week 4 or drop its human phase** — and
+resolve *which of the three rows you are in* at the first mentor meeting, in week 1.
+Submitting is a later deadline than knowing.
 
 ### Statistical power — the numbers version 1 omitted
 
@@ -127,8 +180,20 @@ Version 1 scattered these across five sections. Do them **before** committing.
 | 7 | Read **SimpleToM** (2410.13648) | Avenue **1B**'s framing |
 | 8 | Resolve the **ethics pathway** question above | Every human-subjects avenue |
 | 9 | Confirm **API budget** and whether logprobs are available on your endpoints | Avenues **5A**, **5B** |
+| 10 | Read **arXiv:2512.18489** (discounted Bayesian filters) — does its estimator need logprobs or a normative posterior? | Avenue **1B**'s positive control |
 
-Nine papers, ~2 person-days. It is the highest-return work in the whole project.
+**Seven of these are reading (~2 person-days). Gates 8 and 9 are not** — they are
+institutional questions with days-to-weeks of latency, so **start them on day one** and read
+while you wait.
+
+**Then budget the pilot for whichever avenue you pick** — these are the premise checks named
+in each avenue, and they are real work, not free: 1A hand-code 50 conversations (~10 h);
+2A test 100 items (~8 h); 3B pilot one bias (~10 h); 4A pilot with 10 people (~12 h);
+5A pilot 200 examples with 5 features (~15 h).
+
+**If you take an avenue with participants, preregister it** (OSF, free). It costs an
+afternoon, forces the design decisions in the power section, and is a credibility asset for
+an incubator project.
 
 ---
 
@@ -250,10 +315,18 @@ demo.**
 **Question.** On which question types does presenting multiple perspectives improve human
 decisions, and on which does it just add load? And what do models *currently* do?
 
-**Why it's ranked first overall.** The gap here is the only one in this document that
-**survived a deliberate attempt to falsify it.** Searches for adaptive plurality routing,
+**Why it has the best gap score in the document.** Searches for adaptive plurality routing,
 NPOV generation and multi-perspective RAG all return work on *how* to be plural (Overton /
-distributional / steerable — §2.4), never *when*. Nobody has built the router.
+distributional / steerable — §2.4), never *when*. Nobody has built the router. This
+survived a deliberate attempt to falsify it — as did 5A's gap; v2 wrongly called this "the
+only one."
+
+**Why it is nonetheless ranked second — do this arithmetic before choosing it.** Phase 1 is
+5–7 weeks of the ~12 available. Ethics approval typically returns 2–6 weeks *after*
+submission. Phase 2 is then a think-aloud study, then a quantitative study, then analysis,
+then writeup. **That is 10–14 weeks of work in a 12-week box with no slack.** The full
+version does not fit a semester. Two honest responses: scope to **Phase 1 + Phase 1.5**
+(and drop "should" from your claim), or **pick 3A.**
 
 **What changed since version 1 — read this before reusing the old pitch.** Version 1's
 headline justification was that "the paralysis cost is asserted everywhere and measured
@@ -307,9 +380,27 @@ descriptive audit of hedging behaviour — publishable, and a necessary input, b
 to *Arbiters of Ambivalence* (arXiv:2505.23820), which §2.4 calls the closest existing work.
 **Decide now whether the shrunken claim is worth a semester.**
 
+**Effort and cost — v2 omitted both for its own top pick.**
+
+| Component | Estimate |
+|---|---|
+| Phase 1 (stimulus curation, harness, multi-model runs, codebook, double-coding, κ, analysis) | **~90–130 person-hours** — the annotation dominates |
+| Phase 1.5 expert-rated fallback | ~25–40 person-hours |
+| Phase 2 think-aloud (n≈12–20) | ~40 person-hours + participant costs |
+| Phase 2 quantitative | **~160 participants for one item class; ~477 for all three** (3 × 159) |
+| Participant cost | ~$700–900 for 160 at Prolific rates — **but the accuracy outcome needs domain-expert participants**, who cost several times that and recruit far slower |
+
+**At ~250–350 person-hours of total team capacity, Phase 1 alone is a third of the semester.**
+
+**Falsifiable how.** *Positive control:* your classifier must separate the **settled-fact**
+and **no-consensus** item classes on model behaviour before you trust any finding about the
+contested middle. If models hedge identically on "what is the boiling point of water" and
+"is capital punishment justified," your coding scheme is not measuring plurality.
+
 **The premise that kills it.** That models' current plural-vs-single behaviour has a
-*findable, non-trivial* boundary. Test on 100 items in week 2. If behaviour is uniform
-(always hedges, or hedges at random), Phase 1 has no result and you should move to 4A.
+*findable, non-trivial* boundary. Test on 100 items in week 2 (~8 person-hours — budget it).
+If behaviour is uniform (always hedges, or hedges at random), Phase 1 has no result and you
+should move to 3A.
 
 ---
 
@@ -422,8 +513,14 @@ biased user is a real validity threat — LLM user-simulators are known to be un
 human data before trusting the result**, or run the paradigm with a small human sample as a
 check. arXiv:2510.20039 (bidirectional opinion dynamics, N=266) is the nearest existing work.
 
+**Falsifiable how.** *Positive control:* your pipeline must reproduce the **known human
+effect size** for whichever bias paradigm you pick (anchoring effects are well-characterised
+in the behavioural literature) when you run it on the simulator alone, with no assistant. If
+your simulated users do not show the bias humans show, you are measuring the simulator, not
+the assistant.
+
 **The premise that kills it.** That amplification is measurable above simulator noise. Pilot
-on one bias before building three.
+on one bias (~10 person-hours) before building three.
 
 ---
 
@@ -507,6 +604,15 @@ switching relates to learning or retention.
 - **Measure individual differences** (Need for Cognition especially). Cheap, and recovers
   power.
 - **Run think-aloud first** (n≈12–20), quantitative second.
+- **Vary the *intensity* of the friction, not just its presence.** This matters more than
+  it looks: "productive friction" is prescribed everywhere in this literature — HES,
+  Scaffolded Cognitive Friction, the offloading reviews — and **dosed nowhere** (§4.4.3).
+  That gap **survived** the fact-check, unlike 4A's opt-in framing, which was partly
+  falsified. So a two-mode switch is the minimum; **three or four friction levels turns
+  this avenue's headline from a partly-occupied question into an open one**, and lets you
+  test for an inverted-U (too little → offloading; too much → users defect to a
+  frictionless tool). *v2's changelog claimed dosing had been folded in here. It hadn't —
+  this is that fix, and it upgrades the avenue.*
 
 **Feasibility. Medium.** The wrapper is genuinely 1–2 weeks (~30 person-hours). The study is
 the constraint: **~160 participants for the randomised-default effect (~$700–900)**, or a
@@ -617,8 +723,14 @@ redundancy stops being a threat.
 
 **Build a cross-domain held-out test before reporting any number.**
 
+**Falsifiable how.** *Positive control:* your feature extractor must reproduce StoryScope's
+published human-vs-AI separation on narrative text before you trust it on the
+grounded-vs-fabricated task. If it can't replicate the result it is derived from, a null on
+your task is uninformative.
+
 **The premise that kills it.** That structural features carry signal about grounding at all.
-Pilot on 200 examples with 5 hand-picked features before building the pipeline.
+Pilot on 200 examples with 5 hand-picked features (~15 person-hours) before building the
+pipeline.
 
 ---
 
@@ -670,9 +782,14 @@ operationalises six agency dimensions with a running eval, and it reports the st
 tension (instruction-following vs. agency support) that version 1 wrongly attributed to an
 unpublished project.
 
-**Feasibility. Medium**, and best done **after** one of the other avenues has produced a
-finding to install in the layer. Realistically this is the team's **write-up frame**, not a
-parallel workstream.
+**Falsifiable how.** *Positive control:* your rubric must separate two assistants already
+known to differ on HumanAgencyBench's dimensions. A rubric that scores everything the same
+is not measuring anything, and κ alone won't tell you that.
+
+**Feasibility. Medium**, but note the honest conclusion: **this is the team's write-up frame,
+not a parallel workstream.** It is listed in the ranking table for completeness and scores
+joint-last; if you are choosing a project, choose from ranks 1–6 and use 6A as the way you
+present whichever you pick.
 
 ---
 
@@ -694,42 +811,49 @@ attempt it.
 
 # Overall recommendation
 
-**Scoring.** 1–5 per criterion. Gap and feasibility weighted ×2; the rest ×1. This is my
-judgement made legible, not an objective measurement — **disagree with the cells, not just
-the ordering.**
+**Scoring.** 1–5 per criterion, **5 always good** (so Scoop 5 = *low* scoop risk, Feas 5 =
+*easy*). Anchors: **5** = clearly true / trivially achievable; **3** = mixed or uncertain;
+**1** = clearly false / not achievable this semester. Gap ×3, feasibility ×2, rest ×1. This
+is my judgement made legible, not a measurement — **disagree with the cells, not just the
+ordering.**
 
-| Rank | Avenue | Gap ×2 | Feas ×2 | Falsif | Safety | Scoop | Buy-in | Demo | Legib | **Total** |
+| Rank | Avenue | Gap ×3 | Feas ×2 | Falsif | Safety | Scoop | Buy-in | Demo | Legib | **Total** |
 |---|---|---|---|---|---|---|---|---|---|---|
-| =1 | **2A** Plurality router | 5 | 4 | 4 | 3 | 4 | 4 | 4 | 5 | **42** |
-| =1 | **3A** Implicit delusion boundary | 4 | 5 | 5 | 5 | 3 | 4 | 3 | 4 | **42** |
-| 3 | **1A** Stale beliefs in real corpora | 4 | 5 | 4 | 3 | 4 | 4 | 2 | 4 | **39** |
-| 4 | **3B** Bias transmission | 4 | 4 | 3 | 4 | 3 | 5* | 3 | 4 | **38** |
-| 5 | **5A** Structural fabrication signature | 4 | 3 | 4 | 4 | 4 | 4 | 3 | 3 | **36** |
-| 6 | **4A** Friction opt-in | 3 | 3 | 4 | 3 | 3 | 2* | 5 | 5 | **34** |
-| 7 | **1B** Persistence half-life | 2 | 5 | 4 | 3 | 2 | 4 | 2 | 3 | **32** |
-| 8 | **6A** Cognitive-layer rubric | 3 | 3 | 3 | 4 | 4 | 1* | 3 | 4 | **31** |
+| **1** | **3A** Implicit delusion boundary | 4 | 5 | 5 | 5 | 3 | 4 | 3 | 4 | **46** |
+| **2** | **2A** Plurality router | 5 | 3† | 4 | 3 | 4 | 4 | 4 | 5 | **45** |
+| 3 | **1A** Stale beliefs in real corpora | 4 | 5 | 4 | 3 | 4 | 4 | 2 | 4 | **43** |
+| 4 | **3B** Bias transmission | 4 | 4 | 3 | 4 | 3 | 5* | 3 | 4 | **42** |
+| 5 | **5A** Structural fabrication signature | 4 | 3 | 4 | 4 | 4 | 4 | 3 | 3 | **40** |
+| 6 | **4A** Friction opt-in | 3 | 3 | 4 | 3 | 3 | 2* | 5 | 5 | **37** |
+| =7 | **1B** Persistence half-life | 2 | 5 | 4 | 3 | 2 | 4 | 2 | 3 | **34** |
+| =7 | **6A** Cognitive-layer rubric | 3 | 3 | 3 | 4 | 4 | 1* | 3 | 4 | **34** |
+
+† **The cell the whole ranking turns on.** v2 scored 2A's feasibility 4 and it ranked first.
+3 is the honest score: Phase 1 alone is 5–7 of 12 available weeks, before a 2–6 week ethics
+wait and a two-stage human study. **Score it 4 and 2A wins by one point.**
 
 \* **Buy-in scores are guesses and are the cells most likely to be wrong.** 4A scores 2 only
-because the attribution question above is unresolved — **if DM endorses the reframe it
-becomes a 5, taking 4A to 37 and past 5A.** 3B scores 5 because it serves DM's own words
-directly. 6A scores 1 because no one claimed the idea; if someone does, it gains 4 points.
-**These cells are for the team to fill in, not me — and they are enough to reorder ranks
-4 through 8.**
+because the attribution question is unresolved — **if DM endorses the reframe it becomes 5,
+taking 4A to 40 and level with 5A.** 3B scores 5 because it serves DM's own words directly.
+6A scores 1 because no one claimed the idea; if someone does, it gains 4. **These cells are
+for the team to fill in, not me.**
 
 Note what the table does *not* do: it contains one or two avenues per idea, so it cannot
-show a case where, say, 2B beats another idea's winner. It ranks the shortlist, not the
-full 18.
+show a case where, say, 2B beats another idea's winner. It ranks the shortlist, not all 18.
 
-**2A and 3A tie at 42.** That is not a hedge — it reflects a real trade-off:
+**3A first, 2A second, by one point.** v2 reported these as tied; that tie was an artifact
+of weights that disagreed with their own prose. Corrected, 3A leads — and the ordering is
+close enough that the trade-off matters more than the rank:
 
-| Pick **2A** if… | Pick **3A** if… |
+| Pick **3A** (recommended) if… | Pick **2A** instead if… |
 |---|---|
-| You want the cleanest unclaimed gap | You want the strongest safety relevance |
-| You can resolve the ethics pathway by week 4 | You want zero human-subjects dependency |
-| You want a result that is easy to explain to non-specialists | You want to be certain of finishing |
+| You want to be certain of finishing | You want the cleanest unclaimed gap |
+| You have no ethics pathway, or don't know yet | You confirm a pathway in **week 1** |
+| You want the strongest safety relevance | You accept a Phase-1-only claim if recruitment fails |
+| You want work that starts on day one | You have someone who will own the study design |
 
-**If the team cannot resolve ethics in week 1–2, pick 3A.** It is the safest bet in the
-document and needs nothing but API access.
+**If you cannot answer the ethics question in week 1, pick 3A.** It needs nothing but API
+access and a clinical advisor.
 
 **Combinations worth considering.**
 - **1A + 3A** — both are trajectory measurement over multi-turn dialogue, both fully
@@ -740,6 +864,13 @@ document and needs nothing but API access.
   pool and one ethics application, but no stimuli, task design, outcome measures or analysis.
   For a part-time semester team that is two projects. Do it only for the shared ethics
   application.
+
+**Where to aim the output.** Version 2 named no venue for any avenue, and a dated call for
+papers constrains scope better than any gate table. Rough fits: **3A, 3B** → an AI-safety or
+AI-and-mental-health workshop, or a short paper at a CHI/FAccT-adjacent venue; **2A** → the
+Pluralistic Alignment workshop series; **1A, 1B** → an ACL/EMNLP workshop on dialogue or
+personalisation; **5A** → a workshop on AI-generated content detection; **4A, 4B** → CHI
+Late-Breaking Work. **Pick one deadline in week 2 and let it set the scope.**
 
 **The cross-cutting asset.** Ideas 1, 3 and 4 all need **multi-turn trajectory measurement**,
 and all three literatures independently complain that current benchmarks score endpoints
@@ -760,8 +891,21 @@ result in this document.**
 | **4A**: fixed attribution to DM; added Choose Your Agent, Study Mode, Learning Mode; separated the incentive arm | v1 presented DM's caveat as DM's question and ranked DM's actual proposal last |
 | **1A** is now the corpus study; old 1A became 1B, renamed and narrowed | CAPTURE/PERMA/PersistBench occupy the old framing; "discount factor" was formalism the design didn't earn |
 | **3B** added (bias transmission) | DM's "inherit and/or **exploit**" clause got zero avenues in v1 |
-| **4B** added (cognitive-debt replication); old 4B (dosing) folded into 4A | v1 flagged the contested study and generated no avenue from it |
+| **4B** added (cognitive-debt replication); old 4B (friction dosing) became a design requirement inside 4A | v1 flagged the contested study and generated no avenue from it |
 | **5A**: added per-claim verification; dropped the cross-task feasibility number; downgraded to Medium | The train/test label was confounded with the experimental condition |
 | **6A**: became a rubric + reliability study | v1's version was two projects graded as one |
-| Added positive controls to every "fails if" | v1 satisfied falsifiability by relabelling nulls as findings |
+| Added positive controls to 1A, 1B, 3A and 4A | v1 satisfied falsifiability by relabelling nulls as findings |
 | Added "measurement vs. intervention" + smallest-intervention line per avenue | The source doc asked three times for guardrails/prototypes; v1 proposed only measurement |
+
+# What changed from version 2
+
+| Change | Why |
+|---|---|
+| **Recommendation changed from 2A to 3A** | v2's prose said "gap weighted most heavily" while its table weighted gap and feasibility equally, manufacturing a spurious tie. Stating the real weight (gap ×3) *and* scoring 2A's feasibility honestly at 3 — its own timeline does not fit 12 weeks — puts 3A first |
+| Added a 15-line front matter with the pick, effort, participants and the killer check | v2 gave four different answers to "which project," all past 90% depth |
+| Gave 2A a person-hour range, participant counts and the 10–14-weeks-in-a-12-week-box arithmetic | It was the only top-ranked avenue with no numbers, and the sum had never been done |
+| Withdrew the "second-hand numbers are marked" claim | They weren't marked. Every number here is second-hand; saying so once is honest, promising markers that don't exist is worse than v1's silence |
+| Added 1B and 2A Phase 1+1.5 to the no-ethics-pathway row | The table most likely to be acted on literally was telling teams to drop the top-ranked avenue unnecessarily |
+| Added positive controls to 2A, 3B, 5A, 6A; corrected the changelog that claimed they existed | A changelog that overstates is what a reader checks *instead of* the text |
+| **Restored friction *dosing* to 4A as a design requirement** | v2's changelog said it was folded in; it wasn't. Worse, dosing is a gap that *survived* the fact-check while 4A's opt-in framing was partly falsified — the surviving claim had been dropped and the weaker one kept |
+| Added scoring anchors and polarity ("5 always good"), capacity anchor (~5 h/person/week), target venues, and the pilot costs to the gate table | "Disagree with the cells" is unusable if nobody knows what a 3 means, and estimates are unauditable without a capacity total |
