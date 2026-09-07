@@ -64,6 +64,23 @@ and flagged where they appear:
 **Three of those were wrong corrections of teammates.** If you read an earlier version of
 this file, those are the parts to re-read.
 
+**A second fact-checking round** verified all thirteen of those fixes landed correctly
+(author lists, effect sizes and scope statements all re-checked against sources) and
+verified 24 of the ~25 newly added works. It found four further problems, now also fixed:
+
+| What was wrong | Where | Now |
+|---|---|---|
+| A Perspective piece described as "the empirical companion" and filed under an evidence heading | §2.5 | Flagged `[REVIEW]`, described as conceptual with no data |
+| *Choose Your Agent* described as giving "free per-turn choice among three modalities" | §4.3 | One modality per game; the choice is use-vs-not. It is a weaker pre-emption than stated |
+| A study whose headline is a **null** listed under work that "measures the cost of plurality" | §2.5 | Null stated explicitly |
+| arXiv:2606.02976 described as time-based decay weighting | §1.5 | It uses a Bayes factor |
+
+Plus smaller corrections: JMIR Mental Health is volume **13**, not 27; arXiv:2605.06915 is
+Apple and Stanford (no Princeton); the "non-Bayesian beats Bayesian" claim is **confirmed**
+and its unverified flag lifted; *When Friction Helps* is a **blockchain** study, which
+matters for how far it transfers; the depression effect in the commercial-chatbot
+meta-analysis comes from **18 RCTs, N = 3,170**, not the headline N of 110,594.
+
 ---
 
 # Idea 1 — Aligning Artificial Minds to Human Wellbeing
@@ -81,9 +98,9 @@ benchmarks (arxiv.org/abs/2405.18870)."*
 **The citation sits at the end of a sentence with two clauses, and it fits one of them
 but not the other.** **arXiv:2405.18870 is Street et al., "LLMs achieve adult human
 performance on higher-order theory of mind tasks"** (Google DeepMind /
-Oxford; Winnie Street, John Oliver Siy, Geoff Keeling, Adrien Baranes, Benjamin Barnett,
-Michael McKibben, Tatenda Kanyere, Alison Lentz, Blaise Agüera y Arcas, Robin Dunbar).
-(Google DeepMind / Oxford / Johns Hopkins). It introduces the **MoToMQA** benchmark and
+Oxford / Johns Hopkins; Winnie Street, John Oliver Siy, Geoff Keeling, Adrien Baranes,
+Benjamin Barnett, Michael McKibben, Tatenda Kanyere, Alison Lentz, Blaise Agüera y Arcas,
+Robin Dunbar). It introduces the **MoToMQA** benchmark and
 reports the *positive* result: GPT-4 and Flan-PaLM reach adult or near-adult performance,
 and GPT-4 exceeds adults on 6th-order inferences (93% vs 82%). It is the paper making the
 capability claim, not the skeptical one.
@@ -130,10 +147,11 @@ over-discount old evidence.**
   Fedzechkina, Sapiro, Williamson, Foti — Apple, plus academic co-authors). *Cited in the
   doc.* Introduces the "information processing gap" (deviation from a Bayes update).
   Some elicitation methods yield near-Bayesian updates, others a learned heuristic.
-  **[⚠️ UNVERIFIED]** One further claim — that the non-Bayesian heuristic often *beats*
-  exact Bayesian computation on downstream tasks, implying a misspecified world-model —
-  is the most interesting thing here and **could not be corroborated from any abstract or
-  summary. Verify from the PDF before building on it.**
+  One further claim — that **the non-Bayesian heuristic updates often *outperform* exact
+  Bayesian computation on downstream task performance, indicating the LLMs' probabilistic
+  models of the world are misspecified** — is the most interesting thing here and is
+  **confirmed** against the authors' own research page. *(An earlier draft flagged this as
+  uncorroborated; that flag is lifted.)*
 - *LLMs are Bayesian, in Expectation, not in Realization* — arXiv:2507.11768 (Jul 2025;
   Chlon, Rashidi, Khamis, Awada). *Cited in the doc.* Transformers violate the
   martingale property (a hard requirement of Bayesian updating on exchangeable data),
@@ -231,8 +249,10 @@ damning:
     LLMs?*
   - **PERMA** — arXiv:2603.23231, *Benchmarking Personalized Memory Agents*; positional
     probing to diagnose recency bias, catastrophic forgetting, context saturation.
-  - *Memory Retrieval for Changing Preferences* — arXiv:2606.02976; time-based decay
-    weighting on user facts.
+  - *Memory Retrieval for Changing Preferences* — arXiv:2606.02976. Uses a **Bayes factor**
+    (how much including a turn improves the likelihood of the reference response) as a
+    unified signal for memory access and selection — **not** time-based decay weighting, as
+    an earlier draft stated.
 - **Memory poisoning (adversarial cousin of "stale belief artifacts")**: *MemoryGraft*
   arXiv:2512.16962; *From Untrusted Input to Trusted Memory* arXiv:2606.04329; *Memory
   Poisoning Attack and Defense on Memory Based LLM-Agents* arXiv:2601.05504. Key framing
@@ -389,17 +409,23 @@ vs. singular) and **the downstream human effect** of each choice.
   plurality.* **Anyone working on Idea 2 must read this.**
 - *Argumentative Experience: Reducing Confirmation Bias on Controversial Issues through
   LLM-Generated Multi-Persona Debates* — arXiv:2412.04629. Within-subjects, eye-tracking,
-  multi-perspective debate vs. retrieval-based search.
+  multi-perspective debate vs. retrieval-based search. **Note its headline is a null:** the
+  debate system did *not* significantly increase attention to opposing views or shift
+  beliefs. A methods template and a cautionary result, not evidence that plurality changes
+  minds.
 - **DeliberationBench** — arXiv:2603.10018; a normative benchmark for LLM influence on
   users' views.
 - *Beyond One-Way Influence: Bidirectional Opinion Dynamics in Multi-Turn Human-LLM
   Interactions* — arXiv:2510.20039 (N=266).
 - *Not Too Short, Not Too Long: How LLM Response Length Shapes People's Critical Thinking
   in Error Detection* — arXiv:2603.06878. Bridges Ideas 2 and 4.
-- Lopez-Lopez et al., *Generative artificial intelligence–mediated confirmation bias in
-  health information seeking* — **Annals of the New York Academy of Sciences**,
-  doi:10.1111/nyas.15413. Same group as the Abels hypercustomization paper in §3.5; this
-  is its empirical companion.
+- **[REVIEW]** Lopez-Lopez, Abels, Holford, Herzog & Lewandowsky, *Generative artificial
+  intelligence–mediated confirmation bias in health information seeking* — **Annals of the
+  New York Academy of Sciences** 1550(1):23–36 (2025), doi:10.1111/nyas.15413. Same group as
+  the Abels hypercustomization paper in §3.5. **It is a Perspective piece, not an empirical
+  study** — a conceptual account of three "pressure points" where bias can emerge, with no
+  data. *An earlier draft called it "the empirical companion" and filed it under this
+  section's evidence heading; that repeated the same error this review flagged elsewhere.*
 
 ## 2.6 What is actually still open in Idea 2
 
@@ -431,8 +457,9 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
 - **[META-ANALYSIS]** *Commercial AI-Based Mental Health Chatbots as Low-Intensity
   Adjuncts to Psychotherapy: Effectiveness, Adherence, and Safety* — **Psychotherapy and
   Psychosomatics**, doi:10.1159/000552072 (PMID 42113705, 2026). **52 studies, 22 RCTs,
-  N = 110,594, 13 commercial chatbots.** Depression improved vs. control (**g = −0.35**,
-  95% CI −0.56 to −0.13); loneliness only partially (4 RCTs, N = 662, **g = −0.21**,
+  N = 110,594, 13 commercial chatbots.** Depression improved vs. control (**18 RCTs,
+  N = 3,170; g = −0.35**, 95% CI −0.56 to −0.13); loneliness only partially (4 RCTs,
+  N = 662, **g = −0.21**,
   95% CI −0.39 to −0.03). **Two nuances that change how you should read this:** the
   depression effect is roughly **1.6 PHQ-9 points, below the 5-point minimal clinically
   important difference**, and **anxiety was null** (15 RCTs, N = 2,936, g = −0.37, 95% CI
@@ -463,9 +490,10 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
   safety considerations in generative AI chatbots* — **BJPsych Open**, PMC13276754.
   **The best single clinical entry point.**
 - **[REVIEW]** *Mass Media Narratives of Psychiatric Adverse Events Associated With
-  Generative AI Chatbots: Rapid Scoping Review* — JMIR Ment Health 2026;27:e93040.
+  Generative AI Chatbots: Rapid Scoping Review* — JMIR Ment Health 2026;13:e93040.
 - **[REVIEW]** *Exploring the application boundaries of LLMs in mental health: a
-  systematic scoping review* — PMC12983331.
+  systematic scoping review* — **Frontiers in Psychology** (2025),
+  doi:10.3389/fpsyg.2025.1715306 (PMC12983331).
 - **[REVIEW]** **Dohnány, Kurth-Nelson, Spens, Luettgau, Reid, Gabriel, Summerfield,
   Shanahan & Nour (2026)**, *Technological folie à deux: feedback loops between AI
   chatbots and mental health* — **Nature Mental Health** 4:336–345,
@@ -474,8 +502,9 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
   of record, so prefer the Nature Mental Health DOI — a citation-style point, not a broken
   link.* **An earlier draft of this review attributed this paper to "Morrin et al." That
   was wrong** — Hamilton Morrin leads the JMIR paper in §3.2 and the KCL "Delusions by
-  design?" piece, not this one.* Names the mechanism set: sycophancy, role play, anthropomimesis, and elevated
-  risk where a condition already involves altered belief-updating and reality-testing.
+  design?" piece, not this one. **The mechanism set:** sycophancy, role play,
+  anthropomimesis, and elevated risk where a condition already involves altered
+  belief-updating and reality-testing.
 - **[REVIEW]** Osler, L. (2026), *Hallucinating with AI: Distributed Delusions and "AI
   Psychosis"* — **Philosophy & Technology** 39(1):30, doi:10.1007/s13347-026-01034-3
   (preprint arXiv:2508.19588). *Cited in the doc; link verified.* Philosophical, using
@@ -515,7 +544,7 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
 - **[BENCHMARK]** *Between Help and Harm: An Evaluation of Mental Health Crisis Handling
   by LLMs* — arXiv:2509.24857, **JMIR Mental Health** doi:10.2196/88435. A major safety
   benchmark the first sweep missed entirely.
-- **Morrin, Au Yeung, Agnew, Østergaard & Pollak — JMIR Mental Health 2026;27:e91454** —
+- **Morrin, Au Yeung, Agnew, Østergaard & Pollak — JMIR Mental Health 2026;13:e91454** —
   *It Is the Journey, Not the Destination: Moving From End Points to Trajectories When
   Assessing Chatbot Mental Health Safety.*
   Methodologically the most useful of these: argues safety evaluation should score
@@ -537,8 +566,8 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
   PARROT — and **avenue 3C's viability depends on this distinction.**
 - **[BENCHMARK]** **PARROT** — *Persuasion and Agreement Robustness Rating of Output
   Truth* — arXiv:2511.17220.
-- *Recalling Too Well: Sycophancy Evaluation and Mitigation [in memory systems]* —
-  arXiv:2606.10949. **Benchmarks sycophancy associated with three popular memory systems
+- *Recalling Too Well: Sycophancy Evaluation and Mitigation **in Memory-Augmented Models*** —
+  arXiv:2606.10949 (MIST benchmark; up to 25× higher sycophancy with memory). **Benchmarks sycophancy associated with three popular memory systems
   (e.g. Mem0)** — i.e. the memory-layer version. This is the bridge between Idea 1 and
   Idea 3.
 - Mitigations: *Sycophancy under Pressure* arXiv:2508.13743; *Bayesian Truth Serum as
@@ -709,13 +738,15 @@ Quite a lot, and this is the risk for Idea 4's "build a prototype" framing:
     higher-control **Advisor (44%)** over the **Delegate (19%)**, yet groups only
     significantly increase collective surplus under Delegate access. **This is the closest
     existing analogue to avenue 4A.**
-  - *When Friction Helps: Transaction Confirmation Improves Decision Quality* —
-    arXiv:2602.18834. Participants reported better perceived performance and lower
-    frustration in **frictionless** mode, and preferred it, **despite later evidence of
-    degraded objective performance.**
+  - *When Friction Helps: Transaction Confirmation Improves Decision Quality **in Blockchain
+    Interactions*** — arXiv:2602.18834 (N=109; a crypto-wallet confirmation study on a
+    blockchain Connect Four game; Wave 2 win rate −11.8%, p=.044). Participants **preferred**
+    the frictionless mode and rated their own performance higher in it, **despite objectively
+    worse outcomes.** *Note the domain gap:* transaction confirmation is not epistemic
+    friction, so treat this as suggestive rather than a direct analogue.
   - *Cognitive offloading and the speedup illusion in human-AI interaction* — arXiv:2605.23177.
-  - **Not academic, but load-bearing:** **OpenAI's Study Mode** and **Claude's Learning
-    Mode** are *shipped, opt-in friction toggles*. Any project claiming voluntary opt-in
+  - **Not academic, but load-bearing:** **OpenAI's Study Mode**, **Claude's Learning Mode**
+    and **Gemini's Guided Learning** are *shipped, opt-in friction toggles*. Any project claiming voluntary opt-in
     is unstudied has to address the fact that two major products already ship the switch.
 
 ## 4.4 What is actually still open in Idea 4
@@ -730,8 +761,8 @@ Quite a lot, and this is the risk for Idea 4's "build a prototype" framing:
    and finds a preference–performance misalignment, and arXiv:2602.18834 finds users
    prefer frictionless modes despite worse objective outcomes. What appears still open is
    **voluntary opt-in to *epistemic* friction in a knowledge-work assistant specifically**
-   — and even that has to contend with Study Mode and Learning Mode as deployed
-   existence-proofs.
+   — and even that has to contend with Study Mode, Learning Mode and Guided Learning as
+   deployed existence-proofs.
 3. **Friction is universally prescribed and rarely dosed.** "Productive friction" appears
    in HES, in Scaffolded Cognitive Friction, in the offloading reviews. No one has a
    dose-response curve.
@@ -990,7 +1021,7 @@ What is scarce:
 | arXiv:2505.08245 | **LLM psychometrics** — read before running human instruments on models |
 | npj Digital Medicine doi:10.1038/s41746-025-01790-0 | Cognitive bias in clinical LLMs |
 | PMC13276754 (*BJPsych Open*) | AI psychosis: mechanisms & clinical risk — **best Idea-3 clinical entry point** |
-| JMIR Ment Health 2026;27:e93040 | Psychiatric adverse events in media narratives (rapid scoping review) |
+| JMIR Ment Health 2026;13:e93040 | Psychiatric adverse events in media narratives (rapid scoping review) |
 | PMC12983331 | Application boundaries of LLMs in mental health (scoping review) |
 | *Nature Mental Health* doi:10.1038/s44220-026-00595-8 | Technological folie à deux |
 | *Philosophy & Technology* doi:10.1007/s13347-026-01034-3 | Distributed delusions (conceptual) |
@@ -1017,7 +1048,7 @@ What is scarce:
 | arxiv.org/abs/2405.18870 | ✅ Real. It is the *positive* result (LLMs reach adult ToM performance). Whether the doc misuses it depends on which clause the cite was attached to — **AH, please clarify.** See §1.1 |
 | arxiv.org/abs/2607.28347 | ✅ Real; doc's summary accurate; one nuance omitted (§1.6) |
 | lesswrong.com/posts/msFvLtPfDnCEdvrBr/... | ⚠️ Not verified (domain blocked). Not peer-reviewed |
-| arxiv.org/abs/2605.06915 | ✅ Real; Apple/Stanford/Princeton, May 2026 |
+| arxiv.org/abs/2605.06915 | ✅ Real; **Apple and Stanford** (no Princeton — an earlier draft said otherwise), May 2026 |
 | arxiv.org/html/2507.11768v1 | ✅ Real; note it is **July 2025** with GPT-3-era validation |
 | research.google/blog/teaching-llms-to-reason-like-bayesians/ | ✅ Real; underlying paper in *Nature Communications* |
 | arxiv.org/abs/2510.26518 | ✅ Real |

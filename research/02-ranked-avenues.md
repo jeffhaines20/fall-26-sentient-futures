@@ -32,7 +32,7 @@ fallback, which drops the "should" from the claim.
 trajectory measurement, they share a harness, and the work distributes well across mixed
 skill levels.
 
-**Before committing to anything, do the nine week-1 gates.** ~2 person-days, and they are
+**Before committing to anything, do the ten week-1 gates.** ~2 person-days, and they are
 the highest-return work in the project.
 
 *Why 3A over 2A, when 2A has the better gap: 2A's own stated timeline (5–7 weeks for Phase 1
@@ -137,17 +137,23 @@ Two-sided, 80% power, α = .05:
 
 | Design | Detects | Needs |
 |---|---|---|
-| Opt-in rate, 30% → 45% | Randomised default effect | **~162 total** |
-| Opt-in rate, 30% → 55% | A large effect | ~60 total |
-| Correlation r = .3 | Switching ↔ learning | **~85** |
-| Correlation r = .4 | Same, larger | ~47 |
-| Two groups, d = 0.5 | Medium effect | **~63 per cell** |
-| Three formats, medium effect | One-way ANOVA | **~159 total** |
+| Opt-in rate, 30% → 45% | Randomised default effect | **~162 per group → ~325 total** |
+| Opt-in rate, 30% → 55% | A large effect | ~60 per group → ~120 total |
+| Correlation r = .3 | Switching ↔ learning | **~85 total** |
+| Correlation r = .4 | Same, larger | ~47 total |
+| Two groups, d = 0.5 | Medium effect | **~64 per cell → ~128 total** |
+| Three formats, medium effect (f = .25) | One-way ANOVA | **~159 total** |
 
-Cost at Prolific rates (~$12/hr, 20-minute study): **160 participants ≈ $700–900 including
-fees.** Version 1 proposed n≈20 for designs in this table — roughly 18% power, and below
-its own stated floor. **Either fund the real n, or run a design that is correct at small n
-(think-aloud, within-subjects, or continuous moderators — see below).**
+> **Corrected in v4.** v3 listed the first two rows as *totals*. They are **per group** — the
+> randomised-default design needs **~325 people, not ~162**, and costs about **$1,400–1,800**
+> at Prolific rates (~$12/hr, 20-minute study), not $700–900. Verified two ways (Cohen's *h*
+> and the direct two-proportion formula, both validated against R's `power.prop.test`).
+> This document spent two versions criticising v1 for proposing n≈20 at ~18% power, and then
+> recommended a design at ~50% power. **Check the row you are using before you budget.**
+
+Version 1 proposed n≈20 for designs in this table. **Either fund the real n, or run a design
+that is correct at small n (think-aloud, within-subjects, or continuous moderators — see
+below).**
 
 **Three cheap ways to recover power**, all recommended:
 - **Within-subjects** designs where order effects can be counterbalanced.
@@ -182,7 +188,7 @@ Version 1 scattered these across five sections. Do them **before** committing.
 | 9 | Confirm **API budget** and whether logprobs are available on your endpoints | Avenues **5A**, **5B** |
 | 10 | Read **arXiv:2512.18489** (discounted Bayesian filters) — does its estimator need logprobs or a normative posterior? | Avenue **1B**'s positive control |
 
-**Seven of these are reading (~2 person-days). Gates 8 and 9 are not** — they are
+**Eight of these are reading (~2 person-days). Gates 8 and 9 are not** — they are
 institutional questions with days-to-weeks of latency, so **start them on day one** and read
 while you wait.
 
@@ -576,15 +582,20 @@ voluntary opt-in, and can it be designed for?
 
 **What changed since version 1.** The claim "nobody has studied voluntary opt-in" is
 **partly falsified**:
-- **Choose Your Agent** (arXiv:2602.12089) gives 243 participants free per-turn choice among
-  Advisor / Coach / Delegate and finds a **preference–performance misalignment**: people
-  prefer the higher-control Advisor (44%) over the Delegate (19%), yet only Delegate access
-  raises collective surplus. That is close to the result 4A proposed to discover.
+- **Choose Your Agent** (arXiv:2602.12089): 243 participants play three multi-turn bargaining
+  games in groups of three; **each game grants access to one assistance modality** (Advisor /
+  Coach / Delegate) in randomised order, and on each turn a participant chooses whether to
+  use it or act manually. Finds a **preference–performance misalignment**: people prefer the
+  higher-control Advisor (44%) over the Delegate (19%), yet only Delegate access raises
+  collective surplus. *v3 described this as "free per-turn choice among three modalities" —
+  that overstated it; participants never choose among three.* It is close to 4A's question,
+  but **less of a pre-emption than v3 implied: the adoption choice is use-vs-not, not
+  friction-level selection.**
 - **When Friction Helps** (arXiv:2602.18834) finds users prefer frictionless modes despite
   worse objective performance.
-- **OpenAI's Study Mode and Claude's Learning Mode ship exactly this switch.** A proposal
-  claiming nobody studies opt-in, while two major products offer it, reads as
-  under-researched. **Address them explicitly.**
+- **OpenAI's Study Mode, Claude's Learning Mode and Gemini's Guided Learning ship exactly
+  this switch.** A proposal claiming nobody studies opt-in, while three major products offer
+  it, reads as under-researched. **Address them explicitly.**
 
 **The narrowed claim that still holds:** voluntary opt-in to *epistemic* friction in a
 **knowledge-work** assistant — as opposed to delegation-vs-advice in a negotiation game, or
@@ -614,10 +625,11 @@ switching relates to learning or retention.
   frictionless tool). *v2's changelog claimed dosing had been folded in here. It hadn't —
   this is that fix, and it upgrades the avenue.*
 
-**Feasibility. Medium.** The wrapper is genuinely 1–2 weeks (~30 person-hours). The study is
-the constraint: **~160 participants for the randomised-default effect (~$700–900)**, or a
-correctly-powered small-n design instead. **Ethics submission by week 4 or drop the human
-phase.**
+**Feasibility. Medium.** The wrapper is genuinely 1–2 weeks (~30 person-hours), and the
+ethics application is another 10–20 h on its own. The study is the real constraint:
+**~325 participants for the randomised-default effect (~$1,400–1,800)** — see the corrected
+power table — or a correctly-powered small-n design instead. **Ethics submission by week 4
+or drop the human phase.**
 
 **Falsifiable how.** Positive control: a manipulation known to move friction uptake (e.g.
 explicit stakes) must produce a detectable shift. Without it, no-variance is uninformative.
@@ -685,8 +697,16 @@ beat stylistic ones at separating human from AI fiction (93.2% macro-F1 on struc
 output?**
 
 **Why it's the best avenue in Idea 5.** It is a precise version of DM's exact intuition, and
-**the cross-product survived adversarial search** — nobody appears to have tested structural
-features for grounded-vs-fabricated. The nearest work, the *iScience* Portuguese study
+**the cross-product survived adversarial search — but only in a narrow form you must state
+precisely.** The claim that holds is about ***discourse-level*** structural features. It does
+**not** hold for "structural" in general: **arXiv:2603.01341, *Structural Hallucination in
+Large Language Models: A Network-Based Evaluation of Knowledge Organization and Citation
+Integrity*** tests knowledge-graph structure against fabricated output (fabrication rates
+>94%, citation omission 91.9%). That paper measures *hallucination rates* using
+*knowledge-graph* structure over a reference ontology — not a grounded-vs-fabricated
+separator built from the *discourse structure of the text itself*, which is StoryScope's move
+and yours. **Cite it and distinguish it in your first paragraph**, or a reviewer who searches
+"structural" + "hallucination" finds it on page one and assumes you didn't look. The nearest work, the *iScience* Portuguese study
 (PMC12969083), crosses human-vs-AI with true-vs-false but at the **lexical** level. Its most
 useful number for you: the detector scored **93% on human texts but only 75% on LLM
 outputs** — detectors tuned on human deception transfer poorly to machine deception. That
