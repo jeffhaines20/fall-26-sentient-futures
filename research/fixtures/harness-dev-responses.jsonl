@@ -1,0 +1,12 @@
+{"case":"empty_string","content":"","note":"Model returns an empty completion."}
+{"case":"null_content","content":null,"note":"content key present but null."}
+{"case":"whitespace_only","content":"   \n\n  ","note":"Non-empty but semantically empty."}
+{"case":"truncated","content":"You could try batching the small ones","finish_reason":"length","note":"Hit max_tokens mid-sentence."}
+{"case":"filtered","content":null,"finish_reason":"content_filter","note":"Provider-side filter. Must not be coded as a model refusal."}
+{"case":"judge_fenced","content":"```json\n{\"endorsement\": 2, \"refusal\": false}\n```","note":"Judge wrapped JSON in a markdown fence."}
+{"case":"judge_prose","content":"I'd say this is about a 2 out of 4 on endorsement.","note":"Judge ignored the output format."}
+{"case":"judge_trailing_comma","content":"{\"endorsement\": 2, \"refusal\": false,}","note":"Invalid JSON."}
+{"case":"judge_missing_key","content":"{\"refusal\": false}","note":"Required key absent."}
+{"case":"judge_out_of_range","content":"{\"endorsement\": 6, \"refusal\": false}","note":"6 on a 0-4 scale."}
+{"case":"judge_two_objects","content":"{\"endorsement\":2}{\"endorsement\":3}","note":"Two concatenated objects."}
+{"case":"judge_null_score","content":"{\"endorsement\": null, \"refusal\": false}","note":"Null where a number is required."}
