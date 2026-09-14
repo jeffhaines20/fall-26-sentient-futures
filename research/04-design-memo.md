@@ -173,40 +173,97 @@ blind-rater pass as G2, and report the ladder effect with and without it.
 
 ---
 
-## 6. Single-turn, with the comparability claim withdrawn
+## 6. Four turns: a shared benign preamble, with the cue at turn 4
 
-The proposal's stimuli are single utterances. psychosis-bench is twelve turns. **Reading its
-code settles what that costs.**
+**Decision, taken 14 Sep 2026 after the team debated single-shot versus multiple rounds:
+four turns. Turns 1–3 are a benign preamble, shared byte-identically across all four rungs of a
+proposition; the rung cue lands at turn 4.**
 
-Its user turns are a **fixed pre-written script** (`psy_bench/core/runner.py` iterates
-`test_case.prompts`, a `List[str]`; the model's reply enters the context but never changes what
-the user says next). So multi-turn here means *accumulating context*, not interaction — which
-makes extending to multi-turn far cheaper than it sounds: it is writing N strings per item and
-replaying them.
+### Why multi-turn at all
 
-But its scoring windows are hard-coded to skip early turns: `dcs_start_turn = 4`,
-`hes_start_turn = 7`, `sis_start_turn = 7`. **The instrument being inherited is configured not
-to score where this study applies it**, because its authors expected no scoreable delusion
-confirmation in phase 1 — and the paper's §4.5 confirms DCS is suppressed early.
+**The decisive argument is the scoring window.** psychosis-bench does not score delusion
+confirmation before turn 4 — `dcs_start_turn = 4`, with HES and SIS at 7 — so its headline 0.91
+comes from turns 4–12 (1,152 of 1,536 scored turns). **A cue at turn 1 has no comparability
+with any published number, and the positive control in §9 cannot work.** Landing the cue at
+turn 4 restores both.
 
-**Decision: single-turn for the main study, and the comparability claim is withdrawn.** The
-schedule's earlier line that an ordinal epistemic scale "keeps comparability with
-psychosis-bench's 0–2 DCS" was wrong: a four-level scale on one turn is not commensurable with
-a three-level scale over whole-conversation context from turn 4. Say in the Method that the
-scale is *inspired by* DCS and is not numerically comparable to it.
+Three supporting reasons. The proposal's own motivation is about *extended* interactions, so a
+single-shot design measures something the introduction does not describe. A cold-start explicit
+persecutory assertion is the **easiest** case for a 2026 safety-tuned model, so a floor effect
+at rung 1 is a live risk and context is the cheapest way to open dynamic range. And sycophancy
+compounds — the model's own earlier replies sit in context and models tend to stay consistent
+with themselves.
 
-**Two consequences the schedule acts on.** A cold-start explicit persecutory assertion is the
-*easiest* case for a 2026 safety-tuned model, so a floor effect at rung 1 is a live risk —
-hence **G4**, the signal gate at the end of week 4, and its fail branch of adding a three-turn
-benign preamble. And because that preamble is the cheapest available repair, **write the
-stimuli so it can be bolted on** rather than assuming single-turn forever.
+### Why exactly four, and not more
 
-**If you do go multi-turn, write the user turns response-agnostically.** psychosis-bench's
-scripts presuppose the model played along — turn 4 opens *"You get it,"* turn 12 says *"Thank
-you for understanding. Your validation is the final confirmation I needed."* A model that
-refused at turn 3 is thanked at turn 12 for validation it never gave, and is then scored on
-turns whose premise its own behaviour falsified. Writing turns that do not presuppose
-cooperation is a genuine methodological improvement and costs nothing.
+Four is the **minimum** that puts the critical turn inside the inherited scoring window. More
+buys little: if the rung is manipulated once, turns 5+ are just additional context while the
+writing cost scales linearly. Twelve turns would be replicating psychosis-bench's design rather
+than running this one.
+
+### The trap this design exists to avoid
+
+**The rung must not escalate across turns.** If turn 1 is purely-implied and turn 4 is explicit,
+rung is perfectly confounded with turn number and you cannot separate "the model responds to
+directness" from "the model responds to escalation." That is the most natural way to write a
+four-turn delusion scenario and it would make the headline uninterpretable. **The manipulation
+sits at exactly one turn, with everything before it held constant.**
+
+### Why a benign preamble rather than escalation
+
+Three candidate structures were considered: escalation (the delusion intensifies), persistence
+(the same cue restated at constant intensity), and context accumulation (benign preamble, then
+the cue). **Context accumulation wins on cost and on cleanliness:**
+
+- **The rung manipulation stays perfectly clean** — identical context before it, so the only
+  difference between rungs is the thing being studied.
+- **The writing cost is small.** The preamble is written *once per proposition* and reused
+  across its four rungs: 9 × 3 = 27 benign utterances, not 108.
+- **It follows psychosis-bench's own logic.** It holds phase 1 identical across the
+  explicit/implicit pair in **6 of its 8 pairs** (a seventh shares turns 1–2 but diverges at 3)
+  — a shared benign opening, then the manipulation diverges. This does the same thing more
+  systematically, which is straightforward to defend in review.
+- **It sidesteps the incoherence problem in the inherited scripts.** psychosis-bench's turns
+  presuppose the model played along — turn 4 opens *"You get it,"* turn 12 says *"Thank you for
+  understanding. Your validation is the final confirmation I needed."* A model that refused at
+  turn 3 is thanked at turn 12 for validation it never gave, and is then scored on turns whose
+  premise its own behaviour falsified. **Benign openers presuppose nothing, so the script stays
+  coherent whatever the model does.** Keep it that way: no preamble turn may react to, thank, or
+  agree with anything the model said.
+
+### What is scored
+
+**Turn 4 is the primary outcome** — the only turn carrying the manipulation. Score turns 1–3 as
+well, but as a **manipulation check**: they are identical across rungs, so any systematic
+difference there means the harness is wrong, not the models.
+
+### The comparability claim, still withdrawn
+
+Landing at turn 4 restores the *window*, not the *scale*. A four-level epistemic ordinal scored
+on one turn is still not numerically commensurable with DCS's three-level scale scored over
+whole-conversation context. The earlier claim that the ordinal "keeps comparability with
+psychosis-bench's 0–2 DCS" stays withdrawn. Say in the Method that the scale is *inspired by*
+DCS and report the positive control (§9) as the comparability evidence instead.
+
+### Cost, honestly
+
+| | Single-shot | 4-turn |
+|---|---|---|
+| Writing | 54 utterances | **+27 preamble utterances ≈ +5–6 h** |
+| API calls | ~2,160 | ~8,640, with context growing each turn |
+| Token spend | baseline | **roughly 8–10×** |
+| Judging | unchanged if only turn 4 is primary | unchanged |
+
+"Trivial cost" was fair at single-shot. At four turns with a reasoning model in the set it is
+not automatic — **check it against the week-1 spend cap before committing.**
+
+### The optional extension
+
+After turn 4's cue, two further turns pressing at **constant rung** would measure whether the
+model's initial stance holds — the persistence design, and the closest cheap approximation to
+the erosion phenomenon the introduction is actually about. Two more utterances per proposition.
+**Treat it as a stretch goal decided at the week-4 checkpoint**, not as core: if G4 shows healthy
+dynamic range at turn 4, spend the hours here; if it does not, they are needed elsewhere.
 
 ---
 

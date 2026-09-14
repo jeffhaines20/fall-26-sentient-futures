@@ -13,8 +13,8 @@ if you disagree with the item count or the analysis — the arguments are there,
 
 ## Can your team actually run this?
 
-**This plan allocates 199 task-hours, plus ~30 hours of standing overhead** (weekly standups,
-status lines, onboarding reading) that version 1 left out entirely. **Call it ~230 hours.**
+**This plan allocates 204 task-hours, plus ~30 hours of standing overhead** (weekly standups,
+status lines, onboarding reading) that version 1 left out entirely. **Call it ~234 hours.**
 
 **Size against the busiest person, not the total.** Roles here are not interchangeable —
 "Stimuli" needs no programming, "Harness" needs Python and API keys. Hours cannot be moved
@@ -22,16 +22,16 @@ between them freely, so an aggregate comparison is meaningless.
 
 | Role | Total | Busiest week |
 |---|---|---|
-| **Lead** | 38.1 h | 7.0 h (w1, w7) |
+| **Lead** | 40.6 h | 7.0 h (w1, w7) |
 | **Stimuli A** | 41.6 h | 7.0 h (w1, w2, w3) |
 | **Stimuli B** | 39.6 h | 7.0 h (w2, w3) |
 | **Harness** | 38.6 h | 7.0 h (w1, w4) |
-| **Analysis** | 41.1 h | 7.0 h (w5, w6) |
+| **Analysis** | 43.6 h | 7.0 h (w4, w5, w6) |
 
 **No role exceeds 7 h in any week.** That is the constraint that shaped this plan, and it is
 the number to size against — not the total.
 
-| Team | Capacity at 7 h/week | Verdict against ~230 h |
+| Team | Capacity at 7 h/week | Verdict against ~234 h |
 |---|---|---|
 | **5 people** | 280 h | **Works.** One role each, with genuine slack |
 | **4 people** | 224 h | **Just misses.** Take the item cut on day one (saves ~11 h → ~219 h) and pair **Analysis + Harness**, which share few weeks. Never pair Stimuli A with Stimuli B |
@@ -64,6 +64,27 @@ data and the analysis in week 6 cannot be run.**
 from each of autonomy / belonging / safety, so the stimulus set spans the space — but the
 4×3 interaction is not tested. It was never powered, and both reviewers said so.
 
+**Every item is a four-turn conversation.** Turns 1–3 are a benign preamble written **once per
+proposition** and shared byte-identically across its four rungs; the rung cue lands at **turn
+4**, which is where psychosis-bench begins scoring delusion confirmation (`dcs_start_turn = 4`).
+The reasoning is in §6 of the memo. Two rules that follow:
+
+- **The rung never escalates across turns.** If turn 1 were implied and turn 4 explicit, rung
+  would be confounded with turn number and the headline would be uninterpretable. The
+  manipulation sits at one turn, with everything before it identical.
+- **No preamble turn may react to, thank, or agree with the model.** psychosis-bench's scripts
+  presuppose cooperation (*"You get it"*, *"Thank you for understanding"*), so a model that
+  refused early is thanked later for validation it never gave. Benign openers presuppose
+  nothing. Keep it that way.
+
+**Turn 4 is the primary outcome. Turns 1–3 are a manipulation check** — identical across rungs,
+so a systematic difference there means the harness is wrong, not the models.
+
+**Development fixtures already exist.** [`fixtures/harness-dev-fixtures.csv`](fixtures/harness-dev-fixtures.csv)
+— 19 four-turn conversations with no delusional content, structurally identical to the real
+items, so the Harness role can build against the real schema from day one without generating
+anything that could inform the preregistration.
+
 ---
 
 ## The gates
@@ -77,7 +98,7 @@ a fail branch that is actually costed.
 | **G1** | The ladder carries the belief | ≥ 6 of 8 raters recover an *external-agency attribution* from rung 4, on ≥ 3 of 4 ladders | See the design memo — the fix is to change the outcome, not the stimuli |
 | **G2** | The ladder is ordered | Mean Spearman ρ against the assumed order ≥ 0.5, Kendall's *W* significant | Ladder becomes 4 unordered levels; re-run the power sketch at 3 df; contribution claim changes |
 | **G3** | Domains are distinguishable | Fleiss' κ ≥ 0.6 across three domains | Drop domain from the stratification and draw all 9 propositions freely. Costs nothing downstream |
-| **G4** | There is signal to measure | Explicit-rung primary-outcome rate between 0.15 and 0.85 | Add the 3-turn preamble condition and re-run — cheap in week 4, impossible in week 6 |
+| **G4** | There is signal to measure | Explicit-rung primary-outcome rate between 0.15 and 0.85 | The preamble is already in the design, so the cheap repair is spent. Extend to 6 turns (two constant-rung pressing turns after the cue) and re-run that week — see §6 of the memo. If it still floors, report the ceiling/floor as the finding and pivot the paper to the judge-validation and affective×epistemic results |
 
 **G1 and G2 use different rater pools.** Version 1 reused them, which primes the second task
 with the first task's propositions.
@@ -104,7 +125,7 @@ compress later.
 | 1.1 | **Procurement.** Open and fund the API account (the inherited harness is OpenRouter-based), name who pays, get reimbursement in writing, set a hard spend cap | Lead | 3 |
 | 1.2 | **External bookings.** Clinician: agree scope and book **two** slots (w2 and w3). Confirm venue and deadline. Recruit **two external reviewers** for week 7 | Lead | 2 |
 | 1.3 | **G0 — source the framing statistics.** The 0.07% figure, 265 documented cases, 43.8%, 36% of psychologists. Primary sources or they come out. This is a library task with no dependencies, and it decides what the Introduction may claim | Analysis | 3 |
-| 1.4 | **Write 12 pilot items** — 3 domains × 1 proposition × 4 rungs. Write each proposition down *first*, then the four utterances expressing it. **Record actual minutes per item** | Stimuli A+B | 8 |
+| 1.4 | **Write 12 pilot items** — 3 domains × 1 proposition × 4 rungs, **each a full four-turn conversation**. Write each proposition down *first*, then its 3-turn preamble, then the four rung utterances. `fixtures/harness-dev-fixtures.csv` is the worked pattern, so the preambles are quick. **Record actual minutes per item** | Stimuli A+B | 8 |
 | 1.5 | **G1 — attribution-recovery test.** 8 raters, shuffled unlabelled rungs. Ask: *"Does this person think something outside them is acting on them? Yes / No / Unclear — and if yes, what?"* Score against the threshold above | Stimuli A | 3 |
 | 1.6 | **G2 — ordering test**, **separate rater pool**. Rank the 4 rungs by *"how clearly does this state a belief that something external is acting on this person?"* | Stimuli B | 2 |
 | 1.7 | **G3 — domain assignment.** The 12 pilot items, blind coders assign to autonomy / belonging / safety. Fleiss' κ | Lead | 2 |
@@ -123,18 +144,20 @@ compress later.
 ---
 
 ## Week 2 — Mon 21 Sep · Write the ladder
-**28 h.** The critical path starts here and cannot be parallelised past two writers.
+**30 h.** The critical path starts here and cannot be parallelised past two writers.
 
 | # | Task | Owner | h |
 |---|---|---|---|
 | 2.1 | **Freeze the template**, using week 1's recorded timings. Fields: proposition, domain, rung, harm flag, length band, forbidden keywords. **If week 1 came in over 30 min/item, take the item cut now** — not in week 5 | Stimuli A+B | 2 |
 | 2.2 | **Write the remaining 24 base items** (9 propositions × 4 rungs = 36 total; 12 exist from week 1). **Each writer owns whole propositions across all four rungs**, then swaps for cross-review. Counterbalance who writes which rung first | Stimuli A+B | 12 |
-| 2.3 | **Clinician round 1** — send the 9 propositions and one worked ladder only. 30 minutes of their time, and it catches class-level problems *before* 54 items exist | Lead | 2 |
-| 2.4 | **Batch runner.** Full item set in, structured records out, resumable, rate-limit aware, temperature explicit | Harness | 5 |
-| 2.5 | **Draft the codebook.** Every check: definition, 2 positive examples, 2 negative, 1 edge case. **Blinding rule: coders see the response and the proposition, never the rung** | Lead + Analysis | 4 |
-| 2.6 | **Mine `01` for related work.** It covers ~150 papers; start there, not from scratch | Analysis | 3 |
+| 2.3 | **Write the 9 benign preambles** — three turns each, one per proposition, reused unchanged across that proposition's four rungs. Response-agnostic: no preamble turn may presuppose anything about the model's replies. Use `fixtures/harness-dev-fixtures.csv` as the worked pattern. **Deliberately not owned by Stimuli** — these are ordinary small talk about a job, a move, a building, and the clinical-writing skill is needed for the rung utterances, not for these | Lead + Analysis | 5 |
+| 2.4 | **Clinician round 1** — send the 9 propositions and one worked ladder only. 30 minutes of their time, and it catches class-level problems *before* 54 items exist | Lead | 2 |
+| 2.5 | **Batch runner.** Full item set in, structured records out, resumable, rate-limit aware, temperature explicit | Harness | 5 |
+| 2.6 | **Draft the codebook.** Every check: definition, 2 positive examples, 2 negative, 1 edge case. **Blinding rule: coders see the response and the proposition, never the rung** | Lead + Analysis | 4 |
 
-**Deliverable:** 36 base items, every proposition present at all four rungs.
+
+**Deliverable:** 36 base items plus 9 preambles — every proposition present at all four rungs,
+each rung a complete four-turn conversation.
 **Done when:** a reader who has never seen the project can recover each item's proposition from
 the file's own `proposition` column.
 
@@ -157,16 +180,17 @@ the file's own `proposition` column.
 ---
 
 ## Week 4 — Mon 5 Oct · The run, the positive control, and the signal gate
-**21 h.**
+**24 h.**
 
 | # | Task | Owner | h |
 |---|---|---|---|
 | 4.1 | **The positive control.** Score your own *explicit-rung* items with psychosis-bench's inherited DCS rubric and check they land near its published band. **This is the one test that can fail informatively** — it is the only thing distinguishing "implicitness doesn't matter" from "our stimuli are weak." Diagnose in order: judge drift → model-version drift → your stimuli | Harness + Analysis | 4 |
-| 4.2 | **Main run.** 54 items × k = 5 × 6–8 models ≈ 1,600–2,200 generations, plus judging. **Temperature above 0** — at 0, k = 5 returns five identical strings and buys nothing | Harness | 3 |
+| 4.2 | **Main run.** 54 items × **4 turns** × k = 5 × 6–8 models ≈ **6,500–8,600 generations**, plus judging, with context growing each turn — **roughly 8–10× the token spend of a single-turn design.** Check it against the week-1 spend cap before launching. **Temperature above 0** — at 0, k = 5 returns five identical strings and buys nothing | Harness | 3 |
 | 4.3 | **G4 — signal gate.** Is the explicit-rung primary-outcome rate between 0.15 and 0.85? Is rung 1 ≠ rung 4 in the expected direction? **Fail → add the 3-turn preamble condition and re-run this week** | Analysis | 2 |
 | 4.4 | **Integrity and refusal pass.** No truncations, no missing cells. **Code refusals as their own category** and report the refusal rate per rung — it is a result, and if it is not coded it manufactures a ladder effect | Harness + Stimuli B | 4 |
 | 4.5 | **Draw the reliability sample** from the *main run*, stratified by rung × item-type × judge-label, oversampling judge-positive cases on the rare checks. Strip all rung labels | Stimuli A | 3 |
 | 4.6 | **Draft the Method section** while the decisions are fresh | Lead + Stimuli A | 5 |
+| 4.7 | **Mine `01` for related work.** It covers ~150 papers; start there, not from scratch | Analysis | 3 |
 
 **Deliverable:** the full scored dataset, a positive-control verdict, and a G4 verdict.
 **Done when:** you know whether there is an effect to write about.
@@ -299,3 +323,20 @@ field assumed, within ±X points."* Framing that in week 3 costs nothing and res
 | **Analysis plan rebuilt** | Planned adjacent contrasts with correction, a named primary outcome, refusal coding, MDES reporting, the rated-directness model, RQ3 as 2×4 |
 | **Cut list recomputed with real hours** | v1's headline cut saved 5 h and claimed 51 |
 | **The design memo actually written** | v1 pointed at it twice; it did not exist |
+
+# What changed on 14 Sep — the four-turn decision
+
+The team debated single-shot versus multiple rounds and chose **four turns**. Reasoning in §6
+of the memo; the decisive argument is that psychosis-bench does not score delusion confirmation
+before turn 4, so a cue at turn 1 has no comparability with any published number and the
+positive control cannot work.
+
+| Change | Why |
+|---|---|
+| **Every item is now a 4-turn conversation**: 3-turn benign preamble shared across a proposition's four rungs, cue at turn 4 | Restores the scoring window, opens dynamic range against a likely floor effect at rung 1, and matches the motivation's own claim about extended interactions |
+| **New task 2.3 — write the 9 preambles**, owned by Lead + Analysis rather than Stimuli | Stimuli A and B were already at the 7 h/week ceiling in weeks 1–3, and preambles are ordinary small talk. The clinical-writing skill is needed for the rung utterances |
+| **Two rules added to the design**: the rung never escalates across turns, and no preamble turn may react to the model | Escalating the rung would confound it with turn number. Reacting preambles are why psychosis-bench's scripts thank a model that refused |
+| **G4's fail branch rewritten** | The 3-turn preamble *was* G4's cheap repair; it is now the main design, so the fallback is 6 turns, then reporting the floor as the finding |
+| **API spend line revised** — ~6,500–8,600 generations, roughly 8–10× the token cost | Context grows each turn. "Trivial cost" was fair single-shot; it is not automatic at four turns with a reasoning model in the set |
+| **Development fixtures added** (`fixtures/`) | 19 four-turn conversations with no delusional content, so the pipeline can be built against the real schema without generating anything that could inform the preregistration |
+| Related-work mining moved w2 → w4 | Made room for the preamble task without pushing any role over ceiling |
