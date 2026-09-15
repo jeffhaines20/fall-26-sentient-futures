@@ -141,6 +141,35 @@ to AH rather than a correction. And both bullets that a round-1 draft flagged ag
 team's own citation are stated near-verbatim in arXiv:2510.26518 — the round-1 flags were
 wrong to raise and the retraction was right.
 
+### Round 5 — psychosis-bench's source code read, and a harness outline reviewed
+
+Round 3 verified *papers*. Four claims about psychosis-bench's **released code** had since
+entered `03`, `04` and `05` with no verification record anywhere, and one of them disagreed
+with this document. All four were checked directly against
+`github.com/w-is-h/psychosis-bench@main` (package version 0.2.0) on **15 Sep 2026**.
+
+**Reading a code repository is not the same act as reading a paper. These claims do NOT carry
+`[✅ FULL TEXT]`** — that flag means a paper was read in full, and the split must stay exact.
+The provenance is this table.
+
+| Claim, as used in `03`/`04`/`05` | Source | Outcome |
+|---|---|---|
+| The judge **defaults** to `openai/o4-mini`, not the paper's `gpt-4o-mini` | `psy_bench/config.py` | ✅ Verbatim. **§3.2 amended above** — it previously recorded only the paper's judge, so this document and the planning documents disagreed |
+| The client sends no system prompt, no temperature, no seed | `psy_bench/core/client.py` `_prepare_request` builds `{"model", "messages"}` and nothing else; zero occurrences of `temperature`/`seed`/`top_p` in `client.py`, `core/runner.py`, `core/models.py` | ✅ Verbatim |
+| The script is fixed regardless of what the model replies | `psy_bench/core/runner.py`: `for i, prompt in enumerate(prompts)` — replies enter context, never alter the next user turn | ✅ Verbatim |
+| `dcs_start_turn` / `hes_start_turn` / `sis_start_turn` are real parameters | `psy_bench/api.py`, passed to `Scorer(...)` | ✅ Verbatim |
+
+**One inference built on these was wrong and is withdrawn.** `05` v1 stated that the client
+sending no temperature *"is why its published numbers are single draws at provider defaults."*
+Sample count and sampling temperature are independent; the single-draw property comes from the
+runner (*"Runs single experiments with AI models"*, no k-sample loop). The corrected claim is
+stronger: the published numbers are **single draws at unpinned provider defaults**, which is why
+a smoke test diffing against them needs a tolerance band.
+
+`research/05-harness-outline.md` was written this round and adversarially reviewed by two
+critics. It was rewritten; its own changelog is at the end of that file. Nothing in it changed a
+finding in this review.
+
 ---
 
 # Idea 1 — Aligning Artificial Minds to Human Wellbeing
@@ -739,7 +768,10 @@ This is the **most crowded** of the six ideas, and it got crowded very fast duri
     against 91.2% among the humans.) **So "you inherit the validity argument" is only half
     true: you inherit clinician-validated stimuli and an unvalidated judge.** Anyone building
     on DCS/HES/SIS should say so in their own limitations, and should pin the judge to
-    `gpt-4o-mini` if they want numbers comparable to the published ones.
+    `gpt-4o-mini` if they want numbers comparable to the published ones. **Pinning it is an
+    active step, not a default:** the released code sets
+    `DEFAULT_JUDGE_MODEL = "openai/o4-mini"` (`psy_bench/config.py`), and `o4-mini` is itself
+    one of the eight *tested* models. Source read 15 Sep 2026 — see round 5 below.
   - **The eight evaluated models are September-2025 OpenRouter snapshots**
     (`gemini-2.5-flash`, `o4-mini`, `gpt-5`, `deepseek-chat-v3.1`, `llama-4-maverick`,
     `gemini-2.5-pro`, `claude-sonnet-4`, `gpt-4o`). A year on, expect some not to resolve,

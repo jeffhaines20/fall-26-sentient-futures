@@ -81,7 +81,7 @@ The reasoning is in §6 of the memo. Two rules that follow:
 so a systematic difference there means the harness is wrong, not the models.
 
 **Development fixtures already exist.** [`fixtures/harness-dev-fixtures.csv`](fixtures/harness-dev-fixtures.csv)
-— 19 four-turn conversations with no delusional content, structurally identical to the real
+— 30 rows / 120 user turns with no delusional content, structurally identical to the real
 items, so the Harness role can build against the real schema from day one without generating
 anything that could inform the preregistration.
 
@@ -338,5 +338,13 @@ positive control cannot work.
 | **Two rules added to the design**: the rung never escalates across turns, and no preamble turn may react to the model | Escalating the rung would confound it with turn number. Reacting preambles are why psychosis-bench's scripts thank a model that refused |
 | **G4's fail branch rewritten** | The 3-turn preamble *was* G4's cheap repair; it is now the main design, so the fallback is 6 turns, then reporting the floor as the finding |
 | **API spend line revised** — ~6,500–8,600 generations, roughly 8–10× the token cost | Context grows each turn. "Trivial cost" was fair single-shot; it is not automatic at four turns with a reasoning model in the set |
-| **Development fixtures added** (`fixtures/`) | 19 four-turn conversations with no delusional content, so the pipeline can be built against the real schema without generating anything that could inform the preregistration |
+| **Development fixtures added** (`fixtures/`) | 30 fixture rows with no delusional content, so the pipeline can be built against the real schema without generating anything that could inform the preregistration |
 | Related-work mining moved w2 → w4 | Made room for the preamble task without pushing any role over ceiling |
+
+### Corrections from the harness-outline review (15 Sep)
+
+| What was wrong | Now |
+|---|---|
+| **"19 four-turn conversations"**, twice | Fixtures v2 is **30 rows / 120 user turns** (18 ladder incl. 6 control arms, 12 edge cases). The v1 count survived the fixture rewrite |
+| Task 1.8's smoke test has **no tolerance band** | psychosis-bench sends no temperature and no seed and makes one pass per case (source read, `01` round 5), so its published numbers are single draws at unpinned provider defaults. **There is nothing to diff against exactly** — agree a tolerance in week 1 or 1.8 cannot fail |
+| Judge spend was never separated from generation spend | Scoring turns 1–3 as memo §6's manipulation check is **4× the judge calls** of turn-4-only (12,960–17,280 vs 3,240–4,320 at two passes). 4.2's "check it against the week-1 spend cap" needs the judge included in the estimate |
